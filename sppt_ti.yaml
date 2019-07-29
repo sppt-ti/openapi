@@ -1,0 +1,2070 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+# Added by API Auto Mocking Plugin
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/dev.spptti/sppt-ti_api/1.0.0
+info:
+  description: Sistem Peradilan Pidana Terpadu berbasis Teknologi Informasi (SPPT TI)
+  version: "1.0.3"
+  title: SPPT TI API
+  contact:
+    email: dev.spptti@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  #- name: endpoint
+  #  description: Endpoints yang masih bersifat experiment
+  
+  - name: Endpoint Puskarda
+    description: Dokumentasi format pesan
+    
+  - name: format pesan
+    description: Dokumentasi format pesan
+    
+  - name: experiment
+    description: Endpoints atau format pesan yang masih bersifat experiment
+    
+  - name: sppt ti client
+    description: Endpoints yang disediakan oleh client
+
+paths:
+  /proses:
+    post:
+      tags:
+        - Endpoint Puskarda
+      summary: Mengirimkan dokumen perkara
+      operationId: tambahddDokumen
+      description: Mengirim dokumen via SPPT TI
+      parameters: 
+        - in: header
+          name: Accept
+          schema:
+            type: string
+            default: application/json
+          required: true
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: application/json
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/dik-10'
+                - $ref: '#/components/schemas/dik-20'
+        description: Dokumen yang akan dikirim
+  /dik-10:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Tahap dimulainya penyidikan
+      operationId: kirimDik10
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-10'
+        description: Dokumen yang akan dikirim
+  /dik-20:
+    post:
+      tags:
+        - format pesan
+      summary: Penunjukkan jaksa peneliti
+      operationId: kirimPrt10
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-20'
+        description: Dokumen yang akan dikirim
+  /dik-30:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman berkas perkara tahap 1
+      operationId: kirimPrt20
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-30'
+        description: Dokumen yang akan dikirim
+  /dik-40:
+    post:
+      tags:
+        - format pesan
+      summary: Penghentian perkara SP3
+      operationId: kirimPrt30
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-40'
+        description: Dokumen yang akan dikirim
+  /dik-50:
+    post:
+      tags:
+        - format pesan
+      summary: Berkas lengkap
+      operationId: kirimPrt40
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-50'
+        description: Dokumen yang akan dikirim
+  /dik-60:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman berkas perkara tahap 2
+      operationId: kirimPrt50
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-60'
+        description: Dokumen yang akan dikirim
+  /tut-10:
+    post:
+      tags:
+        - format pesan
+      summary: Penunjukkan Jaksa Penuntut Umum
+      operationId: kirimTut10
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tut-10'
+        description: Dokumen yang akan dikirim
+  /tut-20:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman SKP2
+      operationId: kirimTut20
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tut-20'
+        description: Dokumen yang akan dikirim
+
+  /sid-10:
+    post:
+      tags:
+        - format pesan
+      summary: Penetapan Hari Sidang Pertama
+      operationId: kirimSid10
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-10'
+        description: Dokumen yang akan dikirim
+
+  /sid-10a:
+    post:
+      tags:
+        - experiment
+      summary: Penetapan Hari Sidang Pertama
+      operationId: kirimSid10
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/gsb'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      allOf:
+                        - $ref: '#/components/schemas/sid-10'
+        description: Dokumen yang akan dikirim
+  /sid-20:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman Petikan Putusan
+      operationId: kirimSid20
+      description: Pengadilan mengirimkan Petikan Putusan ke Kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-20'
+        description: Dokumen yang akan dikirim
+
+  /sid-30:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman Salinan Putusan
+      operationId: kirimSid30
+      description: Pengadilan mengirimkan Salinan Putusan ke Kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-30'
+        description: Dokumen yang akan dikirim
+
+  /eks-10:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman Surat Perintah Pelaksanaan Putusan Pengadilan
+      operationId: kirimEks10
+      description: Mengirimkan Surat Perintah Pelaksanaan Putusan Pengadilan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eks-10'
+        description: Dokumen yang akan dikirim
+
+  /eks-20:
+    post:
+      tags:
+        - format pesan
+      summary: Pencatatan Berita Acara Pelaksanaan Putusan Pengadilan
+      operationId: kirimEks20
+      description: Mengirimkan dan mencatat Berita Acara Pelaksanaan Putusan Pengadilan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eks-20'
+        description: Dokumen yang akan dikirim
+  /pas-10:
+    post:
+      tags:
+        - format pesan
+      summary: Pemberitahuan Habis Masa Penahanan
+      operationId: kirimPas10
+      description: Mengirim Surat Pemberitahuan Habis Masa Penahanan via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pas-10'
+        description: Dokumen yang akan dikirim
+  /pas-20:
+    post:
+      tags:
+        - format pesan
+      summary: Pemberitahuan Narapidana Bebas
+      operationId: kirimPas20
+      description: Mengirim Pemberitahuan Narapidana Bebas via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pas-20'
+        description: Dokumen yang akan dikirim
+  /notifikasi:
+    post:
+      tags:
+        - sppt ti client
+      summary: Pemberitahuan Pengiriman Pesan
+      operationId: terimaNotifikasiDariPuskarda
+      description: Menerima notifikasi pengiriman pesan dari Puskarda
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifikasi_pengiriman'
+        description: Dokumen yang akan dikirim      
+components:
+  schemas:
+    gsb:
+      type: object
+      properties:
+        code:
+          type: string
+          example: mantap
+        data:
+          type: object
+    dik-10:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-10
+                example: dik-10
+                description: lihat data master Jenis Proses
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis SPDP.
+                items:
+                  $ref: '#/components/schemas/spdp'
+    dik-20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-20
+                example: dik-20
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis P16.
+                items:
+                  $ref: '#/components/schemas/p16'
+    dik-30:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-30
+                example: dik-30
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis BPT1.
+                items:
+                  $ref: '#/components/schemas/bpt1'
+    dik-40:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-40
+                example: dik-40
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis SP3.
+                items:
+                  $ref: '#/components/schemas/sp3'
+    dik-50:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-50
+                example: dik-50
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis P21.
+                items:
+                  $ref: '#/components/schemas/p21'
+    dik-60:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-60
+                example: dik-60
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis BPT2.
+                items:
+                  $ref: '#/components/schemas/bpt2'
+                  
+    tut-10:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: tut-10
+                example: tut-10
+              dokumen:
+                type: array
+                minItems: 3
+                maxItems: 3
+                description: harus diisi dengan 3 dokumen berjenis P16A, P29, dan P31.
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/p16a'
+                    - $ref: '#/components/schemas/p29'
+                    - $ref: '#/components/schemas/p31'
+    tut-20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: tut-20
+                example: tut-20
+              dokumen:
+                type: array
+                minItems: 2
+                maxItems: 2
+                description: harus diisi dengan 2 dokumen berjenis P16A dan P26.
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/p16a'
+                    - $ref: '#/components/schemas/p26'
+    sid-10:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: sid-10
+                example: sid-10
+              dokumen:
+                type: array
+                minItems: 3
+                maxItems: 3
+                description: harus diisi dengan 3 dokumen berjenis PMH, PPS dan PHS.
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/pmh'
+                    - $ref: '#/components/schemas/ppp'
+                    - $ref: '#/components/schemas/phs'
+    
+    sid-20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: sid-20
+                example: sid-20
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis 'petikan'
+                items:
+                  $ref: '#/components/schemas/petikan'
+
+    sid-30:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: sid-30
+                example: sid-30
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis 'salput'
+                items:
+                  $ref: '#/components/schemas/salput'
+
+    eks-10:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: eks-10
+                example: eks-10
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis p48.
+                items:
+                  $ref: '#/components/schemas/p48'
+
+    eks-20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: eks-20
+                example: eks-20
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis ba18.
+                items:
+                  $ref: '#/components/schemas/ba17'
+
+    pas-10:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: pas-10
+                example: pas-10
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis sphmp.
+                items:
+                  $ref: '#/components/schemas/sphmp'                
+
+
+    pas-20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: pas-20
+                example: pas-20
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis sl.
+                items:
+                  $ref: '#/components/schemas/sl'
+
+
+    spdp:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: "spdp"
+              example: spdp
+              description: Diisi dengan spdp, lihat Kode Jenis Dokumen
+            identitas_dokumen:
+              required:
+                - nomor
+                - tanggal
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis nomor surat SPDP, lihat dokumen cetaknya
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis tanggal surat SPDP, cara penulisan merujuk bakuan penulisan tanggal
+            konten_dokumen:
+              required:
+                - nomor_laporan
+                - tanggal_laporan
+                - nomor_sprindik
+                - tanggal_sprindik
+                - uraian_singkat_perkara
+                - daftar_uu_pasal
+                - waktu_kejadian  
+                - tahun_kejadian                
+              properties:
+                nomor_laporan:
+                  type: string
+                  description: Tulis nomor Laporan Polisi, lihat dokumen cetaknya
+                tanggal_laporan:
+                  type: string
+                  format: date
+                  description: Tulis tanggal Laporan Polisi, cara penulisan merujuk bakuan penulisan tanggal
+                nomor_sprindik:
+                  type: string
+                  description: Tulis nomor Surat Perintah Penyidikan, lihat dokumen cetaknya
+                tanggal_sprindik:
+                  type: string
+                  format: date
+                  description: Tulis tanggal Surat Perintah Penyidikan, cara penulisan merujuk bakuan penulisan tanggal
+                uraian_singkat_perkara:
+                  type: string
+                  description: Tulis uraian singkat perkara, lihat dokumen Laporan Polisi
+                daftar_uu_pasal:
+                  type: array
+                  minLength: 1
+                  items:
+                    type: string
+                  example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
+                  description: Tulis semua pasal yang disangkakan, sesuai dengan informasi pada dokumen SPDP. Cara penulisan lihat bakuan penulisan di Pedoman Pertukaran Data SPPT TI.
+                tempat_kejadian_perkara:
+                  required:
+                    - lokasi
+                  type: object
+                  properties:
+                    lokasi:
+                      type: string
+                      description: Tulis lokasi tempat kejadian perkara sesuai dengan informasi pada dokumen Laporan Polisi, termasuk RT/RW dan Kelurahan. 
+                      example: Jl. Kota Baru Indah, Blok B7 No. 30 RT 01/02, Jagakarsa
+
+                    kode_wilayah:
+                      type: string
+                      description: Diisi dengan merujuk pada Kode Wilayah Administrasi
+                waktu_kejadian:
+                  type: string
+                  description: Tulis waktu kejadian perkara sesuai dengan informasi pada dokumen Laporan Polisi
+                  example: Kira-kira 1 Mei antara jam 10 sampai 12 malam
+                tahun_kejadian:
+                  type: integer
+                  nullable: true
+                  description: Tulis tahun kejadian perkara
+                  example: 2012
+                bulan_kejadian:
+                  type: integer
+                  nullable: true
+                  description: Bulan kejadian. jika tidak diketahui, diisi dengan null.
+                  example: 6
+                tanggal_kejadian:
+                  type: integer
+                  nullable: true
+                  description: Tanggal kejadian. jika tidak diketahui, diisi dengan null.
+                  example: 2
+                daftar_tersangka:
+                  type: array
+                  minLength: 0
+                  description: SPDP bisa tidak memiliki informasi tersangka sesuai dengan Perkap No. 14 Tahun 2012. Tulis semua data tersangka apabila tersedia.
+                  items:
+                    $ref: '#/components/schemas/tersangka'
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+                    
+    p16:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p16
+              example: p16
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+                - tanggal_terima_spdp
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_spdp:
+                  type: string
+                  description: nomor SPDP
+                tanggal_terima_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal terima SPDP
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_jaksa
+              properties:
+                daftar_jaksa:
+                  type: array
+                  description: Tulis semua data jaksa penuntut umum yang ditugaskan.
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+
+    sp3:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: sp3
+              example: sp3
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_spdp:
+                  type: string
+                  description: nomor SPDP
+            konten_dokumen:
+              type: object
+              required:
+                - kode_alasan
+              properties:
+                kode_alasan:
+                  type: array
+                  minLength: 1
+                  description: Lihat data master Alasan Penghentian Perkara
+                  items:
+                    type: integer
+                  example: [1, 2, 3]
+    bpt1:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: bpt1
+              example: bpt1
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor_surat_pengantar
+                - tanggal_surat_pengantar
+                - nomor_spdp
+              properties:
+                nomor_surat_pengantar:
+                  type: string
+                tanggal_surat_pengantar:
+                  type: string
+                  format: date
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara kepolisian
+                nomor_spdp:
+                  type: string
+                  description: nomor SPDP
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_tersangka
+              properties:
+                uraian_singkat_perkara:
+                  type: string
+                daftar_tersangka:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/tersangka'
+                daftar_barang_bukti:
+                  minLength: 1
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/barang_bukti'
+                daftar_saksi:
+                  minLength: 1
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/saksi'
+                daftar_ahli:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ahli'
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+    p21:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p21
+              example: p21
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_berkas_perkara
+                - tanggal_terima_berkas_perkara
+                - nomor_spdp
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara tahap I
+                tanggal_terima_berkas_perkara:
+                  type: string
+                  format: date
+                  description: Tanggal terima berkas perkara tahap I
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP
+            konten_dokumen:
+              type: object
+              properties:
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+    bpt2:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: bpt2
+              example: bpt2
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor_surat_pengantar
+                - tanggal_surat_pengantar
+                - nomor_spdp
+                - tanggal_terima_p21
+              properties:
+                nomor_surat_pengantar:
+                  type: string
+                tanggal_surat_pengantar:
+                  type: string
+                  format: date
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara kepolisian
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP yang bersangkutan                
+                tanggal_terima_p21:
+                  type: string
+                  format: date
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_tersangka
+                - daftar_saksi
+              properties:
+                uraian_singkat_perkara:
+                  type: string
+                daftar_tersangka:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/tersangka'
+                daftar_barang_bukti:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/barang_bukti'
+                daftar_saksi:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/saksi'
+                daftar_ahli:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ahli'
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+                    
+    p16a:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p16a
+              example: p16a
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+                - nomor_berkas_perkara
+                - nomor_register_perkara
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP
+                nomor_berkas_perkara:
+                  type: string
+                  description: nomor berkas perkara Kepolisian
+                nomor_register_perkara:
+                  type: string
+                  description: Nomor register perkara Kejaksaan
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_jaksa
+              properties:
+                daftar_jaksa:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+
+    p29:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p29
+              example: p29
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+                - nomor_berkas_perkara
+              properties:
+                nomor:
+                  type: string
+                  description: Diisi dengan nomor register perkara Kejaksaan
+                tanggal:
+                  type: string
+                  format: date
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara Kepolisian
+            konten_dokumen:
+              type: object
+              required:
+                - isi_dakwaan
+              properties:
+                isi_dakwaan:
+                  type: string
+                  description: Teks bebas berisikan informasi pasal yang dilanggar
+
+    p31:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p31
+              example: p31
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+                - nomor_berkas_perkara
+                - nomor_register_perkara
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara Kepolisian
+                nomor_register_perkara:
+                  type: string
+                  description: Nomor register perkara Kejaksaan
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_terdakwa
+                - daftar_saksi
+              properties:
+                daftar_terdakwa:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/terdakwa'
+                daftar_barang_bukti:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/barang_bukti'
+                daftar_saksi:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/saksi'
+                daftar_ahli:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ahli'
+
+    p26:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p26
+              example: p26
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_register_perkara
+                - nomor_spdp
+                - nomor_berkas_perkara
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor P-26
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal P-26
+                nomor_register_perkara:
+                  type: string
+                  description: Nomor register perkara Kejaksaan
+                nomor_spdp:
+                  type: string
+                  description: Nomor SPDP
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor berkas perkara Kepolisian
+            konten_dokumen:
+              type: object
+              required:
+                - kode_alasan
+              properties:
+                kode_alasan:
+                  type: array
+                  minLength: 1
+                  description: Lihat data master Alasan Penghentian Perkara
+                  items:
+                    type: integer
+                  example: [1, 2, 3]
+                  
+    pmh:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: pmh
+              example: pmh
+            identitas_dokumen:
+              type: object
+              required:
+                - tingkat_pengadilan
+                - nomor
+                - tanggal
+                - nomor_pelimpahan
+                - tanggal_terima_pelimpahan
+                - nomor_surat_dakwaan
+              properties:
+                tingkat_pengadilan:
+                  type: integer
+                  default: 1
+                  example: 1
+                nomor:
+                  type: string
+                  description: Nomor register perkara Pengadilan
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal penetapan
+                nomor_surat_dakwaan:
+                  type: string
+                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_hakim
+              properties:
+                daftar_hakim:
+                  type: array
+                  minLength: 1
+                  items:
+                    $ref: '#/components/schemas/hakim'
+    ppp:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: ppp
+              example: ppp
+            identitas_dokumen:
+              type: object
+              required:
+                - tingkat_pengadilan
+                - nomor
+                - tanggal
+                - nomor_pelimpahan
+                - tanggal_terima_pelimpahan
+                - nomor_surat_dakwaan
+              properties:
+                tingkat_pengadilan:
+                  type: integer
+                  default: 1
+                  example: 1
+                nomor:
+                  type: string
+                  description: Nomor register perkara Pengadilan
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal penetapan
+                nomor_surat_dakwaan:
+                  type: string
+                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+            konten_dokumen:
+              type: object
+              required:
+                - nama_panitera_pengganti
+              properties:
+                nama_panitera_pengganti:
+                  type: string
+                  example: Andi Maharani Sri Yulianti, S.H, M.H
+    phs:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: phs
+              example: phs
+            identitas_dokumen:
+              type: object
+              required:
+                - tingkat_pengadilan
+                - nomor
+                - tanggal
+                - nomor_pelimpahan
+                - tanggal_terima_pelimpahan
+                - nomor_surat_dakwaan
+              properties:
+                tingkat_pengadilan:
+                  type: integer
+                  default: 1
+                  example: 1
+                nomor:
+                  type: string
+                  description: Nomor register perkara Pengadilan
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal penetapan
+                nomor_surat_dakwaan:
+                  type: string
+                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+            konten_dokumen:
+              type: object
+              required:
+                - tanggal_sidang
+              properties:
+                tanggal_sidang:
+                  type: string
+                  format: date
+                  description: Tanggal sidang
+                  example: "2012-06-02"
+                lokasi_sidang:
+                  type: string
+                  description: Teks bebas deskripsi lokasi sidang
+                  example: Ruang Cakra, Gedung Serba Guna Pengadilan Negeri Jakarta Pusat
+   
+    petikan:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: petikan
+              example: petikan
+            identitas_dokumen:
+              type: object
+              required:
+                - tingkat_pengadilan
+                - tanggal_putusan
+                - nomor_putusan
+                - nomor_pelimpahan
+                - nomor_surat_dakwaan
+              properties:
+                tingkat_pengadilan:
+                  type: integer
+                  default: 1
+                  example: 1
+                nomor_putusan:
+                  type: string
+                  description: Nomor register perkara Pengadilan
+                tanggal_putusan:
+                  type: string
+                  format: date
+                nomor_surat_dakwaan:
+                  type: string
+                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_terdakwa
+                - isi_amar
+              properties:
+                daftar_terdakwa:
+                    type: array
+                    minLength: 1
+                    items:
+                      $ref: '#/components/schemas/terdakwa'
+                isi_amar:
+                  type: string
+                  description: Amar putusan
+                  example: "<p><strong>M E N G A D I L I :  </strong></p>\n\n<ol>\n <li>Menyatakan Terdakwa 1. DAENG SUPRIYANTO AMS ALIAS SUPRI dan Terdakwa  II. LIYAS MA’NURI AJI ALIAS AZIS telah terbukti secara sah dan menyakinkan bersalah melakukan tindak pidana : “  Yang melakukan, yang menyuruh melakukan atau turut serta melakukan perbuatan dengan maksud untuk menguntungkan dirinya atau orang lain dengan melawan hukum,memaksa orang dengan ancaman akan mencemar dengan surat atau dengan ancaman akan membuka rahasia , supaya orang itu memberi kepadanya suatu barang yang sama sekali atau sebagian kepuyaan orang itu atau kepunyaan orang lain, atau seupaya orang itu membuat utang atau menghapuskan hutang “ ; -----------------------------------</li>\n</ol>\n\n<p>                                <strong>Halaman </strong><strong>1</strong> <strong>Petikan Putusan </strong><strong> N</strong><strong>omor : 1800/P</strong><strong>id.</strong><strong>B</strong><strong>/201</strong><strong>6</strong><strong>/PN.</strong><strong>Jkt. Brt.</strong></p>\n\n<ol>\n <li>Menjatuhkan pidana kepada Para Terdakwa tersebut diatas oleh karena itu dengan pidana penjara masing – masing selama :  1 ( satu ) Tahun 8 ( delapan ) Bulan  ;</li>\n <li>Menetapkan masa penangkapan dan penahanan yang telah dijalani Para Terdakwa dikurangkan seluruhnya dari pidana yang dijatuhkan;</li>\n <li>Menetapkan Para Terdakwa tetap berada dalam tahanan ;</li>\n <li>Menyatakan barang bukti berupa : 30 ( tiga puluh ) lembar uang pecahan Rp. 100.000,- dan 20 ( dua puluh lembar uang  pecahan Rp. 50.000,- dikembalikan kepada saksi korban SAHRAN BASRIE ALIAS AJAN ; 1 ( satu ) unit  mobil Daihatsu Xenia No. Pol. B-2339 –SKQ warna putih berikut STNK dan kunci  kontak dikembalikan kepada saksi FERDINAND R RAHADIAN  ;</li>\n <li>Membebankan kepada Terdakwa untuk membayar biaya perkara sebesar   Rp. 2.000,-(dua ribu rupiah);</li>\n</ol>"
+                  
+    salput:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          required:
+            - daftar_dokumen_digital
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: petikan
+              example: petikan
+            identitas_dokumen:
+              type: object
+              required:
+                - tingkat_pengadilan
+                - tanggal_putusan
+                - nomor_putusan
+                - nomor_pelimpahan
+                - nomor_surat_dakwaan
+              properties:
+                tingkat_pengadilan:
+                  type: integer
+                  default: 1
+                  example: 1
+                tanggal_putusan:
+                  type: string
+                  format: date
+                nomor_putusan:
+                  type: string
+                  description: Nomor register perkara Pengadilan
+                nomor_surat_dakwaan:
+                  type: string
+                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+            konten_dokumen:
+              type: object
+            daftar_dokumen_digital:
+              minLength: 1
+    p48:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p48
+              example: p48
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_putusan_bht
+              properties:
+                nomor:
+                  type: string
+                tanggal:
+                  type: string
+                  format: date
+                nomor_putusan_bht:
+                  type: string
+                  description: nomor putusan pengadilan yang berkekuatan hukum tetap
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_jaksa
+              properties:
+                daftar_jaksa:
+                  minLength: 1
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+
+    ba17:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: ba17
+              example: ba17
+            identitas_dokumen:
+              type: object
+              required:
+                - tanggal
+                - nomor
+                - nomor_putusan_bht
+              properties:
+                nomor:
+                  type: string
+                  description: diisi dengan nomor P48 
+                tanggal:
+                  type: string
+                  format: date
+                nomor_putusan_bht:
+                  type: string
+                  description: nomor putusan pengadilan yang berkekuatan hukum tetap
+                  example: ""
+
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_terpidana
+              properties:
+                daftar_terpidana:
+                    type: array
+                    minLength: 1
+                    items:
+                      $ref: '#/components/schemas/terdakwa'
+
+
+    sl:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: sl
+              example: sl
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_putusan_bht
+              properties:
+                nomor:
+                  type: string
+                  description: nomor sl
+                tanggal:
+                  type: string
+                  format: date
+                  description: tanggal penerbitan sl
+                nomor_putusan_bht:
+                  type: string
+                  description: Nomor putusan pengadilan BHT
+            konten_dokumen:
+              type: object
+              required:
+                - tanggal_bebas
+                - tanggal_keluar
+                - narapidana
+              properties:
+                tanggal_bebas:
+                  type: string
+                  format: date
+                  description: tanggal pembebasan wbp menurut perhitungan rutan/lapas
+                tanggal_keluar:
+                  type: string
+                  format: date
+                  description: tanggal keluarnya wbp dari rutan/lapas
+                narapidana:
+                  $ref: '#/components/schemas/narapidana'
+      
+
+    sphmp:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: sphmp
+              example: sphmp
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+              properties:
+                nomor:
+                  type: string
+                  description: nomor sphmp
+                tanggal:
+                  type: string
+                  format: date
+                  description: tanggal penerbitan sphmp
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_tahanan
+                - sisa_hari_penahanan
+              properties:
+                tahanan:
+                    $ref: '#/components/schemas/tahanan'
+                sisa_hari_penahanan:
+                  type: integer
+                  format: int32
+                  description: Sisa hari penahanan
+   
+    header:
+      type: object
+      required:
+        - tx_id
+        - tx_type
+        - kode_proses
+        - kode_satker_pengirim
+      properties:
+        tx_id: 
+          type: string
+          format: uuid
+          description: UUID v.4
+          example: 177cd755-6dbe-460f-80f8-74b72f659215
+        tx_type: 
+          type: string
+          enum:
+            - new
+            - update
+          example: new
+        kode_proses:
+          type: string
+        kode_satker_pengirim:
+          type: string
+          example: 006.09.05
+          description: lihat data master Satker
+        kode_satker_penerima:
+          type: array
+          items:
+            type: string
+          example: [006.09.05]
+          description: lihat data master Satker
+        kode_satker_penerima_tembusan:
+          type: array
+          items:
+            type: string
+          example: [006.09.05, 005.400214]
+          description: lihat data master Satker
+    dokumen:
+      type: object
+      required:
+            - kode_jenis_dokumen
+            - identitas_dokumen
+            - konten_dokumen
+      properties:
+        kode_jenis_dokumen:
+          type: string
+          description: Lihat data master Jenis Dokumen
+        identitas_dokumen:
+          type: object
+        konten_dokumen:
+          type: object
+          properties:
+            pejabat_penandatangan:
+              type: array
+              description: Diisi dengan identitas semua pejabat penandatangan dokumen SPDP
+              items:
+                $ref: '#/components/schemas/aparat_negara'
+        daftar_dokumen_digital:
+          type: array
+          minLength: 0
+          items:
+            $ref: '#/components/schemas/dokumen_digital'
+        terenkripsi:
+          type: boolean
+          default: false
+        daftar_kunci_enkripsi:
+          type: array
+          minLength: 0
+          items:
+            $ref: '#/components/schemas/kunci_enkripsi'
+        tanda_tangan_digital:
+          type: string
+          description: Mekanisme tanda tangan digital akan ditentukan oleh BSSN. Lihat tata cara penandatanganan digital.
+    dokumen_digital:
+      type: object
+      properties:
+        kode_jenis_dokumen:
+          type: string
+        mime_type:
+          type: string
+        file:
+          type: string
+          format: byte
+          description: base64-encoded characters
+    kunci_enkripsi:
+      type: object
+      properties:
+        kode_satker_penerima:
+          type: string
+        key:
+          type: string
+    aparat_negara:
+      type: object
+      properties:
+        nama:
+          type: string
+        nomor_induk:
+          type: string
+        jabatan:
+          type: string
+        pangkat:
+          type: string
+    hakim:
+      type: object
+      required:
+        - nama
+      properties:
+        nama:
+          type: string
+        posisi:
+          type: string
+    persona:
+      type: object
+      properties:
+        nama:
+          type: string
+          description: Nama lengkap individu
+          example: Samuel Sambiroto
+        tempat_lahir:
+          type: string
+          description: Tempat lahir
+          example: Jakarta
+        tanggal_lahir:
+          type: string
+          format: date
+        kode_jenis_kelamin:
+          type: integer
+          default: 1
+          example: 1
+        alamat:
+          type: string
+          description: Alamat lengkap individu
+          example: Jl. Jalan-jalan No 1
+        kode_wilayah:
+          type: string
+        kode_pendidikan:
+          type: integer
+          example: 1
+        kode_pekerjaan:
+          type: integer
+          example: 87
+        gelar_depan:
+          type: string
+        gelar_belakang:
+          type: string
+        nama_bapak:
+          type: string
+        nama_ibu:
+          type: string
+        kode_agama:
+          type: integer
+          example: 1
+        kode_status_perkawinan:
+          type: integer
+          example: 1
+        kode_warga_negara:
+          type: string
+          example: idn
+        kode_jenis_identitas:
+          type: integer
+          nullable: true
+          description: Jika tidak diketahui, maka isi dengan null
+          example: 1
+        nomor_identitas:
+          type: string
+          nullable: true
+          description: Jika tidak diketahui, maka isi dengan null
+          example: 12345678
+    tersangka:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/persona'
+        - type: object
+          required:
+            - daftar_uu_pasal
+          properties:
+            umur_saat_tindak_pidana:
+              type: integer
+              description: Umur pelaku saat tindak pidana
+              example: 21
+            daftar_nama_alias:
+              type: array
+              items:
+                type: string
+              example: [Joni Gudel, Katrok]
+            daftar_uu_pasal:
+              type: array
+              minLength: 1
+              items:
+                type: string
+              example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
+            riwayat_penahanan:
+              type: array
+              items:
+                type: object
+                properties:
+                  jenis: 
+                    type: string
+                    description: TODO perlu penjelasan 
+                    example: test
+                  pihak_penahan: 
+                    type: integer
+                    description: Kode pihak penahan. Lihat data master Pihak Penahan. 10= Penyidik Kepolisian; 20= Jaksa Penuntut Umum; 30= Hakim Pengadilan Negeri; 31= Ketua Pengadilan Negeri; 40= Hakim Pengadilan Tinggi; 41= Ketua Pengadilan Tinggi; 50= Hakim Agung; 51= Ketua Mahkamah Agung
+                  tanggal_mulai:
+                    type: string
+                    format: date
+                    example: "2012-10-22"
+                  tanggal_selesai:
+                    type: string
+                    format: date  
+                    example: "2012-10-22"
+              example:
+                - jenis: denda
+                  pihak_penahan: 10
+                  tanggal_mulai: "2012-10-22"
+                  tanggal_selesai: "2012-30-22"
+                - jenis: kurungan
+                  pihak_penahan: 20
+                  tanggal_mulai: "2012-10-22"
+                  tanggal_selesai: "2012-30-22"
+    terdakwa:
+      allOf:
+        - $ref: '#/components/schemas/tersangka'
+        - type: object
+          required:
+            - nama
+          properties:
+            amar:
+              type: array
+              minLength: 0
+              description: Amar putusan 
+              items:
+                type: object
+                properties:
+                  kode_jenis_putusan:
+                    type: string
+                    description: ref ke master jenis_putusan
+                  value:
+                    type: object
+                    properties:
+                      nominal:
+                        type: integer
+                      tahun:
+                        type: integer
+                      bulan:
+                        type: integer
+                      hari:
+                        type: integer
+                      lainnya:
+                        type: string
+    narapidana:
+      allOf:
+        - $ref: '#/components/schemas/persona'
+        - type: object
+          required:
+            - nama
+            - hukuman
+          properties:
+            daftar_nama_alias:
+              type: array
+              items:
+                type: string
+              example: [Joni Gudel, Katrok]
+            hukuman:
+              type: array
+              minLength: 1
+              items:
+                $ref: "#/components/schemas/hukuman"
+              description: Hukuman yang dijatuhkan
+
+    tahanan:
+      allOf:
+        - $ref: '#/components/schemas/persona'
+        - type: object
+          required:
+            - nama
+            - hukuman
+            - alamat
+            - nomor_surat_perintah_atau_penetapan_penahanan
+            - tanggal_surat_perintah_atau_penetapan_penahanan
+            - tanggal_mulai_penahanan
+            - tanggal_akhir_penahanan
+            - nomor_registrasi_pemasyarakatan
+          properties:
+            daftar_nama_alias:
+              type: array
+              items:
+                type: string
+              example: [Joni Gudel, Katrok]
+            nomor_surat_perintah_atau_penetapan_penahanan:
+              type: string
+            tanggal_surat_perintah_atau_penetapan_penahanan:
+              type: string
+              format: date
+            tanggal_mulai_penahanan:
+              type: string
+              format: date
+            tanggal_akhir_penahanan:
+              type: string
+              format: date
+            nomor_registrasi_pemasyarakatan:
+              type: string
+    saksi:
+      allOf:
+        - $ref: '#/components/schemas/persona'
+        - type: object
+          required:
+            - nama
+            - kode_jenis_kelamin
+            - alamat
+            - kode_agama
+            - kode_warga_negara
+            - kode_pendidikan
+            - kode_pekerjaan
+    ahli:
+      allOf:
+        - $ref: '#/components/schemas/persona'
+        - type: object
+          required:
+            - nama
+            - tempat_lahir
+            - tanggal_lahir            
+            - kode_jenis_kelamin      
+            - alamat
+            - kode_wilayah
+            - kode_agama
+            - kode_status_perkawinan
+            - kode_warga_negara
+            - kode_jenis_identitas
+            - nomor_identitas
+            - kode_pendidikan
+            - keahlian  
+          properties:
+            keahlian:
+              type: string
+              description: Diisi dengan teks bebas
+              example: Ahli Hukum Pidana
+    barang_bukti:
+      required:
+        - nama
+        - jumlah
+        - satuan
+      type: object
+      properties:
+        nama:
+          type: string
+        jumlah:
+          type: number
+          description: Diisi dengan angka, bisa integer, bisa desimal
+        satuan:
+          type: string
+        keterangan:
+          type: string
+          
+    hukuman:
+      type: object
+      description: Hukuman 
+      properties:
+        kode:
+          type: string
+        value:
+          type: object
+          properties:
+            nominal:
+              type: integer
+            tahun:
+              type: integer
+            bulan:
+              type: integer
+            hari:
+              type: integer
+            lainnya:
+              type: string          
+          
+          
+          
+    # Schema for error response body
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Lihat data master Status Response
+        message:
+          type: string
+          description: Lihat data master Status Response
+    # Schema for success response body
+    success:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Lihat data master Status Response
+        message:
+          type: string
+          description: Lihat data master Status Response
+    notifikasi_pengiriman:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, error]
+        type:
+          type: string
+          enum: [tx, dok]
+          description: Terisi dengan "tx" ketika  notifikasi terkait pengiriman pesan. Terisi dengan "dok" jika terkait dengan pengiriman dokumen ke satker, misalnya spdp, p16, dst.
+        id:
+          type: string
+          description: jika status berisi "tx", maka id akan terisi dengan tx_id. Jika status berisi "dok", maka id akan terisi dengan nomor dokumen (misalnya nomor spdp, nomor p16, dst)
+        kode_satker_pengirim:
+          type: string
+          example: 006.09.05
+        kode_satker_penerima:
+          type: string
+          example: 006.09.05
+        kode:
+          type: string
+          enum: [sukses_diterima_puskarda, sukses_diterima_sistem_tujuan, gagal_timeout, gagal_simpan_db, gagal_data_kembar, gagal_validasi, gagal_simpan_antrian, sukses_diterima_satker, sukses_dibaca_satker]
+        catatan:
+          type: string
+          example: "Pesan telah diterima oleh Puskarda"
+        timestamp:
+          type: string
+          format: date-time
+          example: 
+  parameters: 
+    header_accept_param:
+        in: header
+        name: Accept
+        schema:
+          type: string
+          default: application/json
+        required: true
+    header_content_type_param:
+        in: header
+        name: Content-Type
+        schema:
+            type: string
+            default: application/json
+        required: true
+  
+  responses:
+    success:
+      description: Pengiriman data berhasil
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/success'
+            type: object
+            properties:
+              code:
+                example: 200
+              message:
+                example: "Dokumen berhasil dikirim"
+    error:
+      description: Pengiriman data gagal
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/error'
+            type: object
+            properties:
+              code:
+                example: 400
+              message:
+                example: "Server tujuan tidak memberikan response"
