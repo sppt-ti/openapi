@@ -1600,6 +1600,8 @@ components:
                   type: integer
                   format: int32
                   description: Sisa hari penahanan
+    mantap1:
+      type: string
     mantap2:
       type: integer
     header:
