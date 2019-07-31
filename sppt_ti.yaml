@@ -320,6 +320,52 @@ paths:
               $ref: '#/components/schemas/sid-30'
         description: Dokumen yang akan dikirim
 
+  /sid-41:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Akta pernyataan pencabutan banding
+      description: Mengirim dokumen ACB via SPPT TI dari Pengadilan ke Kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-41'
+        description: Format dokumen yang akan dikirim
+
+  /sid-71:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Akta pernyataan pencabutan kasasi
+      description: Mengirim dokumen ACK via SPPT TI dari Pengadilan ke Kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-71'
+        description: Format dokumen yang akan dikirim
+
   /eks-10:
     post:
       tags:
@@ -630,6 +676,38 @@ components:
                 description: harus diisi dengan dokumen berjenis 'salput'
                 items:
                   $ref: '#/components/schemas/salput'
+    
+    sid-41:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: sid-41
+                example: sid-41
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis ACB.
+              items:
+                $ref: '#/components/schemas/acbk'
+    
+    sid-71:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: sid-71
+                example: sid-71
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis ACK.
+              items:
+                $ref: '#/components/schemas/acbk'
 
     eks-10:
       required:
@@ -1442,7 +1520,7 @@ components:
             konten_dokumen:
               type: object
             daftar_dokumen_digital:
-              minLength: 1
+              minLength: 1      
     p48:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -1600,7 +1678,54 @@ components:
                   type: integer
                   format: int32
                   description: Sisa hari penahanan
-   
+
+    acbk:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: acbk
+              pattern: '^acbk$'
+              example: acbk
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_putusan
+              - nomor_akta_permohonan
+              - tanggal_akta_permohonan
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen ACB/ACK
+                  example: AMB/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen ACB/ACK
+                  example: "2019-01-15"
+                nomor_putusan:
+                  type: string
+                  description: Nomor putusan
+                  example: Put/3/12/2012.PNJAKPUS
+                nomor_akta_permohonan:
+                  type: string
+                  description: Nomor akta permohonan
+                  example: AP/3/12/2012.PNJAKPUS
+                tanggal_akta_permohonan:
+                  type: string
+                  format: date
+                  description: Tanggal akta permohonan
+                  example: "2019-01-15"
+            konten_dokumen:
+              required:
+                  - identitas_terdakwa
+              properties:
+                identitas_terdakwa:
+                  allOf:
+                    - $ref: '#/components/schemas/terdakwa'
+
     header:
       type: object
       required:
