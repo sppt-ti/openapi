@@ -256,7 +256,7 @@ paths:
       tags:
         - experiment
       summary: Penetapan Hari Sidang Pertama
-      operationId: kirimSid10
+      operationId: kirimSid10a_coba_github
       description: Mengirim dokumen via SPPT TI
       responses:
         '200':
