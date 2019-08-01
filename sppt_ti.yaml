@@ -131,7 +131,7 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-22'
         description: Format dokumen yang akan dikirim
-
+  
   /han-30.20:
     post:
       parameters:
@@ -2346,6 +2346,73 @@ components:
                   format: int32
                   description: Sisa hari penahanan
    
+    t6:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: t6
+              pattern: '^t6$'
+              example: t6
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_t7
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen t6
+                  example: SRT/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen t6.
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: nomor SPDP
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+                nomor_t7:
+                  type: string
+                  description: Nomor dokumen t7
+            konten_dokumen:
+              required:
+                  - tanggal_berakhir_penahanan
+                  - tanggal_mulai_perpanjangan_penahanan
+                  - tanggal_akhir_perpanjangan_penahanan
+                  - dasar_hukum_penahanan
+              properties:
+                tanggal_berakhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal berakhiir di T-7
+                  example: "2019-01-15"
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai perpanjangan penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir perpanjangan penahanan
+                  example: "2019-01-15"
+                dasar_hukum_penahanan: 
+                  type: string
+                  description: Free text dengan kemungkinan isi a) "Pasal 24 ayat (2) KUHAP" atau; b) "Pasal 25 ayat (2) KUHAP" atau; c) "Pasal 29 ayat (1) KUHAP"
 
     amb:
       allOf:
