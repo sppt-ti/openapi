@@ -175,7 +175,6 @@ paths:
       tags:
         - format pesan
       summary: Pemberitahuan Susulan Hasil Penyidikan Sudah Lengkap
-      operationId: kirimPrt40
       description: Mengirim dokumen via SPPT TI
       responses:
         '200':
