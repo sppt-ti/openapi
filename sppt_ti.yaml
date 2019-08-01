@@ -139,8 +139,8 @@ paths:
       - $ref: '#/components/parameters/header_content_type_param'
       tags:
         - format pesan
-      summary: Hasil penyelidikan belum lengkap
-      description: Hasil penyelidikan belum lengkap
+      summary: Hasil penyidikan belum lengkap
+      description: Hasil penyidikan belum lengkap
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -539,6 +539,28 @@ paths:
             schema:
               $ref: '#/components/schemas/pas-20'
         description: Dokumen yang akan dikirim
+
+  /pas-30:
+    post:
+      tags:
+        - format pesan
+      summary: Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan
+      operationId: kirimPas30
+      description: Mengirim Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pas-30'
+        description: Dokumen yang akan dikirim
+
   /notifikasi:
     post:
       tags:
@@ -936,7 +958,24 @@ components:
                 description: harus diisi dengan dokumen berjenis sl.
                 items:
                   $ref: '#/components/schemas/sl'
-
+ 
+    pas-30:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: pas-30
+                example: pas-30
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis sl.
+                items:
+                  $ref: '#/components/schemas/sl'
 
     spdp:
       allOf:
@@ -1171,6 +1210,48 @@ components:
               required:
                   - isi_surat
 
+    SPPTD:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: SPPTD
+              pattern: '^SPPTD$'
+              example: SPPTD
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+          
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen SPPTD
+                  example: SPPTD/3/12/2012.Ditjenpas
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPPTD.
+                  example: "2019-01-15"
+                nomor_putusan:
+                  type: string
+                  description: Nomor putusan
+                  example: 12/Pdt.G/2018/PN. Arm
+            konten_dokumen:
+              properties:  
+                identitas_tahanan:
+                  allOf:
+                    - $ref: '#/components/schemas/tahanan'
+                pihak_pemohon: 
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                  example: 2
+                  description: 1 = penuntut ; 2 = pendakwa
+
+    
     sp3:
       allOf:
         - $ref: '#/components/schemas/dokumen'
