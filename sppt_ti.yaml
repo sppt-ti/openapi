@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.2
 # Added by API Auto Mocking Plugin
 servers:
 # Added by API Auto Mocking Plugin
@@ -109,6 +109,28 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-20'
         description: Dokumen yang akan dikirim
+  /dik-22:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Permintaan Hasil Perkembangan Penyidikan
+      description: Kejaksaan Mengirimkan Permintaan Hasil Perkembangan Penyidikan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-22'
+        description: Format dokumen yang akan dikirim
   /dik-30:
     post:
       tags:
@@ -558,6 +580,21 @@ components:
                 description: harus diisi dengan dokumen berjenis P16.
                 items:
                   $ref: '#/components/schemas/p16'
+    dik-22:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dik-22
+                example: dik-22
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis P-17.
+              items:
+                $ref: '#/components/schemas/p17'
     dik-30:
       required:
         - dokumen
@@ -1003,6 +1040,48 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/aparat_negara'
+    p17:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: p17
+              pattern: '^p17$'
+              example: p17
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen P-17
+                  example: P17/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen P-17
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen spdp
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+            konten_dokumen:
+              required:
+                  - isi_surat
 
     sp3:
       allOf:
