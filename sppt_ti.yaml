@@ -139,8 +139,8 @@ paths:
       - $ref: '#/components/parameters/header_content_type_param'
       tags:
         - format pesan
-      summary: Hasil penyelidikan belum lengkap
-      description: Hasil penyelidikan belum lengkap
+      summary: Hasil penyidikan belum lengkap
+      description: Hasil penyidikan belum lengkap
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1122,6 +1122,78 @@ components:
             konten_dokumen:
               required:
                   - isi_surat
+    
+    t4:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: t4
+              pattern: '^t4$'
+              example: t4
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - kode_satker
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s21
+              - nomor_s17
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor Surat Permintaan Perpanjangan Penahanan
+                  example: T4/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen T4
+                  example: "2019-01-15"
+                kode_satker:
+                  type: string
+                  description: Kode satker yang meminta
+                  example: 006.09.05
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen spdp
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+                nomor_s21:
+                  type: string
+                  description: nomor dokumen S21
+                  example: S21/3/12/2012.PolresJAKPUS
+                nomor_s17:
+                  type: string
+                  description: Nomor untuk mendapatkan identitas yang ditahan
+                  example: S17/3/12/2012.PolresJAKPUS
+            konten_dokumen:
+              type: object
+              required:
+                - tanggal_mulai_penahanan
+                - tanggal_akhir_penahanan
+                - isi_surat
+              properties:
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir penahanan
+                  example: "2020-01-15"
     p18:
       allOf:
         - $ref: '#/components/schemas/dokumen'
