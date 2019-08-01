@@ -994,11 +994,11 @@ components:
                 type: array
                 minItems: 1
                 maxItems: 1
-                description: harus diisi dengan dokumen berjenis sl.
+                description: harus diisi dengan dokumen berjenis SPPTD
                 items:
                   $ref: '#/components/schemas/SPPTD'
 
-    han-2020:
+    han-20.20:
       required:
         - dokumen
       allOf:     # Combines Parent Object and the inline model
@@ -1006,13 +1006,13 @@ components:
         - type: object
           properties:
               kode_proses:
-                default: han-2020
-                example: han-2020
+                default: han-20.20
+                example: han-20.20
               dokumen:
                 type: array
                 minItems: 1
                 maxItems: 1
-                description: harus diisi dengan dokumen berjenis sl.
+                description: harus diisi dengan dokumen berjenis pen-7.14
                 items:
                   $ref: '#/components/schemas/pen-7.14'
 
