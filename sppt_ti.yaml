@@ -973,9 +973,9 @@ components:
                 type: array
                 minItems: 1
                 maxItems: 1
-                description: harus diisi dengan dokumen berjenis sl.
+                description: harus diisi dengan dokumen berjenis spptd.
                 items:
-                  $ref: '#/components/schemas/sl'
+                  $ref: '#/components/schemas/spptd'
 
     spdp:
       allOf:
@@ -1210,15 +1210,15 @@ components:
               required:
                   - isi_surat
 
-    SPPTD:
+    spptd:
       allOf:
         - $ref: '#/components/schemas/dokumen'
         - type: object
           properties:
             kode_jenis_dokumen:
-              default: SPPTD
-              pattern: '^SPPTD$'
-              example: SPPTD
+              default: spptd
+              pattern: '^spptd$'
+              example: spptd
             identitas_dokumen:
               required:
               - nomor
