@@ -2007,6 +2007,82 @@ components:
                     - 2
                   example: 2
                   description: 1 = penuntut ; 2 = pendakwa
+    
+    s21:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: s21
+              pattern: '^s21$'
+              example: s21
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s17
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen s21
+                  example: S21/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen s21.
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen spdp
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+                nomor_s17:
+                  type: string
+                  description: Nomor dokumen s17
+                  example: S17/3/12/2012.PolresJAKPUS
+            konten_dokumen:
+              properties:  
+                identitas_tersangka:
+                  required:
+                    - nama_tersangka
+                    - nomor_identitas
+                    - kode_satker_tempat_penahanan
+                    - tanggal_mulai_penahanan
+                    - tanggal_akhir_penahanan
+                  properties:
+                    nama_tersangka:
+                      type: string
+                      description: Nama Tersangka
+                      example : Samuel Sambiroto
+                    nomor_identitas:
+                      type: string
+                      nullable: true
+                      description: Jika tidak diketahui, maka isi dengan null
+                      example: 12345678
+                    kode_satker_tempat_penahanan:
+                      type: string
+                      example: 006.09.05
+                      description: lihat data master Satker
+                    tanggal_mulai_penahanan:
+                      type: string
+                      format: date
+                    tanggal_akhir_penahanan:
+                      type: string
+                      format: date
+                    
+
 
     acbk:
       allOf:
