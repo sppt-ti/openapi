@@ -673,6 +673,29 @@ paths:
             schema:
               $ref: '#/components/schemas/han-30.40'
         description: Format dokumen yang akan dikirim
+  
+  /han-30.80:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (Pasal 28)
+      description: MA mengirimkan penetapan perpanjangan penahanan Ketua MA
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.80'
+        description: Format dokumen yang akan dikirim
 
   /notifikasi:
     post:
@@ -1016,6 +1039,21 @@ components:
               description: Diisi dengan dokumen berjenis 'pen-7.21'.
               items:
                 $ref: '#/components/schemas/pen-7.21'
+    
+    han-30.80:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: han-30.80
+                example: han-30.80
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis 'pen-7.25'.
+              items:
+                $ref: '#/components/schemas/pen-7.25'
 
     sid-41:
       allOf:     # Combines Parent Object and the inline model
@@ -2747,6 +2785,82 @@ components:
                     - $ref: '#/components/schemas/terdakwa'
                 kode_jenis_penahanan:
                   type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                    - 3
+                  example: 1
+                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  example: 006.09.05
+                lama_penahanan:
+                  type: integer
+                  description: Angka jumlah hari
+                  example: 14
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir penahanan
+                  example: "2019-01-15"
+
+    pen-7.25:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: pen-7.25
+              pattern: '^pen-7.25$'
+              example: pen-7.25
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_perkara
+              - tingkat_pengadilan
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen pen-7.25
+                  example: PEN-7.25/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen pen-7.25.
+                  example: "2019-01-15"
+                nomor_perkara:
+                  type: string
+                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
+                  example: P/3/12/2012.PNJAKPUS
+                tingkat_pengadilan:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                    - 3
+                  example: 2
+                  description: 1 = Pengadilan Negeri ; 2 = Pengadilan Tinggi ; 3 = Mahkamah Agung
+            konten_dokumen:
+              required:
+                - identitas_terdakwa
+                - kode_jenis_penahanan
+                - lama_penahanan
+                - tanggal_mulai_penahanan
+                - tanggal_akhir_penahanan
+              properties:
+                identitas_terdakwa:
+                  allOf:
+                    - $ref: '#/components/schemas/terdakwa'
+                kode_jenis_penahanan:
+                  type: integer 
                   enum:
                     - 0
                     - 1
