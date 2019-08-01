@@ -1243,13 +1243,11 @@ components:
                 identitas_tahanan:
                   allOf:
                     - $ref: '#/components/schemas/tahanan'
-                pihak_pemohon: 
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                  example: 2
-                  description: 1 = penuntut ; 2 = pendakwa
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Kode satker tempat penahanan
+                  example: 006.09.05
+                  
 
     
     sp3:
