@@ -996,7 +996,7 @@ components:
                 maxItems: 1
                 description: harus diisi dengan dokumen berjenis sl.
                 items:
-                  $ref: '#/components/schemas/sl'
+                  $ref: '#/components/schemas/SPPTD'
 
     han-2020:
       required:
@@ -1014,7 +1014,7 @@ components:
                 maxItems: 1
                 description: harus diisi dengan dokumen berjenis sl.
                 items:
-                  $ref: '#/components/schemas/sl'
+                  $ref: '#/components/schemas/pen-7.14'
 
     spdp:
       allOf:
