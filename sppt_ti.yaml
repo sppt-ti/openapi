@@ -132,6 +132,29 @@ paths:
               $ref: '#/components/schemas/dik-22'
         description: Format dokumen yang akan dikirim
   
+  /han-30.50:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (Pasal 27)
+      description: PT mengirimkan perpanjangan penahanan ke kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pen-7.22'
+        description: Format dokumen yang akan dikirim
+  
   /dik-24:
     post:
       parameters:
@@ -1350,6 +1373,90 @@ components:
                   format: date
                   description: Tanggal akhir penahanan
                   example: "2020-01-15"
+    
+    pen-7.22:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: pen-7.22
+              pattern: '^pen-7.22$'
+              example: pen-7.22
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_perkara
+              - tingkat_pengadilan
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor Surat Penetapan Perpanjangan Penahanan (Pasal 27)
+                  example: PEN-7.22/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen PEN-7.22
+                  example: "2019-01-15"
+                nomor_perkara:
+                  type: string
+                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tingkat_pengadilan:
+                  type: string
+                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
+                  example: 1
+            konten_dokumen:
+              type: object
+              required:
+                - identitas_terdakwa
+                - kode_jenis_penahanan
+                - kode_satker_tempat_penahanan
+                - lama_penahanan
+                - tanggal_mulai_penahanan
+                - tanggal_akhir_penahanan
+              properties:  
+                identitas_terdakwa:
+                  allOf:
+                    - $ref: '#/components/schemas/terdakwa'
+                kode_jenis_penahanan:
+                  type: string
+                  description: kode jenis penahanan (0, 1, 2, 3)
+                  example: 0 
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  example: 060.01.02
+                lama_penahanan:
+                  type: integer
+                  description: angka jumlah hari
+                  example: 5 
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir penahanan
+                  example: "2019-01-15"
+    han-30.50:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: pen-7.22
+                example: pen-7.22
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis PEN-7.22.
+              items:
+                $ref: '#/components/schemas/pen-7.22'
+
     p18:
       allOf:
         - $ref: '#/components/schemas/dokumen'
