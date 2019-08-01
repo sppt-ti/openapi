@@ -131,6 +131,30 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-22'
         description: Format dokumen yang akan dikirim
+  
+  /dik-24:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Hasil penyelidikan belum lengkap
+      description: Hasil penyelidikan belum lengkap
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-24'
+        description: Format dokumen yang akan dikirim
+
   /dik-30:
     post:
       tags:
@@ -595,6 +619,22 @@ components:
               description: Diisi dengan dokumen berjenis P-17.
               items:
                 $ref: '#/components/schemas/p17'
+    
+    dik-24:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dik-24
+                example: dik-24
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis p18.
+              items:
+                $ref: '#/components/schemas/p18'
+
     dik-30:
       required:
         - dokumen
@@ -1079,6 +1119,54 @@ components:
                   type: string
                   description: Kode satker pengirim SPDP
                   example: 006.09.05
+            konten_dokumen:
+              required:
+                  - isi_surat
+    p18:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: p18
+              pattern: '^p18$'
+              example: p18
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_berkas_perkara
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen p18
+                  example: p18/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SRT1.
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP.
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  format: 006.09.05
+                  description: Kode satker pengirim spdp.
+                  example: "2019-01-15"
+                nomor_berkas_perkara:
+                  type: string
+                  description: Nomor dokumen nomor berkas perkara tahap 1
+                  example: P18/3/12/2012.KejariJAKPUS
             konten_dokumen:
               required:
                   - isi_surat
