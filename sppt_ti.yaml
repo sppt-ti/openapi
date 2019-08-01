@@ -215,6 +215,27 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-50'
         description: Dokumen yang akan dikirim
+
+  /dik-55:
+    post:
+      tags:
+        - format pesan
+      summary: Pemberitahuan Susulan Hasil Penyidikan Sudah Lengkap
+      description: Mengirim dokumen via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dik-55'
+        description: Dokumen yang akan dikirim
+
   /dik-60:
     post:
       tags:
@@ -686,6 +707,25 @@ components:
                 description: harus diisi dengan dokumen berjenis P21.
                 items:
                   $ref: '#/components/schemas/p21'
+
+    dik-55:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: dik-55
+                example: dik-55
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis P21a.
+                items:
+                  $ref: '#/components/schemas/p21a'
+
     dik-60:
       required:
         - dokumen
@@ -1304,6 +1344,61 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/aparat_negara'
+
+    p21a:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: p21a
+              pattern: '^p21a$'
+              example: p21a
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_p21
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen p21a
+                  example: p21a/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen p21a.
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP
+                  example: spdp/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen spdp.
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode Satker SPDP
+                  example: 006.09.05
+                nomor_p21:
+                  type: string
+                  description: Nomor dokumen p21
+                  example: p21/3/12/2012.PolresJAKPUS
+
+            konten_dokumen:
+              required:
+                  - isi_surat
+              properties:
+                isi_surat:
+                  type: string
+                  description: Isi surat
+                  example: ...
+
     bpt2:
       allOf:
         - $ref: '#/components/schemas/dokumen'
