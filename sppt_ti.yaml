@@ -19,18 +19,43 @@ tags:
   #  description: Endpoints yang masih bersifat experiment
   
   - name: Endpoint Puskarda
-    description: Dokumentasi format pesan
+    description: API endpoint pada Puskarda
     
   - name: format pesan
     description: Dokumentasi format pesan
     
   - name: experiment
     description: Endpoints atau format pesan yang masih bersifat experiment
-    
+
+  - name: Template
+    description: Template SPPT-TI
+
   - name: sppt ti client
     description: Endpoints yang disediakan oleh client
 
 paths:
+  /template_path:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - Template
+      summary: Tahap dimulainya penyidikan
+      description: Mengirim dokumen SRT1 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/template_proses'
+        description: Format dokumen yang akan dikirim
   /proses:
     post:
       tags:
@@ -855,6 +880,53 @@ paths:
         description: Dokumen yang akan dikirim      
 components:
   schemas:
+    template_proses:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: kode_proses
+                example: kode_proses
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis kode_jenis_dokumen.
+              items:
+                $ref: '#/components/schemas/template_dokumen'
+    template_dokumen:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: srt1
+              pattern: '^srt1$'
+              example: srt1
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen srt1
+                  example: SRT/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SRT1.
+                  example: "2019-01-15"
+            konten_dokumen:
+              required:
+                  - isi_surat
+              properties:
+                isi_surat:
+                  type: string
+                  description: Isi surat
+                  example: ...
     gsb:
       type: object
       properties:
