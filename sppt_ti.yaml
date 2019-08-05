@@ -697,6 +697,27 @@ paths:
               $ref: '#/components/schemas/han-30.40'
         description: Format dokumen yang akan dikirim
 
+  /han-20.20:
+    post:
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
+      operationId: kirimHan2020
+      description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-20.20'
+        description: Dokumen yang akan dikirim
+
   /notifikasi:
     post:
       tags:
@@ -1144,7 +1165,7 @@ components:
                 description: harus diisi dengan dokumen berjenis sl.
                 items:
                   $ref: '#/components/schemas/sl'
-
+ 
     pas-30:
       required:
         - dokumen
@@ -1177,6 +1198,25 @@ components:
               description: Diisi dengan dokumen berjenis PEN-7.1
               items:
                 $ref: '#/components/schemas/pen-7.1'
+
+    han-20.20:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: han-20.20
+                example: han-20.20
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis pen-7.14
+                items:
+                  $ref: '#/components/schemas/pen-7.14'
+
 
     spdp:
       allOf:
@@ -1680,8 +1720,73 @@ components:
                   description: Kode satker tempat penahanan
                   example: 006.09.05
                   
+    pen-7.14:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: pen-7.14
+              pattern: '^pen-7.14$'
+              example: pen-7.14
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_t6
+              - tanggal_t6
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen pen-7.14
+                  example: pen-714/3/12/2012.Ditjenpas
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen pen-7.14
+                  example: "2019-01-15"
+                nomor_t6:
+                  type: string
+                  description: Nomor perpanjangan penahanan
+                  example: 12/Pdt.G/2018/PN. Arm
+                tanggal_t6:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen pen-7.14
+                  example: "2019-01-15"
 
-    
+            konten_dokumen:
+              type: object
+              required:
+                - tanggal_berakhir_penahanan
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
+                - kode_jenis_penahanan
+                - kode_satker_tempat_penahanan
+              properties:  
+                tanggal_berakhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal berakhir penahanan
+                  example: "2019-01-15"
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai perpanjangan penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal tanggal_akhir_perpanjangan_penahanan
+                  example: "2019-01-15"
+                kode_jenis_penahanan:
+                  type: string
+                  description: Kode jenis penahanan
+                  example: 006.09.05 
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Kode satker tempat penahanan
+                  example: 006.09.05    
     sp3:
       allOf:
         - $ref: '#/components/schemas/dokumen'
