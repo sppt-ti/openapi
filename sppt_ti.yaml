@@ -741,6 +741,29 @@ paths:
               $ref: '#/components/schemas/han-30.30'
         description: Format dokumen yang akan dikirim
 
+  /han-30.60:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan Lanjutan
+      description: KPT mengirimkan penetapan MA atas penahanan lanjutan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.60'
+        description: Format dokumen yang akan dikirim
+
   /notifikasi:
     post:
       tags:
@@ -1257,6 +1280,22 @@ components:
                 items:
                   $ref: '#/components/schemas/pen-7.20'
 
+
+    han-30.60:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: han-30.60
+                example: han-30.60
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis PEN-7.23.
+              items:
+                $ref: '#/components/schemas/pen-7.23'
 
     spdp:
       allOf:
@@ -2781,6 +2820,86 @@ components:
                   format: date
                   description: Tanggal akhirnya perpanjangan penahanan
                   example: "2019-01-15"
+
+    pen-7.23:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: pen-7.23
+              pattern: '^pen-7.23$'
+              example: pen-7.23
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_surat_permohonan
+              - asal_permohonan
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen pen-7.23
+                  example: SRT/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen pen-7.23.
+                  example: "2019-01-15"
+                nomor_surat_permohonan:
+                  type: string
+                  description: Bisa berasal dari S-22 atau T-6 atau Permohonan Ketua PN
+                asal_permohonan:
+                  type: string
+                  description: POL, Kejaksaan Negeri, PN
+            konten_dokumen:
+              required:
+                  - isi_surat
+                  - tanggal_berakhir_penahanan
+                  - kode_jenis_penahanan
+                  - tanggal_mulai_perpanjangan_penahanan
+                  - tanggal_akhir_perpanjangan_penahanan
+              properties:
+                nama_rumah_sakit:
+                  type: string
+                  description: Diisi nama Rumah Sakit dari Surat Keterangan Dokter
+                  example: Rumah Sakit Umum Daerah Pasar Minggu
+                nama_dokter:
+                  type: string
+                  description: Diisi nama Dokter dari Surat Keterangan Dokter
+                  example: Drg. Agustina
+                tanggal_surat_dokter:
+                  type: string
+                  format: date
+                  description: Tanggal surat dokter.
+                  example: "2019-01-15"
+                nomor_surat_dokter:
+                  type: string
+                  description: Diisi dengan Nomor surat keterangan dokter
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  example: 013.05.193
+                tanggal_berakhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal berakhir penahanan
+                  example: "2019-01-15"
+                kode_jenis_penahanan:
+                  type: string
+                  description: Diisi dengan kode jenis penahanan
+                  example: 1
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai perpanjangan penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir perpanjangan penahanan
+                  example: "2019-01-15"
+
 
     amb:
       allOf:
