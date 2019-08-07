@@ -157,75 +157,7 @@ paths:
               $ref: '#/components/schemas/dik-22'
         description: Format dokumen yang akan dikirim
   
-  /han-30.20:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan (KPN)
-      description: PN mengirimkan Penetapan Perpanjangan Penahanan
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-30.20'
-        description: Format dokumen yang akan dikirim
-
-  /han-30.50:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan (Pasal 27)
-      description: PT mengirimkan perpanjangan penahanan ke kejaksaan
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-30.50'
-        description: Format dokumen yang akan dikirim
   
-  /han-30.90:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan (Pasal 28)
-      description: MA Mengirim Surat Penetapan Perpanjangan Penahanan Lanjutan
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-30.90'
-        description: Format dokumen yang akan dikirim
-
   /dik-24:
     post:
       parameters:
@@ -504,52 +436,6 @@ paths:
               $ref: '#/components/schemas/sid-40'
         description: Format dokumen yang akan dikirim
 
-  /sid-70:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Akta Permohonan Kasasi
-      description: Mengirim dokumen amk via SPPT TI
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/sid-70'
-        description: Format dokumen yang akan dikirim
-
-  /han-10.40:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan Lanjutan (Pasal 29)
-      description: Pengadilan mengirimkan penetapan perpanjangan penahanan lanjutan
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-10.40'
-        description: Format dokumen yang akan dikirim
-
   /sid-41:
     post:
       parameters:
@@ -571,6 +457,29 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/sid-41'
+        description: Format dokumen yang akan dikirim
+
+  /sid-70:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Akta Permohonan Kasasi
+      description: Mengirim dokumen amk via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-70'
         description: Format dokumen yang akan dikirim
 
   /sid-71:
@@ -699,6 +608,48 @@ paths:
               $ref: '#/components/schemas/pas-30'
         description: Dokumen yang akan dikirim
 
+  /han-10.40:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan Lanjutan (Pasal 29)
+      description: Pengadilan mengirimkan penetapan perpanjangan penahanan lanjutan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-10.40'
+        description: Format dokumen yang akan dikirim
+  /han-20.20:
+    post:
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
+      operationId: kirimHan2020
+      description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-20.20'
+        description: Dokumen yang akan dikirim
   /han-30.10:
     post:
       parameters:
@@ -722,15 +673,15 @@ paths:
               $ref: '#/components/schemas/han-30.10'
         description: Format dokumen yang akan dikirim
 
-  /han-30.40:
+  /han-30.20:
     post:
       parameters:
       - $ref: '#/components/parameters/header_accept_param'
       - $ref: '#/components/parameters/header_content_type_param'
       tags:
         - format pesan
-      summary: Penetapan Penahanan Hakim Banding
-      description: PT mengirimkan surat penetapan penahanan hakim ke kejaksaan
+      summary: Penetapan Perpanjangan Penahanan (KPN)
+      description: PN mengirimkan Penetapan Perpanjangan Penahanan
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -742,52 +693,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/han-30.40'
+              $ref: '#/components/schemas/han-30.20'
         description: Format dokumen yang akan dikirim
-  
-  /han-30.80:
-    post:
-      parameters:
-      - $ref: '#/components/parameters/header_accept_param'
-      - $ref: '#/components/parameters/header_content_type_param'
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan (Pasal 28)
-      description: MA mengirimkan penetapan perpanjangan penahanan Ketua MA
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-30.80'
-        description: Format dokumen yang akan dikirim
-
-  /han-20.20:
-    post:
-      tags:
-        - format pesan
-      summary: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
-      operationId: kirimHan2020
-      description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
-      responses:
-        '200':
-            $ref: '#/components/responses/success'
-        '400':
-          $ref: '#/components/responses/error'
-        '500':
-          $ref: '#/components/responses/error'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/han-20.20'
-        description: Dokumen yang akan dikirim
 
   /han-30.30:
     post:
@@ -812,6 +719,52 @@ paths:
               $ref: '#/components/schemas/han-30.30'
         description: Format dokumen yang akan dikirim
 
+  /han-30.40:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Penahanan Hakim Banding
+      description: PT mengirimkan surat penetapan penahanan hakim ke kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.40'
+        description: Format dokumen yang akan dikirim
+
+  /han-30.50:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (Pasal 27)
+      description: PT mengirimkan perpanjangan penahanan ke kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.50'
+        description: Format dokumen yang akan dikirim
+  
   /han-30.60:
     post:
       parameters:
@@ -857,6 +810,52 @@ paths:
             schema:
               $ref: '#/components/schemas/han-30.70'
         description: Format dokumen yang akan dikirim
+  
+  /han-30.80:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (Pasal 28)
+      description: MA mengirimkan penetapan perpanjangan penahanan Ketua MA
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.80'
+        description: Format dokumen yang akan dikirim
+
+  /han-30.90:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Penetapan Perpanjangan Penahanan (Pasal 28)
+      description: MA Mengirim Surat Penetapan Perpanjangan Penahanan Lanjutan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-30.90'
+        description: Format dokumen yang akan dikirim
 
   /notifikasi:
     post:
@@ -878,6 +877,7 @@ paths:
             schema:
               $ref: '#/components/schemas/notifikasi_pengiriman'
         description: Dokumen yang akan dikirim      
+        
 components:
   schemas:
     template_proses:
