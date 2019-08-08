@@ -1116,6 +1116,45 @@ paths:
               $ref: '#/components/schemas/han-30.90'
         description: Format dokumen yang akan dikirim
 
+  /dokumen/s24:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan dokumen
+      description: Meminta dokumen S24 via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor Identitas Tersangka
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_s23
+          description: Nomor S23
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode Satker SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s24'
+                  - type: object
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /dokumen/t7:
     get:
       tags:
@@ -4499,75 +4538,57 @@ components:
                   type: string
                   format: date
                   example: "2012-10-22"
-                  
+
     s24:
       allOf:
-        - $ref: '#/components/schemas/dokumen'
+        - $ref: '#/components/schemas/dokumen_respon'
         - type: object
+          required:
+            - nomor
+            - tanggal
+            - no_spdp
+            - tanggal_spdp
+            - kode_satker_spdp
+            - nomor_s17
+            - nomor_s23
+            - nama_tersangka
+            - nomor_identitas
+            - tanggal_pencabutan_pembantaran
           properties:
-            kode_jenis_dokumen:
-              default: s24
-              pattern: '^s24$'
-              example: s24
-            identitas_dokumen:
-              required:
-              - nomor
-              - tanggal
-              - no_spdp
-              - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s17
-              - nomor_s23
-              properties:
-                nomor:
-                  type: string
-                  description: Nomor dokumen S-24
-                  example: S23/3/12/2012.PolresJAKPUS
-                tanggal:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen S-24
-                  example: "2019-01-15"
-                no_spdp:
-                  type: string
-                  description: Nomor dokumen spdp
-                  example: SPDP/3/12/2012.PolresJAKPUS
-                tanggal_spdp:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen SPDP
-                  example: "2019-01-15"
-                kode_satker_spdp:
-                  type: string
-                  description: Kode satker pengirim SPDP
-                  example: 006.09.05
-                nomor_s17:
-                  type: string
-                  description: Nomor untuk mendapatkan identitas yang ditahan
-                  example: S17/3/12/2012.PolresJAKPUS
-                nomor_s23:
-                  type: string
-                  description: Nomor untuk mendapatkan identitas yang ditahan
-                  example: S23/3/12/2012.PolresJAKPUS
-            konten_dokumen:
-              required:
-                - nama_tersangka
-                - nomor_identitas
-                - tanggal_pencabutan_pembantaran
-              properties:  
-                nama_tersangka:
-                  type: string
-                  description: Nama Tersangka
-                  example : Samuel Sambiroto
-                nomor_identitas:
-                  type: string
-                  nullable: true
-                  description: Jika tidak diketahui, maka isi dengan null
-                  example: 12345678
-                tanggal_pencabutan_pembantaran:
-                  type: string
-                  format: date
-                  example: "2012-10-22"
+            no_spdp:
+              type: string
+              description: Nomor dokumen spdp
+              example: SPDP/3/12/2012.PolresJAKPUS
+            tanggal_spdp:
+              type: string
+              format: date
+              description: Tanggal dokumen SPDP
+              example: "2019-01-15"
+            kode_satker_spdp:
+              type: string
+              description: Kode satker pengirim SPDP
+              example: 006.09.05
+            nomor_s17:
+              type: string
+              description: Nomor untuk mendapatkan identitas yang ditahan
+              example: S17/3/12/2012.PolresJAKPUS
+            nomor_s23:
+              type: string
+              description: Nomor untuk mendapatkan identitas yang ditahan
+              example: S23/3/12/2012.PolresJAKPUS
+            nama_tersangka:
+              type: string
+              description: Nama Tersangka
+              example : Samuel Sambiroto
+            nomor_identitas_tersangka:
+              type: string
+              nullable: true
+              description: Jika tidak diketahui, maka isi dengan null
+              example: 12345678
+            tanggal_pencabutan_pembantaran:
+              type: string
+              format: date
+              example: "2012-10-22"
     
     t7:
       allOf:
