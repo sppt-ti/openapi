@@ -1116,6 +1116,40 @@ paths:
               $ref: '#/components/schemas/han-30.90'
         description: Format dokumen yang akan dikirim
 
+  /dokumen/t7:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan Surat Perintah Penahanan/Pengalihan Jenis Penahanan
+      description: Meminta Surat Perintah Penahanan/Pengalihan Jenis Penahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_register_perkara
+          description: Nomor register perkara
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor register perkara
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/t7'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+  
   /notifikasi:
     post:
       tags:
@@ -4534,100 +4568,83 @@ components:
                   type: string
                   format: date
                   example: "2012-10-22"
+    
     t7:
       allOf:
-        - $ref: '#/components/schemas/dokumen'
+        - $ref: '#/components/schemas/dokumen_respon'
         - type: object
-          properties:
-            kode_jenis_dokumen:
-              default: t7
-              pattern: '^t7$'
-              example: t7
-            identitas_dokumen:
-              required:
+          required:
               - nomor
               - tanggal
               - jenis
               - nomor_register_perkara
-              properties:
-                nomor:
-                  type: string
-                  description: Nomor dokumen T7
-                  example: T7/3/12/2012.JakJAKPUS
-                tanggal:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen T7
-                  example: "2019-01-15"
-                jenis:
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                  example: 2
-                  description: 1 = Penahanan ; 2 = Pengalihan Penahanan
-                nomor_register_perkara:
-                  type: string
-                  description: Nomor register perkara
-                  example: Reg/3/12/2012.JakJAKPUS
-            konten_dokumen:
-              required:
-                  - kode_jenis_tindak_pidana
-                  - uu_pasal
-                  - identitas_jpu
-                  - nama_tersangka
-                  - nomor_identitas
-                  - kode_jenis_penahanan
-                  - kode_satker_tempat_penahanan
-                  - tanggal_mulai_penahanan
-                  - tanggal_akhir_penahanan
-              properties:
-                kode_jenis_tindak_pidana:
-                  type: integer
-                  description: Kode jenis tindak pidana
-                  example: 1
-                uu_pasal:
-                  type: string
-                  description: UU dan Pasal
-                  example: Pasal 109 ayat (1) KUHAP
-                identitas_jpu:
-                  allOf:
-                    - $ref: '#/components/schemas/aparat_negara'
-                nama_tersangka:
-                  type: string
-                  description: Nama tersangka
-                  example: Samuel Sambiroto
-                nomor_identitas:
-                  type: string
-                  description: Jika tidak diketahui, maka isi dengan null
-                  example: 123456789
-                kode_jenis_penahanan:
-                  type: integer
-                  enum:
-                    - 0
-                    - 1
-                    - 2
-                    - 3
-                  example: 1
-                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
-                kode_satker_tempat_penahanan:
-                  type: string
-                  description: Kode satker tempat penahanan
-                  example: 006.09.05
-                lama_penahanan:
-                  type: integer
-                  description: Angka jumlah hari lama penahanan
-                  example: 14
-                tanggal_mulai_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal mulai penahanan
-                  example: "2019-01-15"
-                tanggal_akhir_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal berakhir penahanan
-                  example: "2019-01-15"
+              - kode_jenis_tindak_pidana
+              - uu_pasal
+              - identitas_jpu
+              - nama_tersangka
+              - nomor_identitas
+              - kode_jenis_penahanan
+              - kode_satker_tempat_penahanan
+              - tanggal_mulai_penahanan
+              - tanggal_akhir_penahanan
+          properties:
+            jenis:
+              type: integer
+              enum:
+                - 1
+                - 2
+              example: 2
+              description: 1 = Penahanan ; 2 = Pengalihan Penahanan
+            nomor_register_perkara:
+              type: string
+              description: Nomor register perkara
+              example: Reg/3/12/2012.JakJAKPUS
+            kode_jenis_tindak_pidana:
+              type: integer
+              description: Kode jenis tindak pidana
+              example: 1
+            uu_pasal:
+              type: string
+              description: UU dan Pasal
+              example: Pasal 109 ayat (1) KUHAP
+            identitas_jpu:
+              allOf:
+                - $ref: '#/components/schemas/aparat_negara'
+            nama_tersangka:
+              type: string
+              description: Nama tersangka
+              example: Samuel Sambiroto
+            nomor_identitas:
+              type: string
+              description: Jika tidak diketahui, maka isi dengan null
+              example: 123456789
+            kode_jenis_penahanan:
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+              example: 1
+              description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+            kode_satker_tempat_penahanan:
+              type: string
+              description: Kode satker tempat penahanan
+              example: 006.09.05
+            lama_penahanan:
+              type: integer
+              description: Angka jumlah hari lama penahanan
+              example: 14
+            tanggal_mulai_penahanan:
+              type: string
+              format: date
+              description: Tanggal mulai penahanan
+              example: "2019-01-15"
+            tanggal_akhir_penahanan:
+              type: string
+              format: date
+              description: Tanggal berakhir penahanan
+              example: "2019-01-15"
     
     s16:
       allOf:
