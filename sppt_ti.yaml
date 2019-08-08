@@ -61,6 +61,8 @@ paths:
     get:
       tags:
         - Endpoint Puskarda
+      summary: Permintaan dokumen
+      description: Meminta dokumen SRT1 via SPPT TI
       parameters:
         - in: query
           name: param1
