@@ -654,6 +654,29 @@ paths:
               $ref: '#/components/schemas/han-10.10'
         description: Format dokumen yang akan dikirim
 
+  /han-10.30:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Permintaan Perpanjangan Penahanan Lanjutan
+      description: Kepolisian mengirimkan permintaan perpanjangan penahanan lanjutan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-10.30'
+        description: Format dokumen yang akan dikirim
+
   /han-10.40:
     post:
       parameters:
@@ -1268,6 +1291,22 @@ components:
               description: Diisi dengan dokumen berjenis 'amk'.
               items:
                 $ref: '#/components/schemas/amk'
+
+    han-10.30:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: han-10.30
+                example: han-10.30
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis 's22'.
+              items:
+                $ref: '#/components/schemas/s22'
 
     han-10.40:
       allOf:     # Combines Parent Object and the inline model
