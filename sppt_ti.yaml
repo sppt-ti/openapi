@@ -1769,6 +1769,57 @@ components:
               items:
                 $ref: '#/components/schemas/pen-7.24'
 
+    dat-11:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-11
+                example: dat-11
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis T7
+              items:
+                $ref: '#/components/schemas/t7'
+
+    dat-14:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-14
+                example: dat-14
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S16
+              items:
+                $ref: '#/components/schemas/s16'
+
+    dat-15:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-15
+                example: dat-15
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S17
+              items:
+                $ref: '#/components/schemas/s17'
+
     spdp:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4360,6 +4411,264 @@ components:
                   type: string
                   format: date
                   example: "2012-10-22"
+
+    t7:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: t7
+              pattern: '^t7$'
+              example: t7
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - jenis
+              - nomor_register_perkara
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen T7
+                  example: T7/3/12/2012.JakJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen T7
+                  example: "2019-01-15"
+                jenis:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                  example: 2
+                  description: 1 = Penahanan ; 2 = Pengalihan Penahanan
+                nomor_register_perkara:
+                  type: string
+                  description: Nomor register perkara
+                  example: Reg/3/12/2012.JakJAKPUS
+            konten_dokumen:
+              required:
+                  - kode_jenis_tindak_pidana
+                  - uu_pasal
+                  - identitas_jpu
+                  - nama_tersangka
+                  - nomor_identitas
+                  - kode_jenis_penahanan
+                  - kode_satker_tempat_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_akhir_penahanan
+              properties:
+                kode_jenis_tindak_pidana:
+                  type: integer
+                  description: Kode jenis tindak pidana
+                  example: 1
+                uu_pasal:
+                  type: string
+                  description: UU dan Pasal
+                  example: Pasal 109 ayat (1) KUHAP
+                identitas_jpu:
+                  allOf:
+                    - $ref: '#/components/schemas/aparat_negara'
+                nama_tersangka:
+                  type: string
+                  description: Nama tersangka
+                  example: Samuel Sambiroto
+                nomor_identitas:
+                  type: string
+                  description: Jika tidak diketahui, maka isi dengan null
+                  example: 123456789
+                kode_jenis_penahanan:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                    - 3
+                  example: 1
+                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Kode satker tempat penahanan
+                  example: 006.09.05
+                lama_penahanan:
+                  type: integer
+                  description: Angka jumlah hari lama penahanan
+                  example: 14
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal berakhir penahanan
+                  example: "2019-01-15"
+    
+    s16:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: s16
+              pattern: '^s16$'
+              example: s16
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen S16
+                  example: S16/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen S16
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas
+                  - daftar_uu_pasal
+                  - tanggal_berlaku
+                  - tanggal_berakhir
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama lengkap tersangka
+                  example: Samuel Sambiroto
+                nomor_identitas:
+                  type: string
+                  description: Nomor identitas tersangka
+                  example: 123456789
+                daftar_uu_pasal:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      uu_pasal:
+                        type: string
+                        example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
+                        description: Tulis semua pasal yang disangkakan, sesuai dengan informasi pada dokumen SPDP. Cara penulisan lihat bakuan penulisan di Pedoman Pertukaran Data SPPT TI.
+                      kode_jenis_tindak_pidana:
+                        type: integer
+                        description: Kode jenis tindak pidana
+                        example: 1
+                tanggal_berlaku:
+                  type: string
+                  format: date
+                  description: Tanggal berlaku
+                  example: "2019-01-15"
+                tanggal_berakhir:
+                  type: string
+                  format: date
+                  description: Tanggal berakhir
+                  example: "2019-01-15"
+
+    s17:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: s17
+              pattern: '^s17$'
+              example: s17
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen S17
+                  example: S17/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen S16
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+                nomor_s16:
+                  type: string
+                  description: Nomor dokumen S16
+                  example: S16/3/12/2012.PolresJAKPUS
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas
+                  - kode_jenis_penahanan
+                  - kode_satker_tempat_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_akhir_penahanan
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama lengkap tersangka
+                  example: Samuel Sambiroto
+                nomor_identitas:
+                  type: string
+                  description: Nomor identitas tersangka
+                  example: 123456789
+                kode_jenis_penahanan:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                    - 3
+                  example: 1
+                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                kode_satker_tempat_penahanan:
+                  type: string
+                  example: 006.09.05
+                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal akhir penahanan
+                  example: "2019-01-15"
 
     header:
       type: object
