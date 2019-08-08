@@ -608,6 +608,29 @@ paths:
               $ref: '#/components/schemas/pas-30'
         description: Dokumen yang akan dikirim
 
+  /han-10.10:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Kepolisian mengirimkan surat permintaan perpanjangan penahanan
+      description: Mengirim dokumen S-21 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-10.10'
+        description: Format dokumen yang akan dikirim
+
   /han-10.40:
     post:
       parameters:
@@ -1385,6 +1408,22 @@ components:
                 description: harus diisi dengan dokumen berjenis spptd.
                 items:
                   $ref: '#/components/schemas/spptd'
+    
+    han-10.10:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: han-10.10
+                example: han-10.10
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-21.
+              items:
+                $ref: '#/components/schemas/s21'
+
     han-30.10:
       allOf:     # Combines Parent Object and the inline model
         - $ref: '#/components/schemas/header'
