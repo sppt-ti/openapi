@@ -158,6 +158,29 @@ paths:
         description: Format dokumen yang akan dikirim
   
   
+  /han-10.20:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perpanjangan Penahanan
+      description: Kejaksaan mengirimkan perpanjangan penahanan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/han-10.20'
+        description: Format dokumen yang akan dikirim
+
   /dik-24:
     post:
       parameters:
@@ -976,6 +999,7 @@ components:
                 description: harus diisi dengan dokumen berjenis SPDP.
                 items:
                   $ref: '#/components/schemas/spdp'
+    
     dik-20:
       required:
         - dokumen
@@ -993,6 +1017,7 @@ components:
                 description: harus diisi dengan dokumen berjenis P16.
                 items:
                   $ref: '#/components/schemas/p16'
+    
     dik-22:
       allOf:     # Combines Parent Object and the inline model
         - $ref: '#/components/schemas/header'
@@ -1041,6 +1066,7 @@ components:
                 description: harus diisi dengan dokumen berjenis BPT1.
                 items:
                   $ref: '#/components/schemas/bpt1'
+    
     dik-40:
       required:
         - dokumen
@@ -1058,6 +1084,7 @@ components:
                 description: harus diisi dengan dokumen berjenis SP3.
                 items:
                   $ref: '#/components/schemas/sp3'
+    
     dik-50:
       required:
         - dokumen
@@ -1132,6 +1159,7 @@ components:
                     - $ref: '#/components/schemas/p16a'
                     - $ref: '#/components/schemas/p29'
                     - $ref: '#/components/schemas/p31'
+    
     tut-20:
       required:
         - dokumen
@@ -1151,6 +1179,7 @@ components:
                   oneOf:
                     - $ref: '#/components/schemas/p16a'
                     - $ref: '#/components/schemas/p26'
+    
     sid-10:
       required:
         - dokumen
@@ -1763,6 +1792,22 @@ components:
                   format: date
                   description: Tanggal akhir penahanan
                   example: "2020-01-15"
+    
+    han-10.20:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: han-10.20
+                example: han-10.20
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis T4.
+              items:
+                $ref: '#/components/schemas/t4'
     
     pen-7.11:
       allOf:
