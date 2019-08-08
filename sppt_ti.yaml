@@ -1149,7 +1149,41 @@ paths:
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
-  
+
+  /dokumen/ba11/:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pencabutan Penangguhan Penahanan
+      description: Meminta Berita Acara Pencabutan Penangguhan Penahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_t8
+          description: Nomor T-8 yang mempunyai Jenis 2 (pencabutan penangguhan penahanan)
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit BA-11
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba11'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /notifikasi:
     post:
       tags:
@@ -5247,30 +5281,23 @@ components:
               type: integer
             lainnya:
               type: string          
-          
+
     ba11:
       allOf:
-        - $ref: '#/components/schemas/dokumen'
+        - $ref: '#/components/schemas/dokumen_respon'
         - type: object
-          properties:
-            kode_jenis_dokumen:
-              default: ba11
-              pattern: '^ba11$'
-              example: ba11
-            identitas_dokumen:
-              required:
-              - nomor_t8
+          required:
+              - nomor
               - tanggal
-              properties:
-                nomor_t8:
-                  type: string
-                  description: Diisi dengan nomor T-8 (jenis = 2)
-                  example: SRT/3/12/2012.PolresJAKPUS
-                tanggal:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen ba11.
-                  example: "2019-01-15"
+          properties:
+            nomor_t8:
+              type: string
+              description: Diisi dengan nomor T-8 yang mempunyai Jenis 2 (pencabutan penangguhan penahanan)
+              example: Reg/3/12/2012.JakJAKPUS
+            kode_satker_penerbit:
+              type: string
+              description: Kode Satker penerbit BA-11
+              example: 006.01.20
 
     ba8:
       allOf:
