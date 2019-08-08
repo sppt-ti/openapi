@@ -1187,17 +1187,14 @@ components:
                   description: Isi surat
                   example: ...
     template_dokumen_layanan_penyediaan_data:
-      type: object
-      properties:
-        nomor:
-          type: string
-          description: Nomor dokumen srt1
-          example: SRT/3/12/2012.PolresJAKPUS
-        tanggal:
-          type: string
-          format: date
-          description: Tanggal dokumen SRT1.
-          example: "2019-01-15"
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          properties:
+            property_1:
+              type: string
+              description: Deskripsi property
+              example: Contoh property
 
 
     gsb:
@@ -4537,7 +4534,6 @@ components:
                   type: string
                   format: date
                   example: "2012-10-22"
-
     t7:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4931,6 +4927,21 @@ components:
           type: string
           format: byte
           description: base64-encoded characters
+    dokumen_respon:
+      type: object
+      properties:
+        nomor:
+          type: string
+          description: Nomor dokumen srt1
+          example: SRT/3/12/2012.PolresJAKPUS
+        tanggal:
+          type: string
+          format: date
+          description: Tanggal dokumen SRT1.
+          example: "2019-01-15"
+        pejabat_penandatangan:
+          $ref: "#/components/schemas/aparat_negara"
+
     kunci_enkripsi:
       type: object
       properties:
