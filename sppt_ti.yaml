@@ -4468,6 +4468,7 @@ components:
                   example: "2019-01-15"
 
     s23:
+      description: Surat Perintah Pembantaran Penahanan
       allOf:
         - $ref: '#/components/schemas/dokumen_respon'
         - type: object
