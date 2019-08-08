@@ -3818,6 +3818,75 @@ components:
                   description: Tanggal berakhir penahanan
                   example: "2019-01-15"
 
+    s24:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: s24
+              pattern: '^s24$'
+              example: s24
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - no_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s17
+              - nomor_s23
+              properties:
+                nomor:
+                  type: string
+                  description: Nomor dokumen S-24
+                  example: S23/3/12/2012.PolresJAKPUS
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen S-24
+                  example: "2019-01-15"
+                no_spdp:
+                  type: string
+                  description: Nomor dokumen spdp
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_spdp:
+                  type: string
+                  description: Kode satker pengirim SPDP
+                  example: 006.09.05
+                nomor_s17:
+                  type: string
+                  description: Nomor untuk mendapatkan identitas yang ditahan
+                  example: S17/3/12/2012.PolresJAKPUS
+                nomor_s23:
+                  type: string
+                  description: Nomor untuk mendapatkan identitas yang ditahan
+                  example: S23/3/12/2012.PolresJAKPUS
+            konten_dokumen:
+              required:
+                - nama_tersangka
+                - nomor_identitas
+                - tanggal_pencabutan_pembantaran
+              properties:  
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                nomor_identitas:
+                  type: string
+                  nullable: true
+                  description: Jika tidak diketahui, maka isi dengan null
+                  example: 12345678
+                tanggal_pencabutan_pembantaran:
+                  type: string
+                  format: date
+                  example: "2012-10-22"
+
     header:
       type: object
       required:
