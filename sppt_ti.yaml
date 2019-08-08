@@ -571,6 +571,52 @@ paths:
               $ref: '#/components/schemas/sid-71'
         description: Format dokumen yang akan dikirim
 
+  /sid-80:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Petikan Putusan Kasasi
+      description: Pengadilan mengirimkan Petikan Putusan Kasasi
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-80'
+        description: Format dokumen yang akan dikirim
+  
+  /sid-90:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Salinan Putusan Kasasi
+      description: Pengadilan mengirimkan Salinan Putusan Kasasi
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-90'
+        description: Format dokumen yang akan dikirim
+
   /eks-10:
     post:
       tags:
@@ -1100,6 +1146,38 @@ components:
               description: Diisi dengan dokumen berjenis ACK.
               items:
                 $ref: '#/components/schemas/acbk'
+
+    sid-80:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: sid-80
+                example: sid-80
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis PETIKAN.
+              items:
+                $ref: '#/components/schemas/petikan'
+
+    sid-90:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: sid-90
+                example: sid-90
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis SALPUT (Salinan Putusan).
+              items:
+                $ref: '#/components/schemas/salput'
 
     eks-10:
       required:
