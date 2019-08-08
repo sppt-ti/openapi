@@ -1150,6 +1150,81 @@ paths:
         '500':
           $ref: '#/components/responses/error'
   
+  /dokumen/s18:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan Surat Perintah Penangguhan
+      description: Meminta Surat Perintah Penangguhan
+      parameters:
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor identitas tersangka
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_spdp
+          description: Nomor SPDP
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode satker penerbit SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s18'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+  /dokumen/s19:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan Surat Perintah Penangguhan
+      description: Meminta Surat Perintah Penangguhan
+      parameters:
+        - in: query
+          name: nomor_s18
+          description: Nomor Surat Perintah Penangguhan Penahanan
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode satker penerbit SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s19'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+
   /notifikasi:
     post:
       tags:
@@ -4645,7 +4720,7 @@ components:
               format: date
               description: Tanggal berakhir penahanan
               example: "2019-01-15"
-    
+
     s16:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4808,6 +4883,104 @@ components:
                   format: date
                   description: Tanggal akhir penahanan
                   example: "2019-01-15"
+
+    s18:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s17
+              - tanggal_permohonan
+              - nama_tersangka
+              - nomor_identitas
+          properties:
+            nomor_spdp:
+              type: string
+              description: Nomor dokumen spdp (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: SPDP/3/12/2012.PolresJAKPUS
+            tanggal_spdp:
+              type: string
+              format: date
+              description: Tanggal dokumen SPDP (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: "2019-01-15"
+            kode_satker_spdp:
+              type: string
+              description: Kode satker pengirim SPDP (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: 006.09.05
+            nomor_s17:
+              type: string
+              description: Nomor surat perintah penahanan (S17)
+              example: S17/3/12/2012.PolresJAKPUS
+            tanggal_permohonan:
+              type: string
+              format: date
+              description: Tanggal Permohonana
+              example: "2019-01-15"
+            nama_tersangka:
+              type: string
+              description: Nama Tersangka
+              example : Samuel Sambiroto
+            nomor_identitas:
+              type: string
+              nullable: true
+              description: Jika tidak diketahui, maka isi dengan null
+              example: 12345678
+            jenis_jaminan:
+              type: string
+              description: Jenis jaminan
+            nama_jaminan:
+              type: string
+              description: nama jaminan
+            uang_jaminan:
+              type: number
+              description: uang jaminan
+            identitas_penjamin:
+              properties:
+                nomor_identitas_penjamin:
+                  type: string
+                  description: nomor identitas penjamin
+                nama_penjamin:
+                  type: string
+                  description: nama penjamin
+                alamat_penjamin:
+                  type: string
+                  description: Alamat penjamin
+                  example: Jl. Jalan-jalan No 1
+
+    s19:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s18
+          properties:
+            nomor_spdp:
+              type: string
+              description: Nomor dokumen spdp (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: SPDP/3/12/2012.PolresJAKPUS
+            tanggal_spdp:
+              type: string
+              format: date
+              description: Tanggal dokumen SPDP (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: "2019-01-15"
+            kode_satker_spdp:
+              type: string
+              description: Kode satker pengirim SPDP (Tidak ada di dokumen asli, ditambahkan oleh SPPT TI Client untuk kebutuhan pertukaran data)
+              example: 006.09.05
+            nomor_s18:
+              type: string
+              description: Nomor surat pencabutan pengangguhan penahanan (S18)
+              example: S18/3/12/2012.PolresJAKPUS
 
     dat-8:
       required:
