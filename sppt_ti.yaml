@@ -1150,6 +1150,74 @@ paths:
         '500':
           $ref: '#/components/responses/error'
   
+  /dokumen/ba7:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Penahanan 
+      description: Membuat Berita Acara Pelaksanaan Perintah Penahanan 
+      parameters:
+        - in: query
+          name: nomor_surat_penahanan
+          description: Diisi dengan nomor dokumen perintah yang mendasari berita acara ini. Misal, nomor T-7 atau nomor PEN.7-1.
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit ba7
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba7'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+  
+  /dokumen/ba15:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Penetapan Penahanan
+      description: Membuat Berita Acara Pelaksanaan Penetapan Penahanan 
+      parameters:
+        - in: query
+          name: nomor_penetapan_pengadilan
+          description: Diisi dengan nomor penetapan pengadilan
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit ba15
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba15'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+  
   /notifikasi:
     post:
       tags:
@@ -4645,6 +4713,80 @@ components:
               format: date
               description: Tanggal berakhir penahanan
               example: "2019-01-15"
+
+    ba7:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_surat_penahanan
+              - kode_satker_penerbit
+              - tanggal_mulai_penahanan
+              - tempat_penahanan 
+              - lama_penahanan
+          properties: 
+            nomor_surat_penahanan:
+              type: string
+              description: Diisi dengan nomor dokumen perintah yang mendasari berita acara ini. Misal, nomor T-7 atau nomor PEN.7-1
+              example: ba7/3/12/2012.PolresJAKPUS
+            kode_satker_penerbit:
+              type: array
+              items:
+                type: string
+              example: [006.09.05]
+              description: Kode Satker penerbit ba7
+            tanggal_mulai_penahanan:
+              type: string
+              format: date
+              description: Tanggal mulai penahanan
+              example: "2019-01-15"
+            tempat_penahanan:
+              type: string
+              description: Diisi dengan tempat penahanan
+              example: ba7/3/12/2012.PolresJAKPUS
+            lama_penahanan:
+              type: integer
+              description: Angka jumlah hari lama penahanan
+              example: 14
+    
+    ba15:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_penetapan_pengadilan
+              - kode_satker_penerbit
+              - tanggal_mulai_penahanan
+              - lama_penahanan
+              - tempat_penahanan
+          properties: 
+            nomor_penetapan_pengadilan:
+              type: string
+              description: Diisi dengan nomor Penetapan Pengadilan
+              example: ba15/3/12/2012.PolresJAKPUS
+            kode_satker_penerbit:
+              type: array
+              items:
+                type: string
+              example: [006.09.05]
+              description: Kode Satker penerbit ba15
+            tanggal_mulai_penahanan:
+              type: string
+              format: date
+              description: Tanggal mulai penahanan
+              example: "2019-01-15"
+            lama_penahanan:
+              type: integer
+              description: Angka jumlah hari lama penahanan
+              example: 14
+            tempat_penahanan:
+              type: string
+              description: Diisi dengan tempat penahanan
+              example: ba15/3/12/2012.PolresJAKPUS
     
     s16:
       allOf:
