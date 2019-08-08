@@ -4552,7 +4552,7 @@ components:
             - nomor_s17
             - nomor_s23
             - nama_tersangka
-            - nomor_identitas
+            - nomor_identitas_tersangka
             - tanggal_pencabutan_pembantaran
           properties:
             no_spdp:
@@ -4574,7 +4574,7 @@ components:
               example: S17/3/12/2012.PolresJAKPUS
             nomor_s23:
               type: string
-              description: Nomor untuk mendapatkan identitas yang ditahan
+              description: Surat Perintah Pembantalan Penahanan
               example: S23/3/12/2012.PolresJAKPUS
             nama_tersangka:
               type: string
@@ -4582,8 +4582,7 @@ components:
               example : Samuel Sambiroto
             nomor_identitas_tersangka:
               type: string
-              nullable: true
-              description: Jika tidak diketahui, maka isi dengan null
+              description: Nomor Identitas Tersangka
               example: 12345678
             tanggal_pencabutan_pembantaran:
               type: string
