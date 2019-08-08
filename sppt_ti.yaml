@@ -458,6 +458,30 @@ paths:
             schema:
               $ref: '#/components/schemas/sid-41'
         description: Format dokumen yang akan dikirim
+  
+  /sid-50:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Mengirim petikan putusan banding
+      description: Mengirim petikan putusan banding
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-50'
+        description: Format dokumen yang akan dikirim
+
 
   /sid-70:
     post:
@@ -1222,6 +1246,22 @@ components:
               description: Diisi dengan dokumen berjenis 'amb'.
               items:
                 $ref: '#/components/schemas/amb'
+    
+    sid-50:
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: sid-50
+                example: sid-50
+            dokumen:
+              type: array
+              minItems: 1
+              maxItems: 1
+              description: Diisi dengan dokumen berjenis 'petikan'.
+              items:
+                $ref: '#/components/schemas/petikan'
 
     sid-70:
       allOf:     # Combines Parent Object and the inline model
@@ -1300,6 +1340,7 @@ components:
               description: Diisi dengan dokumen berjenis ACB.
               items:
                 $ref: '#/components/schemas/acbk'
+
     
     sid-71:
       allOf:     # Combines Parent Object and the inline model
