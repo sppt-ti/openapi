@@ -1150,6 +1150,80 @@ paths:
         '500':
           $ref: '#/components/responses/error'
 
+  /dokumen/s18:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Surat Perintah Penangguhan Penahanan
+      description: Surat Perintah Penangguhan Penahanan
+      parameters:
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor identitas tersangka
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_spdp
+          description: Nomor SPDP
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode satker penerbit SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen S18 sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s18'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+  /dokumen/s19:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Surat Pencabutan Penangguhan Penahanan
+      description: Surat Pencabutan Penangguhan Penahanan
+      parameters:
+        - in: query
+          name: nomor_s18
+          description: Nomor Surat Perintah Penangguhan Penahanan
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode satker penerbit SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen S19 sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s19'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /dokumen/s23:
     get:
       tags:
@@ -4830,6 +4904,110 @@ components:
                   format: date
                   description: Tanggal akhir penahanan
                   example: "2019-01-15"
+
+    s18:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s17
+              - tanggal_permohonan
+              - nama_tersangka
+              - nomor_identitas
+              - identitas_penjamin
+          properties:
+            nomor_spdp:
+              type: string
+              description: Nomor dokumen SPDP.
+              example: SPDP/3/12/2012.PolresJAKPUS
+            tanggal_spdp:
+              type: string
+              format: date
+              description: Tanggal dokumen SPDP.
+              example: "2019-01-15"
+            kode_satker_spdp:
+              type: string
+              description: Kode satker pengirim SPDP. 
+              example: 006.09.05
+            nomor_s17:
+              type: string
+              description: Nomor Surat Perintah Penahanan (S17)
+              example: S17/3/12/2012.PolresJAKPUS
+            tanggal_permohonan:
+              type: string
+              format: date
+              description: Tanggal Permohonan
+              example: "2019-01-15"
+            nama_tersangka:
+              type: string
+              description: Nama Tersangka
+              example : Samuel Sambiroto
+            nomor_identitas:
+              type: string
+              nullable: true
+              description: Jika tidak diketahui, maka isi dengan null
+              example: 12345678
+            jenis_jaminan:
+              type: string
+              description: Jenis jaminan
+            nama_jaminan:
+              type: string
+              description: Nama jaminan
+            uang_jaminan:
+              type: number
+              description: Besaran uang jaminan
+            identitas_penjamin:
+              type: object
+              properties:
+                nomor_identitas_penjamin:
+                  type: string
+                  description: Nomor identitas penjamin
+                nama_penjamin:
+                  type: string
+                  description: Nama penjamin
+                alamat_penjamin:
+                  type: string
+                  description: Alamat penjamin
+                  example: Jl. Jalan-jalan No 1
+            lokasi_penyimpanan_jaminan:
+              type: string
+              description: Lokasi penyimpanan jaminan
+              example: Jl. Jalan-jalan No 1
+
+    s19:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_spdp
+              - nomor_s18
+          properties:
+            nomor_spdp:
+              type: string
+              description: Nomor dokumen SPDP.
+              example: SPDP/3/12/2012.PolresJAKPUS
+            tanggal_spdp:
+              type: string
+              format: date
+              description: Tanggal dokumen SPDP.
+              example: "2019-01-15"
+            kode_satker_spdp:
+              type: string
+              description: Kode satker pengirim SPDP.
+              example: 006.09.05
+            nomor_s18:
+              type: string
+              description: Nomor Surat Perintah Penangguhan Penahanan (S18)
+              example: S18/3/12/2012.PolresJAKPUS
 
     dat-8:
       required:
