@@ -1197,26 +1197,14 @@ paths:
       description: Meminta Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan via SPPT TI
       parameters:
         - in: query
+          name: nomor_t7
+          description: Diisi dengan nomor T-7 yang mempunyai Jenis 2 (Pengalihan Penahanan)
+          schema:
+            type: string
+          required: true
+        - in: query
           name: kode_satker_penerbit
           description: Kode Satker penerbit BA-8
-          schema:
-            type: string
-          required: true
-        - in: query
-          name: kode_jenis_penahanan_asal
-          description: Diisi Kode Jenis Penahanan dari Data Master
-          schema:
-            type: string
-          required: true
-        - in: query
-          name: kode_jenis_penahanan_pengalihan
-          description: Diisi Kode Jenis Penahanan dari Data Master
-          schema:
-            type: string
-          required: true
-        - in: query
-          name: tanggal_pengalihan_penahanan
-          description: Diisi tanggal pengalihan penahanan
           schema:
             type: string
           required: true
@@ -1244,13 +1232,13 @@ paths:
       parameters:
         - in: query
           name: nomor_t8
-          description: Diisi dengan nomor T-8 yang mempunyai Jenis 1 (penangguhan/pengeluaran dari tahanan)
+          description: Nomor T-8 yang mempunyai Jenis 1 (penangguhan/pengeluaran dari tahanan)
           schema:
             type: string
           required: true
         - in: query
           name: kode_satker_penerbit
-          description: Diisi Kode Satker penerbit T-8 Sesuai Master Data
+          description: Kode Satker penerbit T-8
           schema:
             type: string
           required: true
