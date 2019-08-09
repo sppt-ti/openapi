@@ -1188,7 +1188,47 @@ paths:
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
-  
+
+  /dokumen/s17:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan Surat Perintah Penahanan
+      description: Meminta Surat Perintah Penahanan
+      parameters:
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor identitas tersangka
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_spdp
+          description: Nomor SPDP
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_spdp
+          description: Kode Satker Penerbit SPDP
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/s17'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /notifikasi:
     post:
       tags:
