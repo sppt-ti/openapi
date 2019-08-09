@@ -1188,7 +1188,88 @@ paths:
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
-  
+
+  /dokumen/ba8/:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan
+      description: Meminta Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan via SPPT TI
+      parameters:
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit BA-8
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_jenis_penahanan_asal
+          description: Diisi Kode Jenis Penahanan dari Data Master
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_jenis_penahanan_pengalihan
+          description: Diisi Kode Jenis Penahanan dari Data Master
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: tanggal_pengalihan_penahanan
+          description: Diisi tanggal pengalihan penahanan
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba8'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+  /dokumen/ba9/:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran tahanan
+      description: Meminta Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran Tahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_t8
+          description: Diisi dengan nomor T-8 yang mempunyai Jenis 1 (penangguhan/pengeluaran dari tahanan)
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Diisi Kode Satker penerbit T-8 Sesuai Master Data
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba9'
+                  - type: object
+                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+
   /notifikasi:
     post:
       tags:
@@ -5296,65 +5377,67 @@ components:
 
     ba8:
       allOf:
-        - $ref: '#/components/schemas/dokumen'
+        - $ref: '#/components/schemas/dokumen_respon'
         - type: object
-          properties:
-            kode_jenis_dokumen:
-              default: ba8
-              pattern: '^ba8$'
-              example: ba8
-            identitas_dokumen:
-              required:
-              - nomor_t7
+          required:
+              - nomor
               - tanggal
+              - nomor_t7
+              - kode_satker_penerbit
               - kode_jenis_penahanan_asal
               - kode_jenis_penahanan_pengalihan
               - tanggal_pengalihan_penahanan
-              properties:
-                nomor_t7:
-                  type: string
-                  description: Diisi dengan nomor T-7 (jenis = 2)
-                  example: SRT/3/12/2012.PolresJAKPUS
-                tanggal:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen ba8.
-                  example: "2019-01-15"
-                kode_jenis_penahanan_asal:
-                  type: string
-                  example: 2
-                kode_jenis_penahanan_pengalihan:
-                  type: string
-                  example: 1
-                tanggal_pengalihan_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal pengalihan tahanan
-                  example: "2019-01-15"
+          properties:
+            nomor_t7:
+              type: string
+              description: Diisi dengan nomor T-7 yang mempunyai Jenis 2 (Pengalihan Penahanan)
+              example: Reg/3/12/2012.JakJAKPUS
+            kode_satker_penerbit:
+              type: string
+              description: Kode Satker penerbit BA-8
+              example: 006.02.03
+            kode_jenis_penahanan_asal:
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+              example: 2
+              description: 0 = Tidak diketahui; 1 = Penahanan Rumah Tahanan Negara; 2 = Penahanan Rumah; 3 = Penahanan Kota.
+            kode_jenis_penahanan_pengalihan:
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+              example: 1
+              description: 0 = Tidak diketahui; 1 = Penahanan Rumah Tahanan Negara; 2 = Penahanan Rumah; 3 = Penahanan Kota.
+            tanggal_pengalihan_penahanan:
+              type: string
+              format: date
+              description: Tanggal pengalihan penahanan
+              example: "2019-01-15"
 
     ba9:
       allOf:
-        - $ref: '#/components/schemas/dokumen'
+        - $ref: '#/components/schemas/dokumen_respon'
         - type: object
-          properties:
-            kode_jenis_dokumen:
-              default: ba9
-              pattern: '^ba9$'
-              example: ba9
-            identitas_dokumen:
-              required:
-              - nomor_t8
+          required:
+              - nomor
               - tanggal
-              properties:
-                nomor_t8:
-                  type: string
-                  description: Diisi dengan nomor T-8 (jenis = 1)
-                  example: SRT/3/12/2012.PolresJAKPUS
-                tanggal:
-                  type: string
-                  format: date
-                  description: Tanggal dokumen BA-9.
-                  example: "2019-01-15"
+              - nomor_t8
+              - kode_satker_penerbit
+          properties:
+            nomor_t8:
+              type: string
+              description: Diisi dengan nomor T-8 yang mempunyai Jenis 1 (penangguhan/pengeluaran dari tahanan)
+              example: Reg/3/12/2012.JakJAKPUS
+            kode_satker_penerbit:
+              type: string
+              description: Kode Satker penerbit BA-8
+              example: 006.02.03
 
 
           
