@@ -2031,8 +2031,9 @@ components:
                 - tanggal
               properties:
                 nomor:
-                  type: string
                   description: Tulis nomor surat SPDP, lihat dokumen cetaknya
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
@@ -2133,13 +2134,15 @@ components:
                 - tanggal_terima_spdp
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  type: string
                   description: nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal_terima_spdp:
                   type: string
                   format: date
@@ -2800,7 +2803,7 @@ components:
               properties:
                 kode_alasan:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   description: Lihat data master Alasan Penghentian Perkara
                   items:
                     type: integer
@@ -2881,20 +2884,23 @@ components:
                 - nomor_spdp
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_berkas_perkara:
-                  type: string
                   description: Nomor berkas perkara tahap I
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal_terima_berkas_perkara:
                   type: string
                   format: date
                   description: Tanggal terima berkas perkara tahap I
                 nomor_spdp:
-                  type: string
                   description: Nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               type: object
               properties:
@@ -3036,19 +3042,23 @@ components:
                 - nomor_register_perkara
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  type: string
                   description: Nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 nomor_berkas_perkara:
-                  type: string
                   description: nomor berkas perkara Kepolisian
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 nomor_register_perkara:
-                  type: string
                   description: Nomor register perkara Kejaksaan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               type: object
               required:
@@ -3078,17 +3088,20 @@ components:
                 - nomor_berkas_perkara
               properties:
                 nomor:
-                  type: string
                   description: Diisi dengan nomor register perkara Kejaksaan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  type: string
                   description: Nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 nomor_berkas_perkara:
-                  type: string
                   description: Nomor berkas perkara Kepolisian
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               type: object
               required:
@@ -3117,19 +3130,23 @@ components:
                 - nomor_register_perkara
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  type: string
                   description: Nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 nomor_berkas_perkara:
-                  type: string
                   description: Nomor berkas perkara Kepolisian
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 nomor_register_perkara:
-                  type: string
                   description: Nomor register perkara Kejaksaan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               type: object
               required:
@@ -3218,8 +3235,6 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
-                - nomor_pelimpahan
-                - tanggal_terima_pelimpahan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
@@ -3261,8 +3276,6 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
-                - nomor_pelimpahan
-                - tanggal_terima_pelimpahan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
@@ -3302,8 +3315,6 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
-                - nomor_pelimpahan
-                - tanggal_terima_pelimpahan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
@@ -3350,7 +3361,6 @@ components:
                 - tingkat_pengadilan
                 - tanggal_putusan
                 - nomor_putusan
-                - nomor_pelimpahan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
@@ -3399,7 +3409,6 @@ components:
                 - tingkat_pengadilan
                 - tanggal_putusan
                 - nomor_putusan
-                - nomor_pelimpahan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
@@ -3436,13 +3445,15 @@ components:
                 - nomor_putusan_bht
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_putusan_bht:
-                  type: string
                   description: nomor putusan pengadilan yang berkekuatan hukum tetap
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               type: object
               required:
@@ -3475,15 +3486,17 @@ components:
                 - nomor_putusan_bht
               properties:
                 nomor:
-                  type: string
-                  description: diisi dengan nomor P48 
+                  description: diisi dengan nomor P48
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat' 
                 tanggal:
                   type: string
                   format: date
                 nomor_putusan_bht:
-                  type: string
                   description: nomor putusan pengadilan yang berkekuatan hukum tetap
                   example: ""
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
 
             konten_dokumen:
               type: object
@@ -5021,7 +5034,9 @@ components:
           example: Jakarta
         tanggal_lahir:
           type: string
-          format: date
+          #format: date
+          # regex ini membuat empty string diperbolehkan di tanggal_lahir
+          pattern : '^$|^[0-9]{4}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)$'
         kode_jenis_kelamin:
           type: integer
           default: 1
@@ -5233,6 +5248,9 @@ components:
               type: string
               description: Diisi dengan teks bebas
               example: Ahli Hukum Pidana
+            tanggal_lahir:
+              # pattern ini memastikan empty string tidak DIPERBOLEHKAN sbg tanggal
+              pattern : '^[0-9]{4}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)$'
     barang_bukti:
       required:
         - nama
@@ -5269,7 +5287,11 @@ components:
               type: integer
             lainnya:
               type: string          
-          
+    nomor_surat:
+      type: string
+      description: Nomor Surat
+      minLength: 3
+      pattern: '^([a-zA-Z\d]+[^a-zA-Z\d\n]{0,1})*[a-zA-Z\d]+$'
     ba11:
       allOf:
         - $ref: '#/components/schemas/dokumen'
