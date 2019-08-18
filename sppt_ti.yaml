@@ -1188,6 +1188,45 @@ paths:
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
+  
+  /dokumen/t8:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Surat Perintah Penangguhan Penahanan / Pengeluaran Dari Tahanan DAN Pencabutan Penangguhan Penahanan
+      description: Meminta Surat Perintah Penangguhan Penahanan / Pengeluaran Dari Tahanan DAN Pencabutan Penangguhan Penahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_t7
+          description: Surat Perintah Penahanan/Pengalihan Jenis Penahanan
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit T-7
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: nomor_identitas_tersangka
+          description: Nomor Identitas Tersangka
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/t8'
+                  - type: object
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
 
   /dokumen/s18:
     get:
@@ -4862,6 +4901,94 @@ components:
               format: date
               description: Tanggal berakhir penahanan
               example: "2019-01-15"
+
+    t8:
+      allOf:
+        - $ref: '#/components/schemas/dokumen_respon'
+        - type: object
+          required:
+            - nomor
+            - tanggal
+            - kode_satker_penerbit
+            - jenis
+            - nomor_t7
+            - nama_tersangka
+            - nomor_identitas_tersangka
+            - kode_jenis_penahanan
+            - kode_satker_pas
+            - tanggal_mulai_penahanan
+            - tanggal_mulai_penangguhan
+            - jenis_jaminan
+            - nama_penjamin
+          properties:
+            kode_satker_penerbit:
+              type: string
+              description: Kode Satker penerbit dokumen T-8
+              example: 006.09.05
+            jenis:
+              type: integer
+              enum:
+                - 1
+                - 2
+              example: 2
+              description: 1 = penangguhan/pengeluaran dari tahanan; 2 = pencabutan penangguhan penahanan
+            nomor_t7:
+              type: string
+              description: Diisi dengan nomor T-7 (jenis = 2)
+              example: SRT/3/12/2012.PolresJAKPUS
+            nama_tersangka:
+              type: string
+              description: Nama lengkap tersangka
+              example: Samuel Sambiroto
+            nomor_identitas_tersangka:
+              type: string
+              description: Nomor identitas tersangka
+              example: 123456789
+            kode_jenis_penahanan:
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 3
+              example: 1
+              description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+            kode_satker_pas:
+              type: string
+              example: 006.09.05
+              description: lihat data master Satker
+            tanggal_mulai_penahanan:
+              type: string
+              format: date
+              description: Tanggal mulai penahanan
+              example: "2019-01-15"
+            tanggal_mulai_penangguhan:
+              type: string
+              format: date
+              description: Tanggal mulai penangguhan
+              example: "2019-01-15"
+            jenis_jaminan:
+              type: integer
+              description: Perlu diganti dengan data master
+            uang_jaminan:
+              type: number
+              description: Nominal uang jaminan
+            nomor_identitas_penjamin:
+              type: string
+              description: Nomor identitas penjamin
+              example: 123456789
+            nama_penjamin:
+              type: string
+              description: Nama penjamin
+              example: Samuel Sambiroto
+            alamat_penjamin:
+              type: string
+              description: Alamat lengkap individu
+              example: Jl. Jalan-jalan No 1
+            kode_satker_penyimpanan_jaminan:
+              type: string
+              description: Referensi ke master data Satker. Mandatory apabila jenis jaminan adalah "uang".
+              example: 006.09.05
     
     s16:
       allOf:
