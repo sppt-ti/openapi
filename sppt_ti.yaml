@@ -1480,6 +1480,72 @@ paths:
         '500':
           $ref: '#/components/responses/error'
   
+  /dokumen/ba8:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan
+      description: Meminta Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_t7
+          description: Diisi dengan nomor T-7 yang mempunyai Jenis 2 (Pengalihan Penahanan)
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit BA-8
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba8'
+                  - type: object                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+  /dokumen/ba9:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran tahanan
+      description: Meminta Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran Tahanan via SPPT TI
+      parameters:
+        - in: query
+          name: nomor_t8
+          description: Nomor T-8 yang mempunyai Jenis 1 (penangguhan/pengeluaran dari tahanan)
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: kode_satker_penerbit
+          description: Kode Satker penerbit T-8
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ba9'
+                  - type: object                      
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /notifikasi:
     post:
       tags:
@@ -5841,10 +5907,7 @@ components:
                   type: string
                   format: date
                   description: Tanggal dokumen BA-9.
-                  example: "2019-01-15"
-
-
-          
+                  example: "2019-01-15"          
           
     # Schema for error response body
     error:
