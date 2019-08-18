@@ -82,9 +82,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/template_dokumen_layanan_penyediaan_data'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/template_dokumen_layanan_penyediaan_data'
                       
         '400':
           $ref: '#/components/responses/error'
@@ -1220,10 +1220,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s16'
-                  - type: object
-                      
+                type: array
+                items:
+                  $ref: '#/components/schemas/s16'                      
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -4715,7 +4714,7 @@ components:
             nomor_identitas:
               type: string
               description: Nomor identitas tersangka
-              example: 123456789
+              example: 123456789A
             daftar_uu_pasal:
               type: array
               minLength: 1
