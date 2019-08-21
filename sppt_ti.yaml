@@ -1586,6 +1586,53 @@ paths:
         '500':
           $ref: '#/components/responses/error'
   
+  /master/{jenis}:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Data master
+      description: Meminta data master
+      parameters:
+        - in: path
+          name: jenis   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: string
+            enum:
+              - agama
+              - satker
+              - negara
+          description: Jenis master data
+        - in: query
+          name: format
+          description: Format output, json atau zip
+          schema:
+            type: string
+            enum:
+              - json
+              - zip
+        - in: query
+          name: versi
+          description: Versi data master
+          schema:
+            type: string
+            example: 1.0.1
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/master_agama'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+
   /notifikasi:
     post:
       tags:
@@ -5948,7 +5995,17 @@ components:
                   format: date
                   description: Tanggal dokumen BA-9.
                   example: "2019-01-15"          
-          
+    master_agama:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "5"
+        nama:
+          type: string
+          example: "Budha"          
+
     # Schema for error response body
     error:
       type: object
