@@ -1605,7 +1605,7 @@ paths:
           description: Jenis master data
         - in: query
           name: format
-          description: Format output, json atau zip
+          description: Format output, json atau zip. Jika tidak diisi, maka secara default akan mengembalikan format json
           schema:
             type: string
             enum:
@@ -1613,10 +1613,10 @@ paths:
               - zip
         - in: query
           name: versi
-          description: Versi data master
+          description: Versi data master. Jika parameter versi dikosongkan akan mengembalikan versi terakhir
           schema:
             type: string
-            example: 1.0.1
+            example: 2019.1
       responses:
         '200':
           description: Dokumen sesuai permintaan
@@ -1657,10 +1657,11 @@ paths:
               - zip
         - in: query
           name: versi
-          description: Nama Versi data master
+          description: Nama Versi data master. Diisi dengan nama versi terbaru
           schema:
             type: string
-            example: 1.0.2
+            example: 2019.2
+          required: true
       tags:
         - Endpoint Puskarda
       responses:
