@@ -1631,7 +1631,55 @@ paths:
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
-
+    post:
+      summary: Update data master
+      description: Mengirim update terhadap data master
+      parameters:
+      #- $ref: '#/components/parameters/header_accept_param'
+      #- $ref: '#/components/parameters/header_content_type_param'
+        - in: path
+          name: jenis   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: string
+            enum:
+              - agama
+              - satker
+              - negara
+          description: Jenis master data
+        - in: query
+          name: format
+          description: Format output, json atau zip
+          schema:
+            type: string
+            enum:
+              - json
+              - zip
+        - in: query
+          name: versi
+          description: Nama Versi data master
+          schema:
+            type: string
+            example: 1.0.2
+      tags:
+        - Endpoint Puskarda
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/master_agama' 
+        description: Dokumen yang akan dikirim
+                
 
   /notifikasi:
     post:
