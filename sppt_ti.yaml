@@ -6096,8 +6096,8 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_surat_penetapan_hari_sidang
-              - tanggal_surat_penetapan_hari_sidang
+              - nomor_pmh
+              - tanggal_pmh
               properties:
                 nomor:
                   description: Nomor surat P42
@@ -6107,14 +6107,14 @@ components:
                   type: string
                   format: date
                   description: Tanggal surat P42
-                nomor_surat_penetapan_hari_sidang:
-                  description: Nomor surat penetapan hari sidang
+                nomor_pmh:
+                  description: Nomor surat penetapan majelis hakim
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                tanggal_surat_penetapan_hari_sidang:
+                tanggal_pmh:
                   type: string
                   format: date
-                  description: Tanggal surat penetapan hari sidang
+                  description: Tanggal surat penetapan majelis hakim
                 
             konten_dokumen:
               required:
