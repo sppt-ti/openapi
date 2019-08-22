@@ -6055,12 +6055,12 @@ components:
           type: string
           example: "Budha"  
 
-    master_wilayah_admin:
+    master_wiladmin:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master wilayah admin
+          description: Kode master Wilayah Admin
           example: "00"
         jenis_wilayah:
           type: string
@@ -6075,11 +6075,11 @@ components:
       properties:
         kode:
           type: string
-          description: Kode master satker
+          description: Kode master Satuan Kerja
           example: "060"
         tag:
           type: string
-          example: "Polri"
+          example: "polri"
         nama:
           type: string
           example: "Kepolisian Republik Indonesia"
@@ -6098,12 +6098,12 @@ components:
           type: string
           example: "Afganistan"
 
-    master_jenis_identitas:
+    master_jenisidentitas:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master jenis identitas
+          description: Kode master Jenis Identitas
           example: "0"
         nama:
           type: string
@@ -6114,7 +6114,7 @@ components:
       properties:
         kode:
           type: string
-          description: Kode master pendidikan
+          description: Kode master Pendidikan
           example: "1"
         nama:
           type: string
@@ -6125,51 +6125,51 @@ components:
       properties:
         kode:
           type: string
-          description: Kode master pekerjaan
+          description: Kode master Pekerjaan
           example: "2"
         nama:
           type: string
           example: "Mengurus rumah tangga" 
 
-    master_status_nikah:
+    master_statusnikah:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master status nikah
+          description: Kode master Status Nikah
           example: "1"
         nama:
           type: string
           example: "Belum kawin"
 
-    master_jenis_penahanan:
+    master_jenispenahanan:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master jenis penahanan
+          description: Kode master Jenis Penahanan
           example: "2"
         nama:
           type: string
-          example: "Penahanan rumah"  
+          example: "Penahanan Rumah"  
 
-    master_pihak_penahan:
+    master_pihakpenahan:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master pihak penahan
+          description: Kode master Pihak Penahan
           example: "10"
         nama:
           type: string
-          example: "Penyidik kepolisian"  
+          example: "Penyidik Kepolisian"  
 
-    master_alasan_penghentian_perkara:
+    master_alasanpenghentianperkara:
       type: object
       properties:
         kode:
           type: string
-          description: Kode master alasan penghentian perkara
+          description: Kode master Alasan Penghentian Perkara
           example: "1"
         nama:
           type: string
