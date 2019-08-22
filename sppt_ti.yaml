@@ -6175,6 +6175,91 @@ components:
           type: string
           example: "Tidak cukup bukti" 
 
+    master_jenishukuman:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Hukuman
+          example: "1"
+        nama:
+          type: string
+          example: "Hukuman mati"
+    
+    master_jenisdokumen:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Dokumen
+          example: "spdp"
+        nama:
+          type: string
+          example: "SPDP/Surat Perintah Dimulainya Penyidikan"
+    
+    master_jenisproses:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Proses
+          example: "dik-10"
+        nama:
+          type: string
+          example: "mulai, pengiriman SPDP"
+    
+    master_tingkatpengadilan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Tingkat Pengadilan
+          example: "2"
+        nama:
+          type: string
+          example: "Pengadilan Tinggi"
+    
+    master_jenisputusan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Putusan
+          example: "2"
+        nama:
+          type: string
+          example: "Dikembalikan kepada orangtua"
+        penuntutan:
+          type: string
+          description: 0= tidak terjadi Penuntutan, 1= terjadi Penuntutan
+          example: "1"
+        persidangan:
+          type: string
+          description: 0= tidak terjadi Persidangan, 1= terjadi Persidangan
+          example: "1"
+    
+    master_jenisjaminan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Jaminan
+          example: "1"
+        nama:
+          type: string
+          example: "Uang"
+    
+    master_jenistindakpidana:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Jenis Tindak Pidana
+          example: "2"
+        nama:
+          type: string
+          example: "Penipuan"
+
     # Schema for error response body
     error:
       type: object
