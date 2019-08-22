@@ -428,6 +428,26 @@ paths:
                       allOf:
                         - $ref: '#/components/schemas/sid-10'
         description: Dokumen yang akan dikirim
+  /sid-15:
+    post:
+      tags:
+        - format pesan
+      summary: Pengiriman Surat Tuntutan
+      description: Kejaksaan mengirimkan Surat Tuntutan ke Pengadilan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sid-15'
+        description: Dokumen yang akan dikirim
+  
   /sid-20:
     post:
       tags:
@@ -1991,6 +2011,24 @@ components:
                     - $ref: '#/components/schemas/ppp'
                     - $ref: '#/components/schemas/phs'
     
+    sid-15:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: sid-15
+                example: sid-15
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis 'p42'
+                items:
+                  $ref: '#/components/schemas/p42'
+
     sid-20:
       required:
         - dokumen
@@ -6044,6 +6082,95 @@ components:
                   format: date
                   description: Tanggal dokumen BA-9.
                   example: "2019-01-15"          
+    
+    p42:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: p42
+              pattern: '^p42$'
+              example: p42
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_surat_penetapan_hari_sidang
+              - tanggal_surat_penetapan_hari_sidang
+              properties:
+                nomor:
+                  description: Nomor surat P42
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal surat P42
+                nomor_surat_penetapan_hari_sidang:
+                  description: Nomor surat penetapan hari sidang
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_surat_penetapan_hari_sidang:
+                  type: string
+                  format: date
+                  description: Tanggal surat penetapan hari sidang
+                
+            konten_dokumen:
+              required:
+                - daftar_terdakwa
+              properties:
+                daftar_terdakwa:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - nama
+                      - daftar_uu_pasal
+                      - daftar_tuntutan_hukuman
+                    properties:
+                      nama:
+                        type: string
+                        description: Nama lengkap terdakwa
+                        example: Samuel Sambiroto
+                      daftar_uu_pasal:
+                        type: array
+                        minItems: 1
+                        items:
+                          type: string
+                        example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
+                      daftar_tuntutan_hukuman:
+                        type: array
+                        minItems: 1
+                        items:
+                          type: object
+                          required:
+                            - kode_jenis_hukuman
+                          properties:
+                            kode_jenis_hukuman:
+                              type: string
+                              description: Data master Jenis Hukuman
+                            nominal:
+                              type: number
+                              description: Diisi dengan nilai nominal denda, apabila jenis hukuman adalah denda
+                            tahun:
+                              type: integer
+                              description: Diisi dengan jumlah tahun hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                            bulan:
+                              type: integer
+                              description: Diisi dengan jumlah bulan hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                            hari:
+                              type: integer
+                              description: Diisi dengan jumlah hari hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                            lainnya:
+                              type: string
+                              description: Diisi dengan keterangan jenis hak yang dicabut untuk jenis hukuman pencabutan hak, dan keterangan (teks) untuk hukuman yang tidak ada dalam jenis hukuman
+
+                            
+
+
+
     master_agama:
       type: object
       properties:
