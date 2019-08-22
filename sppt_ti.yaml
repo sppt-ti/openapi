@@ -6055,6 +6055,89 @@ components:
           type: string
           example: "Budha"          
 
+    master_jenis_hukuman:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "1"
+        nama:
+          type: string
+          example: "Hukuman mati"
+    
+    master_jenis_dokumen:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master dokumen
+          example: "spdp"
+        nama:
+          type: string
+          example: "SPDP/Surat Perintah Dimulainya Penyidikan"
+    
+    master_jenis_proses:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master jenis proses
+          example: "dik-10"
+        nama:
+          type: string
+          example: "mulai, pengiriman SPDP"
+    
+    master_tingkat_pengadilan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "2"
+        nama:
+          type: string
+          example: "Pengadilan Tinggi"
+    
+    master_jenis_putusan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "2"
+        nama:
+          type: string
+          example: "Dikembalikan kepada orangtua"
+        penuntutan:
+          type: string
+          example: "1"
+        persidangan:
+          type: string
+          example: "1"
+    
+    master_jenis_jaminan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "1"
+        nama:
+          type: string
+          example: "Uang"
+    
+    master_jenis_tindak_pidana:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master
+          example: "2"
+        nama:
+          type: string
+          example: "Penipuan"
+
     # Schema for error response body
     error:
       type: object
