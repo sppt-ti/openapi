@@ -778,6 +778,26 @@ paths:
               $ref: '#/components/schemas/pas-30'
         description: Dokumen yang akan dikirim
 
+  /pas-40:
+    post:
+      tags:
+        - format pesan
+      summary: Surat Permohonan Eksekusi
+      description: Pemasyarakatan Mengirim Surat Permohonan Eksekusi ke Kejaksaan
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pas-40'
+        description: Dokumen yang akan dikirim
+
   /han-10.10:
     post:
       parameters:
@@ -1600,12 +1620,38 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/s17'
                   - type: object
-                      
         '400':
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
   
+  /dokumen/rh:
+    get:
+      tags:
+        - Endpoint Puskarda
+      summary: Permintaan Rasio Hunian Rumah Tahanan dan Lapas
+      description: Meminta Rasio Hunian Rumah Tahanan dan Lapas
+      parameters:
+        - in: query
+          name: kode_satker
+          description: Kode satker Lapas/Rutan
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Dokumen sesuai permintaan
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/rh'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
   /master/{jenis}:
     get:
       tags:
@@ -2345,6 +2391,23 @@ components:
                 description: harus diisi dengan dokumen berjenis spptd.
                 items:
                   $ref: '#/components/schemas/spptd'
+    pas-40:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+              kode_proses:
+                default: pas-40
+                example: pas-40
+              dokumen:
+                type: array
+                minItems: 1
+                maxItems: 1
+                description: harus diisi dengan dokumen berjenis spx.
+                items:
+                  $ref: '#/components/schemas/spx'
     
     han-10.10:
       allOf:     # Combines Parent Object and the inline model
@@ -6167,9 +6230,82 @@ components:
                               type: string
                               description: Diisi dengan keterangan jenis hak yang dicabut untuk jenis hukuman pencabutan hak, dan keterangan (teks) untuk hukuman yang tidak ada dalam jenis hukuman
 
-                            
-
-
+    spx:
+      description: Surat Permohonan Eksekusi
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: spx
+              pattern: '^spx$'
+              example: spx
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              properties:
+                nomor:
+                  description: Nomor Surat Permohonan Eksekusi
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal Surat Permohonan Eksekusi
+            konten_dokumen:
+              required:
+                - daftar_terdakwa
+              properties:
+                daftar_terdakwa:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - nama
+                      - nomor_putusan
+                      - tanggal_akhir_penahanan
+                    properties:
+                      nama:
+                        type: string
+                        description: Nama lengkap terdakwa
+                        example: Samuel Sambiroto
+                      nomor_putusan:
+                        description: Nomor Putusan
+                        allOf:
+                          - $ref : '#/components/schemas/nomor_surat'
+                      tanggal_akhir_penahanan:
+                        type: string
+                        format: date
+                        description: Tanggal akhir penahanan
+    rh:
+      description: Rasio Hunian Rumah Tahanan dan Lapas
+      type: object
+      properties:
+        kode_satker:
+          type: string
+          example: 013.01.01
+        nama_satker:
+          type: string
+          example: Lapas Kelas I Cipinang
+        jumlah_penghuni:
+          type: integer
+          description: total jumlah penghuni rutan/lapas
+          example: 400
+        kapasitas:
+          type: integer
+          description: kapasitas rutan/lapas
+          example: 200
+        prosentase_hunian:
+          type: number
+          description: prosentase jumlah hunian berbanding kapasitas hunian Rutan/Lapas
+          example: 200
+        tanggal_waktu:
+          type: string
+          format: date-time
+          description: Tanggal dan waktu pemutakhiran
+          example: "2008-09-15T15:53:00+07:00"
 
     master_agama:
       type: object
