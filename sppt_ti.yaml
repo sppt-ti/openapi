@@ -6053,7 +6053,127 @@ components:
           example: "5"
         nama:
           type: string
-          example: "Budha"          
+          example: "Budha"  
+
+    master_wilayah_admin:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master wilayah admin
+          example: "00"
+        jenis_wilayah:
+          type: string
+          description: jenis wilayah
+          example: "negara"
+        nama:
+          type: string
+          example: "Republik Indonesia"
+
+    master_satker:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master satker
+          example: "060"
+        tag:
+          type: string
+          example: "Polri"
+        nama:
+          type: string
+          example: "Kepolisian Republik Indonesia"
+        nama_singkat:
+          type: string
+          example: "Polri"  
+
+    master_negara:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master Negara
+          example: "afg"
+        nama:
+          type: string
+          example: "Afganistan"
+
+    master_jenis_identitas:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master jenis identitas
+          example: "0"
+        nama:
+          type: string
+          example: "Tidak diketahui"   
+
+    master_pendidikan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master pendidikan
+          example: "1"
+        nama:
+          type: string
+          example: "Tidak sekolah"  
+
+    master_pekerjaan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master pekerjaan
+          example: "2"
+        nama:
+          type: string
+          example: "Mengurus rumah tangga" 
+
+    master_status_nikah:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master status nikah
+          example: "1"
+        nama:
+          type: string
+          example: "Belum kawin"
+
+    master_jenis_penahanan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master jenis penahanan
+          example: "2"
+        nama:
+          type: string
+          example: "Penahanan rumah"  
+
+    master_pihak_penahan:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master pihak penahan
+          example: "10"
+        nama:
+          type: string
+          example: "Penyidik kepolisian"  
+
+    master_alasan_penghentian_perkara:
+      type: object
+      properties:
+        kode:
+          type: string
+          description: Kode master alasan penghentian perkara
+          example: "1"
+        nama:
+          type: string
+          example: "Tidak cukup bukti" 
 
     # Schema for error response body
     error:
