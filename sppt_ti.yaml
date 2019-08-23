@@ -1187,13 +1187,36 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s24'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/s24'
         '400':
           $ref: '#/components/responses/error'
         '500':
           $ref: '#/components/responses/error'
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - Endpoint Puskarda
+      summary: S24
+      description: Mengirim S24 ke Puskarda
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/s24'
+        description: Format dokumen yang dikirim
 
   /dokumen/t7:
     get:
@@ -1222,8 +1245,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/t7'
-                  - type: object
-                      
+                  - type: object                      
         '400':
           $ref: '#/components/responses/error'
         '500':
