@@ -2744,8 +2744,12 @@ components:
                   description: Kode satker pengirim SPDP
                   example: 006.09.05
             konten_dokumen:
-              required:
-                  - isi_surat
+              type: object
+              properties:
+                pejabat_penandatangan:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
     
     t4:
       allOf:
@@ -4122,7 +4126,7 @@ components:
             konten_dokumen:
               type: object
               required:
-                - daftar_tahanan
+                - tahanan
                 - sisa_hari_penahanan
               properties:
                 tahanan:
@@ -4549,9 +4553,6 @@ components:
                   example: S22/3/12/2012.PolresJAKPUS
             konten_dokumen:
               required:
-                  - nomor
-                  - tanggal
-                  - nomor_surat_permohonan
                   - tanggal_berakhir_penahanan
                   - kode_jenis_penahanan
                   - tanggal_mulai_perpanjangan_penahanan
@@ -5962,7 +5963,6 @@ components:
         - type: object
           required:
             - nama
-            - hukuman
             - alamat
             - nomor_surat_perintah_atau_penetapan_penahanan
             - tanggal_surat_perintah_atau_penetapan_penahanan
