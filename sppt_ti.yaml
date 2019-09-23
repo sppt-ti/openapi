@@ -3944,13 +3944,14 @@ components:
           properties:
             kode_jenis_dokumen:
               type: string
-              default: petikan
-              example: petikan
+              default: salput
+              example: salput
             identitas_dokumen:
               type: object
               required:
                 - tingkat_pengadilan
                 - tanggal_putusan
+                - tanggal_pengiriman_salinan_putusan
                 - nomor_putusan
                 - nomor_surat_dakwaan
               properties:
@@ -3959,6 +3960,9 @@ components:
                   default: 1
                   example: 1
                 tanggal_putusan:
+                  type: string
+                  format: date
+                tanggal_pengiriman_salinan_putusan:
                   type: string
                   format: date
                 nomor_putusan:
