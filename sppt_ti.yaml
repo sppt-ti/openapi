@@ -2698,6 +2698,7 @@ components:
                 daftar_jaksa:
                   type: array
                   description: Tulis semua data jaksa penuntut umum yang ditugaskan.
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/aparat_negara'
                 pejabat_penandatangan:
@@ -2731,8 +2732,9 @@ components:
                   description: Tanggal dokumen P-17
                   example: "2019-01-15"
                 nomor_spdp:
-                  type: string
                   description: Nomor dokumen spdp
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   example: SPDP/3/12/2012.PolresJAKPUS
                 tanggal_spdp:
                   type: string
@@ -3336,12 +3338,14 @@ components:
                 - nomor_spdp
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: nomor SPDP
             konten_dokumen:
               type: object
@@ -3372,15 +3376,18 @@ components:
                 - nomor_spdp
               properties:
                 nomor_surat_pengantar:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal_surat_pengantar:
                   type: string
                   format: date
                 nomor_berkas_perkara:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor berkas perkara kepolisian
                 nomor_spdp:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: nomor SPDP
             konten_dokumen:
               type: object
@@ -3391,16 +3398,15 @@ components:
                   type: string
                 daftar_tersangka:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/tersangka'
                 daftar_barang_bukti:
-                  minLength: 1
                   type: array
                   items:
                     $ref: '#/components/schemas/barang_bukti'
                 daftar_saksi:
-                  minLength: 1
+                  minItems: 1
                   type: array
                   items:
                     $ref: '#/components/schemas/saksi'
@@ -3484,7 +3490,8 @@ components:
                   description: Tanggal dokumen p21a.
                   example: "2019-01-15"
                 nomor_spdp:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor dokumen SPDP
                   example: spdp/3/12/2012.PolresJAKPUS
                 tanggal_spdp:
@@ -3497,7 +3504,8 @@ components:
                   description: Kode Satker SPDP
                   example: 006.09.05
                 nomor_p21:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor dokumen p21
                   example: p21/3/12/2012.PolresJAKPUS
 
@@ -3528,15 +3536,18 @@ components:
                 - tanggal_terima_p21
               properties:
                 nomor_surat_pengantar:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal_surat_pengantar:
                   type: string
                   format: date
                 nomor_berkas_perkara:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor berkas perkara kepolisian
                 nomor_spdp:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor SPDP yang bersangkutan                
                 tanggal_terima_p21:
                   type: string
@@ -3555,10 +3566,12 @@ components:
                     $ref: '#/components/schemas/tersangka'
                 daftar_barang_bukti:
                   type: array
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/barang_bukti'
                 daftar_saksi:
                   type: array
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/saksi'
                 daftar_ahli:
@@ -3702,17 +3715,17 @@ components:
               properties:
                 daftar_terdakwa:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/terdakwa'
                 daftar_barang_bukti:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/barang_bukti'
                 daftar_saksi:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/saksi'
                 daftar_ahli:
@@ -3789,14 +3802,16 @@ components:
                   default: 1
                   example: 1
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor register perkara Pengadilan
                 tanggal:
                   type: string
                   format: date
                   description: Tanggal penetapan
                 nomor_surat_dakwaan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor P-29 (Nomor register perkara Kejaksaan)
             konten_dokumen:
               type: object
@@ -3805,7 +3820,7 @@ components:
               properties:
                 daftar_hakim:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/hakim'
     ppp:
@@ -3830,14 +3845,16 @@ components:
                   default: 1
                   example: 1
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor register perkara Pengadilan
                 tanggal:
                   type: string
                   format: date
                   description: Tanggal penetapan
                 nomor_surat_dakwaan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor P-29 (Nomor register perkara Kejaksaan)
             konten_dokumen:
               type: object
@@ -3846,6 +3863,7 @@ components:
               properties:
                 nama_panitera_pengganti:
                   type: string
+                  minLength: 1
                   example: Andi Maharani Sri Yulianti, S.H, M.H
     phs:
       allOf:
@@ -3869,14 +3887,16 @@ components:
                   default: 1
                   example: 1
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor register perkara Pengadilan
                 tanggal:
                   type: string
                   format: date
                   description: Tanggal penetapan
                 nomor_surat_dakwaan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor P-29 (Nomor register perkara Kejaksaan)
             konten_dokumen:
               type: object
@@ -3915,14 +3935,20 @@ components:
                   default: 1
                   example: 1
                 nomor_putusan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor register perkara Pengadilan
                 tanggal_putusan:
                   type: string
                   format: date
                 nomor_surat_dakwaan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                nomor_surat_pelimpahan:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Nomor Surat Pelimpahan
             konten_dokumen:
               type: object
               required:
@@ -3931,11 +3957,12 @@ components:
               properties:
                 daftar_terdakwa:
                     type: array
-                    minLength: 1
+                    minItems: 1
                     items:
                       $ref: '#/components/schemas/terdakwa'
                 isi_amar:
                   type: string
+                  minLength: 1
                   description: Amar putusan
                   example: "<p><strong>M E N G A D I L I :  </strong></p>\n\n<ol>\n <li>Menyatakan Terdakwa 1. DAENG SUPRIYANTO AMS ALIAS SUPRI dan Terdakwa  II. LIYAS MA’NURI AJI ALIAS AZIS telah terbukti secara sah dan menyakinkan bersalah melakukan tindak pidana : “  Yang melakukan, yang menyuruh melakukan atau turut serta melakukan perbuatan dengan maksud untuk menguntungkan dirinya atau orang lain dengan melawan hukum,memaksa orang dengan ancaman akan mencemar dengan surat atau dengan ancaman akan membuka rahasia , supaya orang itu memberi kepadanya suatu barang yang sama sekali atau sebagian kepuyaan orang itu atau kepunyaan orang lain, atau seupaya orang itu membuat utang atau menghapuskan hutang “ ; -----------------------------------</li>\n</ol>\n\n<p>                                <strong>Halaman </strong><strong>1</strong> <strong>Petikan Putusan </strong><strong> N</strong><strong>omor : 1800/P</strong><strong>id.</strong><strong>B</strong><strong>/201</strong><strong>6</strong><strong>/PN.</strong><strong>Jkt. Brt.</strong></p>\n\n<ol>\n <li>Menjatuhkan pidana kepada Para Terdakwa tersebut diatas oleh karena itu dengan pidana penjara masing – masing selama :  1 ( satu ) Tahun 8 ( delapan ) Bulan  ;</li>\n <li>Menetapkan masa penangkapan dan penahanan yang telah dijalani Para Terdakwa dikurangkan seluruhnya dari pidana yang dijatuhkan;</li>\n <li>Menetapkan Para Terdakwa tetap berada dalam tahanan ;</li>\n <li>Menyatakan barang bukti berupa : 30 ( tiga puluh ) lembar uang pecahan Rp. 100.000,- dan 20 ( dua puluh lembar uang  pecahan Rp. 50.000,- dikembalikan kepada saksi korban SAHRAN BASRIE ALIAS AJAN ; 1 ( satu ) unit  mobil Daihatsu Xenia No. Pol. B-2339 –SKQ warna putih berikut STNK dan kunci  kontak dikembalikan kepada saksi FERDINAND R RAHADIAN  ;</li>\n <li>Membebankan kepada Terdakwa untuk membayar biaya perkara sebesar   Rp. 2.000,-(dua ribu rupiah);</li>\n</ol>"
                   
@@ -3970,15 +3997,17 @@ components:
                   type: string
                   format: date
                 nomor_putusan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor register perkara Pengadilan
                 nomor_surat_dakwaan:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor P-29 (Nomor register perkara Kejaksaan)
             konten_dokumen:
               type: object
             daftar_dokumen_digital:
-              minLength: 1
+              minItems: 1
     p48:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4011,7 +4040,7 @@ components:
                 - daftar_jaksa
               properties:
                 daftar_jaksa:
-                  minLength: 1
+                  minItems: 1
                   type: array
                   items:
                     $ref: '#/components/schemas/aparat_negara'
@@ -4056,7 +4085,7 @@ components:
               properties:
                 daftar_terpidana:
                     type: array
-                    minLength: 1
+                    minItems: 1
                     items:
                       $ref: '#/components/schemas/terdakwa'
 
@@ -4085,7 +4114,8 @@ components:
                   format: date
                   description: tanggal penerbitan sl
                 nomor_putusan_bht:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Nomor putusan pengadilan BHT
             konten_dokumen:
               type: object
@@ -4513,7 +4543,7 @@ components:
                       type: string
                       nullable: true
                       description: Jika tidak diketahui, maka isi dengan null
-                      example: 12345678
+                      example: AA12345678
                     kode_satker_tempat_penahanan:
                       type: string
                       example: 006.09.05
@@ -5734,7 +5764,7 @@ components:
                 $ref: '#/components/schemas/aparat_negara'
         daftar_dokumen_digital:
           type: array
-          minLength: 0
+          minItems: 0
           items:
             $ref: '#/components/schemas/dokumen_digital'
         terenkripsi:
@@ -5742,7 +5772,7 @@ components:
           default: false
         daftar_kunci_enkripsi:
           type: array
-          minLength: 0
+          minItems: 0
           items:
             $ref: '#/components/schemas/kunci_enkripsi'
         tanda_tangan_digital:
@@ -5756,6 +5786,7 @@ components:
         mime_type:
           type: string
         file:
+          minLength: 1
           type: string
           format: byte
           description: base64-encoded characters
@@ -5780,12 +5811,14 @@ components:
         kode_satker_penerima:
           type: string
         key:
+          minLength: 1
           type: string
     aparat_negara:
       type: object
       properties:
         nama:
           type: string
+          minLength: 1
         nomor_induk:
           type: string
         jabatan:
@@ -5799,6 +5832,7 @@ components:
       properties:
         nama:
           type: string
+          minLength: 1
         posisi:
           type: string
     persona:
@@ -5806,6 +5840,7 @@ components:
       properties:
         nama:
           type: string
+          minLength: 1
           description: Nama lengkap individu
           example: Samuel Sambiroto
         tempat_lahir:
@@ -5891,6 +5926,7 @@ components:
                     type: string
                     description: TODO perlu penjelasan 
                     example: test
+                    minLength: 1
                   pihak_penahan: 
                     type: integer
                     description: Kode pihak penahan. Lihat data master Pihak Penahan. 10= Penyidik Kepolisian; 20= Jaksa Penuntut Umum; 30= Hakim Pengadilan Negeri; 31= Ketua Pengadilan Negeri; 40= Hakim Pengadilan Tinggi; 41= Ketua Pengadilan Tinggi; 50= Hakim Agung; 51= Ketua Mahkamah Agung
@@ -5898,10 +5934,12 @@ components:
                     type: string
                     format: date
                     example: "2012-10-22"
+                    pattern : '^[0-9]{4}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)$'
                   tanggal_selesai:
                     type: string
                     format: date  
                     example: "2012-10-22"
+                    pattern : '^[0-9]{4}-(0[0-9]|10|11|12)-([0-2][0-9]|30|31)$'
               example:
                 - jenis: denda
                   pihak_penahan: 10
@@ -5980,7 +6018,8 @@ components:
                 type: string
               example: [Joni Gudel, Katrok]
             nomor_surat_perintah_atau_penetapan_penahanan:
-              type: string
+              allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             tanggal_surat_perintah_atau_penetapan_penahanan:
               type: string
               format: date
@@ -5991,7 +6030,8 @@ components:
               type: string
               format: date
             nomor_registrasi_pemasyarakatan:
-              type: string
+              allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
     saksi:
       allOf:
         - $ref: '#/components/schemas/persona'
@@ -6038,6 +6078,7 @@ components:
       type: object
       properties:
         nama:
+          minLength: 1
           type: string
         jumlah:
           type: number
