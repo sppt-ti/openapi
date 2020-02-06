@@ -366,7 +366,7 @@ paths:
         - format pesan
       summary: Pengiriman SKP2
       operationId: kirimTut20
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Surat Ketetapan Penghentian Penuntutan (P-26) dan Surat Perintah Penunjukan JPU untuk penyelesaian perkara tindak pidana (P-16A) dari Kejaksaan kepada Kepolisian dan ditembuskan ke Pengadilan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3620,21 +3620,27 @@ components:
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor P-26, lihat dokumen cetaknya.
+                  example: PRINT-5149/0.2.10/Epp.2/12/2018
                 tanggal:
                   type: string
                   format: date
+                  description: Tulis tanggal P-26, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_spdp:
-                  description: Nomor SPDP
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017 
                 nomor_berkas_perkara:
-                  description: nomor berkas perkara Kepolisian
+                  description: Tulis nomor berkas perkara Kepolisian, lihat dokumen cetaknya.
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  example: BP/112/IV/2019/Satreskrim
                 nomor_register_perkara:
-                  description: Nomor register perkara Kejaksaan
+                  description: Tulis nomor register perkara Kejaksaan, lihat dokumen cetaknya.
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
             konten_dokumen:
               type: object
               required:
@@ -3642,7 +3648,7 @@ components:
               properties:
                 daftar_jaksa:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/aparat_negara'
 
@@ -3768,21 +3774,29 @@ components:
                 - nomor_berkas_perkara
               properties:
                 nomor:
-                  type: string
-                  description: Nomor P-26
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor P-26, lihat dokumen cetaknya.
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal P-26
+                  description: Wajib di isi. Tulis tanggal P-26, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_register_perkara:
-                  type: string
-                  description: Nomor register perkara Kejaksaan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor register perkara Kejaksaan, lihat dokumen cetaknya.
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
                 nomor_spdp:
-                  type: string
-                  description: Nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017 
                 nomor_berkas_perkara:
-                  type: string
-                  description: Nomor berkas perkara Kepolisian
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor berkas perkara Kepolisian, lihat dokumen cetaknya.
+                  example: BP/112/IV/2019/Satreskrim
             konten_dokumen:
               type: object
               required:
@@ -3790,8 +3804,8 @@ components:
               properties:
                 kode_alasan:
                   type: array
-                  minLength: 1
-                  description: Lihat data master Alasan Penghentian Perkara
+                  minItems: 1
+                  description: Tulis/isi alasan penghentian perkara, dengan merujuk pada master data Alasan Penghentian Perkara.
                   items:
                     type: integer
                   example: [1, 2, 3]
