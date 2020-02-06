@@ -265,7 +265,7 @@ paths:
         - format pesan
       summary: Penghentian perkara SP3
       operationId: kirimPrt30
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Surat Perintah Penghentian Penyidikan  (SP3) yang dikeluarkan oleh Kepolisian dan dikirimkan kepada Kejaksaan serta ditembuskan ke Pengadilan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3333,13 +3333,17 @@ components:
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SP3, lihat dokumen cetaknya.
+                  example: SP.Sidik/56/II/2018/Reskrim
                 tanggal:
                   type: string
                   format: date
+                  description: Tulis tanggal SP3, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_spdp:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: nomor SPDP
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
             konten_dokumen:
               type: object
               required:
@@ -3348,7 +3352,7 @@ components:
                 kode_alasan:
                   type: array
                   minItems: 1
-                  description: Lihat data master Alasan Penghentian Perkara
+                  description: Tulis/isi alasan penghentian perkara, dengan merujuk pada master data Alasan Penghentian Perkara.
                   items:
                     type: integer
                   example: [1, 2, 3]
