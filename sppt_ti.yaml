@@ -661,7 +661,7 @@ paths:
       tags:
         - format pesan
       summary: Salinan Putusan Kasasi
-      description: Pengadilan mengirimkan Salinan Putusan Kasasi
+      description: Proses bisnis pengiriman Salinan Putusan Kasasi dari pengadilan ke Kejaksaan
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4038,20 +4038,24 @@ components:
                   type: integer
                   default: 1
                   example: 1
+                  description: "Tulis tingkat pengadilan yang memeriksa perkara. Contoh: pertama, banding, kasasi atau peninjauan kembali"
                 tanggal_putusan:
                   type: string
                   format: date
+                  description: Tulis tanggal putusan
                 tanggal_pengiriman_salinan_putusan:
                   type: string
                   format: date
                 nomor_putusan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor register perkara Pengadilan
+                  description: "Tulis nomor putusan perkara pengadilan, lihat dokumen cetaknya. Contoh: 93/Pid.B/2017/PN.Arm"
+                  example: "93/Pid.B/2017/PN.Arm"
                 nomor_surat_dakwaan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                  description: "Tulis nomor putusan perkara pengadilan, lihat dokumen cetaknya. Contoh: 93/Pid.B/2017/PN.Arm Tahun 2017"
+                  example: PDM-257/PTK/07/2019
             konten_dokumen:
               type: object
             daftar_dokumen_digital:
@@ -5837,18 +5841,22 @@ components:
         tanda_tangan_digital:
           type: string
           description: Mekanisme tanda tangan digital akan ditentukan oleh BSSN. Lihat tata cara penandatanganan digital.
+          example: ""
     dokumen_digital:
       type: object
       properties:
         kode_jenis_dokumen:
           type: string
+          example: spdp
         mime_type:
           type: string
+          example: application/pdf
         file:
           minLength: 1
           type: string
           format: byte
           description: base64-encoded characters
+          example: "JVBERi0xLjMKJcTl8uXrp/Og0MTGCjQgMCBvYmoKPDwgL0xlbmd0aCA1IDAgUiAvRmlsdGVyIC9GbGF0ZURlY29kZSA+PgpzdHJlYW0KeAFFjjEOwjAMRXdO8UYYSO1ASbKCkFgrWeIAURlQS1VyfwkjBqav9/1seWVgJUVSn4ImzRx7DTGjMTg5v0fuvOguTakNoVX"
     dokumen_respon:
       type: object
       properties:
@@ -5869,9 +5877,11 @@ components:
       properties:
         kode_satker_penerima:
           type: string
+          example: "060.01"
         key:
           minLength: 1
           type: string
+          example: "$C&F)J@NcRfUjXn2"
     aparat_negara:
       type: object
       properties:
