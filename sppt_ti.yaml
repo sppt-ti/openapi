@@ -680,8 +680,7 @@ paths:
     post:
       tags:
         - format pesan
-      summary: Pengiriman Surat Perintah Pelaksanaan Putusan Pengadilan
-      operationId: kirimEks10
+      summary: Proses bisnis pengiriman tembusan Surat Perintah Pelaksanaan Putusan Pengadilan (P-48) dari Kejaksaan kepada Pengadilan, Kepolisian dan Pemasyarakatan.
       description: Mengirimkan Surat Perintah Pelaksanaan Putusan Pengadilan
       responses:
         '200':
@@ -4027,7 +4026,8 @@ components:
           properties:
             kode_jenis_dokumen:
               type: string
-              default: p48
+              pattern: '^p48$'
+              default: p48 
               example: p48
             identitas_dokumen:
               type: object
@@ -4038,14 +4038,18 @@ components:
               properties:
                 nomor:
                   allOf:
-                    - $ref : '#/components/schemas/nomor_surat'
+                    - $ref : '#/components/schemas/nomor_surat'                  
+                  description: Tulis nomor surat P-48, lihat dokumen cetaknya.
+                  example: T-1679/A/11/2018
                 tanggal:
                   type: string
                   format: date
+                  description: Tulis tanggal P-48, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_putusan_bht:
-                  description: nomor putusan pengadilan yang berkekuatan hukum tetap
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor putusan pengadilan yang telah berkekuatan hukum tetap, sebagai dasar pelaksanaan putusan. Tata cara penulisan lihat dokumen cetaknya.
+                  example: 113/Pid.Sus/TPK.2017/PN.SDA
             konten_dokumen:
               type: object
               required:
