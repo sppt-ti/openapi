@@ -168,6 +168,7 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-20'
         description: Dokumen yang akan dikirim
+
   /dik-22:
     post:
       parameters:
@@ -176,7 +177,8 @@ paths:
       tags:
         - format pesan
       summary: Permintaan Hasil Perkembangan Penyidikan
-      description: Kejaksaan Mengirimkan Permintaan Hasil Perkembangan Penyidikan
+      description: Proses bisnis pengiriman surat Permintaan Perkembangan Hasil Penyidikan (P-17) dari Kejaksaan ke Kepolisian. (Keterangan Tambahan Kondisional/tidak selalu ada).
+
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -190,7 +192,6 @@ paths:
             schema:
               $ref: '#/components/schemas/dik-22'
         description: Format dokumen yang akan dikirim
-  
   
   /han-10.20:
     post:
@@ -2730,31 +2731,26 @@ components:
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen P-17
-                  example: P17/3/12/2012.PolresJAKPUS
+                  description: Tulis nomor P-17 lihat dokumen cetaknya.
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen P-17
+                  description: Tulis tanggal P-17, cara penulisan merujuk bakuan penulisan tanggal
                   example: "2019-01-15"
                 nomor_spdp:
-                  description: Nomor dokumen spdp
+                  description: Tulis tanggal SPDP diterima di Kejaksaan, cara penulisan merujuk bakuan penulisan tanggal.
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  example: SPDP/3/12/2012.PolresJAKPUS
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
                   description: Tanggal dokumen SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
-                  type: string
-                  description: Kode satker pengirim SPDP
-                  example: 006.09.05
             konten_dokumen:
               type: object
               properties:
