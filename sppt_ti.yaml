@@ -434,7 +434,7 @@ paths:
       tags:
         - format pesan
       summary: Pengiriman Surat Tuntutan
-      description: Kejaksaan mengirimkan Surat Tuntutan ke Pengadilan
+      description: Proses bisnis pengiriman Surat Tuntutan oleh Kejaksaan ke Pengadilan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -6330,26 +6330,27 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_pmh
-              - tanggal_pmh
+              - nomor_phs
+              - tanggal_phs
               properties:
                 nomor:
-                  description: Nomor surat P42
+                  description: Tulis/isi dengan nomor Surat Tuntutan 
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal surat P42
-                nomor_pmh:
-                  description: Nomor surat penetapan majelis hakim
+                  description: Tulis/isi dengan tanggal Surat Tuntutan
+                nomor_phs:
+                  description: Tulis/isi dengan nomor Surat Penetapan Hari Sidang
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                tanggal_pmh:
+                  example: 2138/Pid.Sus/2019/PNS by
+                tanggal_phs:
                   type: string
                   format: date
-                  description: Tanggal surat penetapan majelis hakim
-                
+                  description: Tulis/isi dengan tanggal hari sidang
             konten_dokumen:
               required:
                 - daftar_terdakwa
@@ -6369,12 +6370,14 @@ components:
                         description: Nama lengkap terdakwa
                         example: Samuel Sambiroto
                       daftar_uu_pasal:
+                        description: Tulis/isi dengan identitas (para) terdakwa. Lihat bakuan elemen data Pelaku (terdakwa)
                         type: array
                         minItems: 1
                         items:
                           type: string
                         example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
                       daftar_tuntutan_hukuman:
+                        description: Tulis/isi dengan informasi terkait barang bukti. Lihat bakuan elemen data daftar barang bukti.
                         type: array
                         minItems: 1
                         items:
@@ -6383,23 +6386,29 @@ components:
                             - kode_jenis_hukuman
                           properties:
                             kode_jenis_hukuman:
+                              description: Tulis/isi dengan identitas (para) saksi. Lihat bakuan elemen data saksi.
                               type: string
-                              description: Data master Jenis Hukuman
+                              example: 1
                             nominal:
+                              description: Jika jenis hukuman adalah denda isi dengan angka
                               type: number
-                              description: Diisi dengan nilai nominal denda, apabila jenis hukuman adalah denda
+                              example: 2000000
                             tahun:
                               type: integer
-                              description: Diisi dengan jumlah tahun hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                              description: Jika hukuman adalah penjara atau kurungan isi dengan satuan nominal tahun, jika pidana lebih dari 1 tahun
+                              example: 2020
                             bulan:
                               type: integer
-                              description: Diisi dengan jumlah bulan hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                              description: Jika hukuman adalah penjara atau kurungan isi dimana terdapat satuan nominal bulan
+                              example: 04
                             hari:
                               type: integer
-                              description: Diisi dengan jumlah hari hukuman, apabila jenis hukuman adalah penjara atau kurungan
+                              description: Jika hukuman adalah penjara atau kurungan isi dimana terdapat satuan nominal hari
+                              example: 30
                             lainnya:
                               type: string
-                              description: Diisi dengan keterangan jenis hak yang dicabut untuk jenis hukuman pencabutan hak, dan keterangan (teks) untuk hukuman yang tidak ada dalam jenis hukuman
+                              description: Jika terdapat pidana tambahan, isi dengan jenis pidana tambahan.
+                              example: ""
 
     spx:
       description: Surat Permohonan Eksekusi
