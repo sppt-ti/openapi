@@ -134,7 +134,7 @@ paths:
         - format pesan
       summary: Tahap dimulainya penyidikan
       operationId: kirimDik10
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Surat Pemberitahuan Dimulainya Penyidikan (SPDP) dari Kepolisian kepada Kejaksaan. SPDP ini juga ditembuskan ke Pengadilan
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -2575,6 +2575,7 @@ components:
               properties:
                 nomor:
                   description: Tulis nomor surat SPDP, lihat dokumen cetaknya
+                  example: SPDP/326/IX/2017
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
@@ -2589,19 +2590,24 @@ components:
                 - tanggal_sprindik
                 - uraian_singkat_perkara
                 - daftar_uu_pasal
+                - tempat_kejadian_perkara
                 - waktu_kejadian  
                 - tahun_kejadian                
               properties:
                 nomor_laporan:
-                  type: string
-                  description: Tulis nomor Laporan Polisi, lihat dokumen cetaknya
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor Laporan Polisi, lihat dokumen cetaknya.
+                  example: LP/47/IV/2018/RESKRIM
                 tanggal_laporan:
                   type: string
                   format: date
                   description: Tulis tanggal Laporan Polisi, cara penulisan merujuk bakuan penulisan tanggal
                 nomor_sprindik:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Tulis nomor Surat Perintah Penyidikan, lihat dokumen cetaknya
+                  example: SP-DIK/245/VII/2018
                 tanggal_sprindik:
                   type: string
                   format: date
@@ -2609,9 +2615,10 @@ components:
                 uraian_singkat_perkara:
                   type: string
                   description: Tulis uraian singkat perkara, lihat dokumen Laporan Polisi
+                  example: Penyalahgunaan Narkotika Golongan I Jenis Sabu
                 daftar_uu_pasal:
                   type: array
-                  minLength: 1
+                  minItems: 1
                   items:
                     type: string
                   example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
@@ -2625,7 +2632,6 @@ components:
                       type: string
                       description: Tulis lokasi tempat kejadian perkara sesuai dengan informasi pada dokumen Laporan Polisi, termasuk RT/RW dan Kelurahan. 
                       example: Jl. Kota Baru Indah, Blok B7 No. 30 RT 01/02, Jagakarsa
-
                     kode_wilayah:
                       type: string
                       description: Diisi dengan merujuk pada Kode Wilayah Administrasi
@@ -2650,12 +2656,13 @@ components:
                   example: 2
                 daftar_tersangka:
                   type: array
-                  minLength: 0
+                  minItems: 0
                   description: SPDP bisa tidak memiliki informasi tersangka sesuai dengan Perkap No. 14 Tahun 2012. Tulis semua data tersangka apabila tersedia.
                   items:
                     $ref: '#/components/schemas/tersangka'
                 pejabat_penandatangan:
                   type: array
+                  minItems: 0
                   items:
                     $ref: '#/components/schemas/aparat_negara'
                     
