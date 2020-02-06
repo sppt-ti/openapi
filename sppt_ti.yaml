@@ -245,7 +245,7 @@ paths:
         - format pesan
       summary: Pengiriman berkas perkara tahap 1
       operationId: kirimPrt20
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Berkas Perkara Tahap Pertama (BP T1) dari Kepolisian kepada Kejaksaan
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3372,46 +3372,56 @@ components:
                 nomor_surat_pengantar:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor Surat Pengantar Berkas Perkara Tahap 1, lihat dokumen cetaknya.
+                  example: K/341/VII/2016/NARKOBA
                 tanggal_surat_pengantar:
                   type: string
                   format: date
                 nomor_berkas_perkara:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor berkas perkara kepolisian
+                  description: Tulis nomor berkas perkara Kepolisian, lihat dokumen cetaknya.
+                  example: BP/112/IV/2019/Satreskrim
                 nomor_spdp:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: nomor SPDP
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
             konten_dokumen:
               type: object
               required:
                 - daftar_tersangka
+                - daftar_barang_bukti
+                - daftar_saksi
               properties:
                 uraian_singkat_perkara:
                   type: string
+                  description: Tulis uraian singkat perkara, lihat dokumen Laporan Polisi.
+                  example: Penyalahgunaan Narkotika Golongan I Jenis Sabu
                 daftar_tersangka:
                   type: array
                   minItems: 1
                   items:
                     $ref: '#/components/schemas/tersangka'
+                  description: Tulis/isi dengan identitas (para) tersangka. Lihat bakuan elemen data Pelaku (tersangka)
                 daftar_barang_bukti:
+                  minItems: 1
                   type: array
                   items:
                     $ref: '#/components/schemas/barang_bukti'
+                  description: Tulis/isi dengan informasi terkait barang bukti. Lihat bakuan elemen data daftar barang bukti.
                 daftar_saksi:
                   minItems: 1
                   type: array
                   items:
                     $ref: '#/components/schemas/saksi'
+                  description: Tulis/isi dengan identitas (para) saksi. Lihat bakuan elemen data saksi.
                 daftar_ahli:
                   type: array
                   items:
                     $ref: '#/components/schemas/ahli'
-                pejabat_penandatangan:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/aparat_negara'
+                  description: Tulis/isi dengan identitas (para) ahli. Lihat bakuan elemen data ahli.
+
     p21:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -5860,6 +5870,7 @@ components:
           example: Jl. Jalan-jalan No 1
         kode_wilayah:
           type: string
+          example: "11.01"
         kode_pendidikan:
           type: integer
           example: 1
@@ -5868,12 +5879,16 @@ components:
           example: 87
         gelar_depan:
           type: string
+          example: dr.
         gelar_belakang:
           type: string
+          example: S.E.
         nama_bapak:
           type: string
+          example: Samuel
         nama_ibu:
           type: string
+          example: Samuela
         kode_agama:
           type: integer
           example: 1
@@ -5892,7 +5907,7 @@ components:
           type: string
           nullable: true
           description: Jika tidak diketahui, maka isi dengan null
-          example: 12345678
+          example: "33333030303008"
     tersangka:
       allOf:     # Combines Parent Object and the inline model
         - $ref: '#/components/schemas/persona'
@@ -6078,13 +6093,17 @@ components:
         nama:
           minLength: 1
           type: string
+          example: pisau
         jumlah:
           type: number
           description: Diisi dengan angka, bisa integer, bisa desimal
+          example: 1
         satuan:
           type: string
+          example: buah
         keterangan:
           type: string
+          example: Panjang 30 cm.
           
     hukuman:
       type: object
