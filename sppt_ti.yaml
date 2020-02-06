@@ -742,7 +742,7 @@ paths:
         - format pesan
       summary: Pemberitahuan Narapidana Bebas
       operationId: kirimPas20
-      description: Mengirim Pemberitahuan Narapidana Bebas via SPPT TI
+      description: Proses bisnis pengiriman Surat Lepas (SL) Narapidana dari Lembaga Pemasyarakatan kepada Kepolisian.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4095,7 +4095,6 @@ components:
                     items:
                       $ref: '#/components/schemas/terdakwa'
 
-
     sl:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4113,16 +4112,20 @@ components:
                 - nomor_putusan_bht
               properties:
                 nomor:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   type: string
-                  description: nomor sl
+                  description: Tulis nomor Surat Lepas, sesuai dengan dokumen cetaknya.
+                  example: W.15.PAS.PAS.7.PK.01.01.02
                 tanggal:
                   type: string
                   format: date
-                  description: tanggal penerbitan sl
+                  description: Tulis tanggal Surat Lepas, cara penulisan merujuk bakuan penulisan tanggal
                 nomor_putusan_bht:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor putusan pengadilan BHT
+                  description: Tulis nomor putusan pengadilan yang telah berkekuatan hukum tetap, sebagai dasar pelaksanaan putusan. Tata cara penulisan lihat dokumen cetaknya.
+                  example: 113/Pid.Sus/TPK.2017/PN.SDA
             konten_dokumen:
               type: object
               required:
@@ -4133,11 +4136,11 @@ components:
                 tanggal_bebas:
                   type: string
                   format: date
-                  description: tanggal pembebasan wbp menurut perhitungan rutan/lapas
+                  description: Tulis/isi tanggal narapidana bebas, lihat dokumen cetaknya. Cara penulisan merujuk bakuan penulisan tanggal.
                 tanggal_keluar:
                   type: string
                   format: date
-                  description: tanggal keluarnya wbp dari rutan/lapas
+                  description: Tulis/isi tanggal narapidana keluar dari lapas, lihat dokumen cetaknya. Cara penulisan merujuk bakuan penulisan tanggal.
                 narapidana:
                   $ref: '#/components/schemas/narapidana'
       
