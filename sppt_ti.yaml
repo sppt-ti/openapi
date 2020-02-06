@@ -305,7 +305,7 @@ paths:
       tags:
         - format pesan
       summary: Pemberitahuan Susulan Hasil Penyidikan Sudah Lengkap
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Surat Permintaan Diserahkannya Tersangka dan atau Barang-Barang Bukti (P-21A) dari Kejaksaan ke Kepolisian. 
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3486,23 +3486,24 @@ components:
               - nomor_p21
               properties:
                 nomor:
-                  type: string
-                  description: Nomor dokumen p21a
-                  example: p21a/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor P-21A lihat dokumen cetaknya.
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen p21a.
+                  description: Tulis tanggal P-21A, cara penulisan merujuk bakuan penulisan tanggal
                   example: "2019-01-15"
                 nomor_spdp:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor dokumen SPDP
-                  example: spdp/3/12/2012.PolresJAKPUS
+                  description: Tulis nomor SPDP dari Kepolisian, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen spdp.
+                  description: Tulis tanggal SPDP dari Kepolisian, lihat dokumen cetaknya
                   example: "2019-01-15"
                 kode_satker_spdp:
                   type: string
@@ -3511,8 +3512,8 @@ components:
                 nomor_p21:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor dokumen p21
-                  example: p21/3/12/2012.PolresJAKPUS
+                  description: Tulis nomor P-21, lihat dokumen cetaknya.
+                  example: B-2168/0.5.45/EUH.1/07/2019
 
             konten_dokumen:
               required:
