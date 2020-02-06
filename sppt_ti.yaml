@@ -3568,6 +3568,7 @@ components:
               type: object
               required:
                 - daftar_tersangka
+                - daftar_barang_bukti
                 - daftar_saksi
               properties:
                 uraian_singkat_perkara:
@@ -3575,21 +3576,25 @@ components:
                   description: Tulis uraian singkat perkara, lihat dokumen Laporan Polisi.
                   example: Penyalahgunaan Narkotika Golongan I Jenis Sabu
                 daftar_tersangka:
+                  description: Tulis/isi dengan identitas (para) tersangka. Lihat bakuan elemen data Pelaku (tersangka)
                   type: array
                   minItems: 1
                   items:
                     $ref: '#/components/schemas/tersangka'
                 daftar_barang_bukti:
+                  description: Tulis/isi dengan informasi terkait barang bukti. Lihat bakuan elemen data daftar barang bukti.
                   type: array
                   minItems: 1
                   items:
                     $ref: '#/components/schemas/barang_bukti'
                 daftar_saksi:
+                  description: Tulis/isi dengan identitas (para) saksi. Lihat bakuan elemen data saksi.
                   type: array
                   minItems: 1
                   items:
                     $ref: '#/components/schemas/saksi'
                 daftar_ahli:
+                  description: Tulis/isi dengan identitas (para) ahli. Lihat bakuan elemen data ahli.
                   type: array
                   items:
                     $ref: '#/components/schemas/ahli'
