@@ -638,7 +638,7 @@ paths:
       tags:
         - format pesan
       summary: Petikan Putusan Kasasi
-      description: Pengadilan mengirimkan Petikan Putusan Kasasi
+      description: Proses bisnis pengiriman Petikan Putusan Kasasi dari Mahkamah Agung kepada Kejaksaan dengan tembusan ke Ditjen Pas (hanya apabila terdakwa ditahan). 
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -2272,6 +2272,7 @@ components:
         - type: object
           properties:
             kode_proses:
+                pattern: '^sid-80$'
                 default: sid-80
                 example: sid-80
             dokumen:
@@ -3968,6 +3969,7 @@ components:
           properties:
             kode_jenis_dokumen:
               type: string
+              pattern: '^petikan$'  
               default: petikan
               example: petikan
             identitas_dokumen:
@@ -3980,19 +3982,25 @@ components:
               properties:
                 tingkat_pengadilan:
                   type: integer
-                  default: 1
+                  default: 1      #TODO: tambahkan regex untuk tingkat pengadilan: 1, 2, 3
+                  example: 1
+                tingkat_peradilan:
+                  type: integer   #TODO: tambahkan regex untuk tingkat peradilan: 1, 2, 3
+                  default: 1      #TODO: tambahkan master TingkatPeradilan: 1 = Tingkat Pertama, 2 = Tingkat Kedua, 3 = Tingkat Kasasi
                   example: 1
                 nomor_putusan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor register perkara Pengadilan
+                  description: Tulis nomor putusan perkara pengadilan, lihat dokumen cetaknya.
+                  example: 93/Pid.B/2017/PN.Arm
                 tanggal_putusan:
                   type: string
                   format: date
+                  description: Tulis tanggal putusan. Lihat penulisan bakuan data.
                 nomor_surat_dakwaan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                  description: Tulis nomor surat dakwaan dari Kejaksaan (P-29), lihat dokumen cetaknya.
                 nomor_surat_pelimpahan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
@@ -6034,6 +6042,11 @@ components:
           required:
             - nama
           properties:
+            daftar_tuntutan:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/hukuman'
             amar:
               type: array
               minLength: 0
@@ -6170,7 +6183,7 @@ components:
         keterangan:
           type: string
           example: Panjang 30 cm.
-          
+
     hukuman:
       type: object
       description: Hukuman 
@@ -6189,7 +6202,8 @@ components:
             hari:
               type: integer
             lainnya:
-              type: string          
+              type: string   
+
     nomor_surat:
       type: string
       description: Nomor Surat
@@ -6315,48 +6329,7 @@ components:
                   type: array
                   minItems: 1
                   items:
-                    type: object
-                    required:
-                      - nama
-                      - daftar_uu_pasal
-                      - daftar_tuntutan_hukuman
-                    properties:
-                      nama:
-                        type: string
-                        description: Nama lengkap terdakwa
-                        example: Samuel Sambiroto
-                      daftar_uu_pasal:
-                        type: array
-                        minItems: 1
-                        items:
-                          type: string
-                        example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
-                      daftar_tuntutan_hukuman:
-                        type: array
-                        minItems: 1
-                        items:
-                          type: object
-                          required:
-                            - kode_jenis_hukuman
-                          properties:
-                            kode_jenis_hukuman:
-                              type: string
-                              description: Data master Jenis Hukuman
-                            nominal:
-                              type: number
-                              description: Diisi dengan nilai nominal denda, apabila jenis hukuman adalah denda
-                            tahun:
-                              type: integer
-                              description: Diisi dengan jumlah tahun hukuman, apabila jenis hukuman adalah penjara atau kurungan
-                            bulan:
-                              type: integer
-                              description: Diisi dengan jumlah bulan hukuman, apabila jenis hukuman adalah penjara atau kurungan
-                            hari:
-                              type: integer
-                              description: Diisi dengan jumlah hari hukuman, apabila jenis hukuman adalah penjara atau kurungan
-                            lainnya:
-                              type: string
-                              description: Diisi dengan keterangan jenis hak yang dicabut untuk jenis hukuman pencabutan hak, dan keterangan (teks) untuk hukuman yang tidak ada dalam jenis hukuman
+                    $ref: '#/components/schemas/terdakwa' 
 
     spx:
       description: Surat Permohonan Eksekusi
