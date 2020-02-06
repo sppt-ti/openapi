@@ -224,7 +224,7 @@ paths:
       tags:
         - format pesan
       summary: Hasil penyidikan belum lengkap
-      description: Hasil penyidikan belum lengkap
+      description: Proses bisnis pengiriman Surat Pemberitahuan Hasil Penyidikan Belum Lengkap (P-18) dari Kejaksaan ke Kepolisian. (Keterangan Tambahan Kondisional/tidak selalu ada)
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -2733,7 +2733,8 @@ components:
               - tanggal_spdp
               properties:
                 nomor:
-                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   description: Tulis nomor P-17 lihat dokumen cetaknya.
                   example: ""
                 tanggal:
@@ -2751,13 +2752,6 @@ components:
                   format: date
                   description: Tanggal dokumen SPDP
                   example: "2019-01-15"
-            konten_dokumen:
-              type: object
-              properties:
-                pejabat_penandatangan:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/aparat_negara'
     
     t4:
       allOf:
@@ -3102,39 +3096,33 @@ components:
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
               - nomor_berkas_perkara
               properties:
                 nomor:
-                  type: string
-                  description: Nomor dokumen p18
-                  example: p18/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor P-18, lihat dokumen cetaknya.
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen SRT1.
+                  description: Tulis tanggal P-18, cara penulisan merujuk bakuan penulisan tanggal
                   example: "2019-01-15"
                 nomor_spdp:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   type: string
-                  description: Nomor dokumen SPDP
-                  example: SPDP/3/12/2012.PolresJAKPUS
+                  description: Tulis nomor SPDP dari Kepolisian, lihat dokumen cetaknya
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPDP.
-                  example: "2019-01-15"
-                kode_satker_spdp:
-                  type: string
-                  format: 006.09.05
-                  description: Kode satker pengirim spdp.
+                  description: Tulis tanggal SPDP dari Kepolisian, cara penulisan merujuk bakuan penulisan tanggal.
                   example: "2019-01-15"
                 nomor_berkas_perkara:
                   type: string
-                  description: Nomor dokumen nomor berkas perkara tahap 1
-                  example: P18/3/12/2012.KejariJAKPUS
-            konten_dokumen:
-              required:
-                  - isi_surat
+                  description: Tulis nomor berkas perkara dari Kepolisian, lihat dokumen cetaknya.
+                  example: BP/112/IV/2019/Satreskrim
 
     spptd:
       allOf:
