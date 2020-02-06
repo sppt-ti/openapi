@@ -387,7 +387,7 @@ paths:
         - format pesan
       summary: Penetapan Hari Sidang Pertama
       operationId: kirimSid10
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Penetapan Majelis Hakim (PMH, Penetapan Panitera Pengganti (PPP), Penetapan Hari Sidang Pertama PHS) dari Pengadilan kepada Kejaksaan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -434,7 +434,7 @@ paths:
       tags:
         - format pesan
       summary: Pengiriman Surat Tuntutan
-      description: Kejaksaan mengirimkan Surat Tuntutan ke Pengadilan
+      description: Proses bisnis pengiriman Surat Tuntutan oleh Kejaksaan ke Pengadilan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3844,30 +3844,45 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
+                - nomor_register
+                - tanggal_register
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
+                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
                   type: integer
                   default: 1
                   example: 1
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor register perkara Pengadilan
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya.
+                  example: 2138/Pid.Sus/2019/PN Sby
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal penetapan
+                  description: Tulis tanggal penetapan majelis hakim, cara penulisan merujuk bakuan penulisan tanggal
+                nomor_register:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya.
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
+                tanggal_register:
+                  type: string
+                  format: date
+                  description: Tulis tanggal perkara diregister di pengadilan, cara penulisan tanggal merujuk bakuan penulisan tanggal.
                 nomor_surat_dakwaan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                  description: Tulis nomor surat dakwaan dari Kejaksaan (P-29), lihat dokumen cetaknya.
+                  example: PDM-1348/BDUNG/12/2018
             konten_dokumen:
               type: object
               required:
                 - daftar_hakim
               properties:
                 daftar_hakim:
+                  description: Tulis/isi dengan identitas hakim (ketua majelis dan anggota majelis). Lihat bakuan elemen data Daftar Hakim.
                   type: array
                   minItems: 1
                   items:
@@ -3887,30 +3902,44 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
+                - nomor_register
+                - tanggal_register
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
+                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
                   type: integer
                   default: 1
                   example: 1
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor register perkara Pengadilan
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya
+                  example: 2138/Pid.Sus/2019/PN Sby
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal penetapan
+                  description: Tulis tanggal penunjukan panitera pengganti, cara penulisan merujuk bakuan penulisan tanggal
+                nomor_register:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya.
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
+                tanggal_register:
+                  type: string
+                  format: date
+                  description: Tulis tanggal perkara diregister di pengadilan, cara penulisan tanggal merujuk bakuan penulisan tanggal
                 nomor_surat_dakwaan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                  description: Tulis nomor surat pelimpahan dari Kejaksaan (P-29), lihat dokumen cetaknya.
             konten_dokumen:
               type: object
               required:
                 - nama_panitera_pengganti
               properties:
                 nama_panitera_pengganti:
+                  description: Tulis/isi dengan nama lengkap panitera pengganti yang ditunjuk terhadap perkara tersebut.
                   type: string
                   minLength: 1
                   example: Andi Maharani Sri Yulianti, S.H, M.H
@@ -3929,24 +3958,38 @@ components:
                 - tingkat_pengadilan
                 - nomor
                 - tanggal
+                - nomor_register
+                - tanggal_register
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
+                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
                   type: integer
                   default: 1
                   example: 1
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor register perkara Pengadilan
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya.
+                  example: 2138/Pid.Sus/2019/PNS by
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal penetapan
+                  description: Tulis tanggal penetapan majelis hakim, cara penulisan merujuk bakuan penulisan tanggal
+                nomor_register:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya.
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
+                tanggal_register:
+                  type: string
+                  format: date
+                  description: Tulis tanggal perkara diregister di pengadilan, cara penulisan tanggal merujuk bakuan penulisan tanggal.
                 nomor_surat_dakwaan:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor P-29 (Nomor register perkara Kejaksaan)
+                  description: Tulis nomor surat dakwaan dari Kejaksaan (P-29), lihat dokumen cetaknya.
+                  example: PDM-1348/BDUNG/12/2018
             konten_dokumen:
               type: object
               required:
@@ -3955,11 +3998,11 @@ components:
                 tanggal_sidang:
                   type: string
                   format: date
-                  description: Tanggal sidang
+                  description: Tulis/isi dengan hari dan tanggal sidang pertama, cara penulisan merujuk bakuan penulisan tanggal.
                   example: "2012-06-02"
                 lokasi_sidang:
                   type: string
-                  description: Teks bebas deskripsi lokasi sidang
+                  description: Tulis/isi dengan lokasi atau ruangan sidang.
                   example: Ruang Cakra, Gedung Serba Guna Pengadilan Negeri Jakarta Pusat
    
     petikan:
@@ -6301,26 +6344,27 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_pmh
-              - tanggal_pmh
+              - nomor_phs
+              - tanggal_phs
               properties:
                 nomor:
-                  description: Nomor surat P42
+                  description: Tulis/isi dengan nomor Surat Tuntutan 
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal surat P42
-                nomor_pmh:
-                  description: Nomor surat penetapan majelis hakim
+                  description: Tulis/isi dengan tanggal Surat Tuntutan
+                nomor_phs:
+                  description: Tulis/isi dengan nomor Surat Penetapan Hari Sidang
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                tanggal_pmh:
+                  example: 2138/Pid.Sus/2019/PNS by
+                tanggal_phs:
                   type: string
                   format: date
-                  description: Tanggal surat penetapan majelis hakim
-                
+                  description: Tulis/isi dengan tanggal hari sidang
             konten_dokumen:
               required:
                 - daftar_terdakwa
