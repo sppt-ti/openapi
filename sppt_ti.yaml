@@ -326,7 +326,7 @@ paths:
         - format pesan
       summary: Pengiriman berkas perkara tahap 2
       operationId: kirimPrt50
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Berkas Perkara Tahap Kedua (BPT II) dari Kepolisian kepada Kejaksaan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3544,20 +3544,26 @@ components:
                 nomor_surat_pengantar:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor Surat Pengantar Berkas Perkara Tahap 2, lihat dokumen cetaknya.
+                  example: K/341/VII/2016/NARKOBA
                 tanggal_surat_pengantar:
                   type: string
                   format: date
+                  description: Tulis tanggal Surat Pengantar Berkas Perkara Tahap 2, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_berkas_perkara:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor berkas perkara kepolisian
+                  description: Tulis nomor berkas perkara Kepolisian, lihat dokumen cetaknya.
+                  example: BP/112/IV/2019/Satreskrim
                 nomor_spdp:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  description: Nomor SPDP yang bersangkutan                
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017            
                 tanggal_terima_p21:
                   type: string
                   format: date
+                  description: Tulis tanggal P-21, cara penulisan merujuk bakuan penulisan tanggal.
             konten_dokumen:
               type: object
               required:
@@ -3566,8 +3572,11 @@ components:
               properties:
                 uraian_singkat_perkara:
                   type: string
+                  description: Tulis uraian singkat perkara, lihat dokumen Laporan Polisi.
+                  example: Penyalahgunaan Narkotika Golongan I Jenis Sabu
                 daftar_tersangka:
                   type: array
+                  minItems: 1
                   items:
                     $ref: '#/components/schemas/tersangka'
                 daftar_barang_bukti:
@@ -3584,10 +3593,6 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/ahli'
-                pejabat_penandatangan:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/aparat_negara'
                     
     p16a:
       allOf:
