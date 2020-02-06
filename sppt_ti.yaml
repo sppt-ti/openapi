@@ -741,7 +741,6 @@ paths:
       tags:
         - format pesan
       summary: Pemberitahuan Narapidana Bebas
-      operationId: kirimPas20
       description: Proses bisnis pengiriman Surat Lepas (SL) Narapidana dari Lembaga Pemasyarakatan kepada Kepolisian.
       responses:
         '200':
@@ -761,8 +760,7 @@ paths:
     post:
       tags:
         - format pesan
-      summary: Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan
-      operationId: kirimPas30
+      summary: Proses bisnis pengiriman Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan dari Ditjen PAS ke Kejaksaan. 
       description: Mengirim Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan
       responses:
         '200':
@@ -3139,18 +3137,16 @@ components:
           
               properties:
                 nomor:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   type: string
-                  description: Nomor dokumen SPPTD
+                  description: Tulis nomor Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan, sesuai dengan dokumen cetaknya.
                   example: SPPTD/3/12/2012.Ditjenpas
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPPTD.
+                  description: Tulis tanggal Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan, cara penulisan merujuk bakuan penulisan tanggal.
                   example: "2019-01-15"
-                nomor_putusan:
-                  type: string
-                  description: Nomor putusan
-                  example: 12/Pdt.G/2018/PN. Arm
             konten_dokumen:
               properties:  
                 identitas_tahanan:
