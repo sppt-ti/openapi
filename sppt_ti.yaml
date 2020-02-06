@@ -154,7 +154,7 @@ paths:
         - format pesan
       summary: Penunjukkan jaksa peneliti
       operationId: kirimPrt10
-      description: Mengirim dokumen via SPPT TI
+      description: Proses bisnis pengiriman Surat Perintah Penunjukan Jaksa Penuntut Umum Untuk Mengikuti Perkembangan Penyidikan Perkara Tindak Pidana (P-16) dari Kejaksaan kepada Kepolisian. 
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -2686,17 +2686,20 @@ components:
                 nomor:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor P-16, lihat dokumen cetaknya.
+                  example: PRINT:/1975/N.2.12/Euh.1/10/2017
                 tanggal:
                   type: string
                   format: date
                 nomor_spdp:
-                  description: nomor SPDP
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
+                  example: SPDP/326/IX/2017
                 tanggal_terima_spdp:
                   type: string
                   format: date
-                  description: Tanggal terima SPDP
+                  description: Tulis tanggal SPDP diterima di Kejaksaan, cara penulisan merujuk bakuan penulisan tanggal.
             konten_dokumen:
               type: object
               required:
@@ -2704,7 +2707,7 @@ components:
               properties:
                 daftar_jaksa:
                   type: array
-                  description: Tulis semua data jaksa penuntut umum yang ditugaskan.
+                  description: Ditulis/di isi dengan daftar jaksa yang menerima perintah. Lihat bakuan bakuan elemen data Daftar Jaksa
                   minItems: 1
                   items:
                     $ref: '#/components/schemas/aparat_negara'
@@ -5826,12 +5829,16 @@ components:
         nama:
           type: string
           minLength: 1
+          example: Evan Bangun
         nomor_induk:
           type: string
+          example: "199805052020021001"
         jabatan:
           type: string
+          example: Ajun Jaksa
         pangkat:
           type: string
+          example: Penata Muda Tingkat I
     hakim:
       type: object
       required:
