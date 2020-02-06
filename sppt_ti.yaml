@@ -722,8 +722,7 @@ paths:
       tags:
         - format pesan
       summary: Pemberitahuan Habis Masa Penahanan
-      operationId: kirimPas10
-      description: Mengirim Surat Pemberitahuan Habis Masa Penahanan via SPPT TI
+      description: PAS-10	Proses bisnis pengiriman Surat Pemberitahuan Habis Masa Penahanan dari Rutan/Lembaga Pemasyarakatan kepada Pengadilan jika penahanan dilakukan oleh Pengadilan, kepada Kejaksaan jika penahanan dilakukan oleh Kejaksaan, kepada Kepolisian jika penahanan dilakukan oleh Kepolisian.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4148,15 +4147,17 @@ components:
               type: string
               default: sphmp
               example: sphmp
+              description: Di isi dengan sphmp, lihat Kode Jenis Dokumen
             identitas_dokumen:
-              type: object
               required:
-                - nomor
                 - tanggal
               properties:
                 nomor:
                   type: string
-                  description: nomor sphmp
+                  description: "Diisi dengan gabungan teks dari 3 elemen data SPHMP berikut: (i) nomor_registrasi_pemasyarakatan (dalam contoh adalah 'AIII.1053/2018'), (2) nomor_surat_perintah_atau_penetapan_penahanan (dalam contaoh adalah '1015/PID.B/2018/PN SDA'), (3) sisa_hari_penahanan (dalam contoh adalah '10'), dengan sisipan tanda garis bawah (underscore). Hasil dari gabungan teks tersebut dikoversi ke huruf kecil. Hilangkan spasi dari teks hasil, apabila ada."
+                  example: aiii.1053/2018_1015/pid.b/2018/pnsda_10
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
@@ -4169,6 +4170,7 @@ components:
               properties:
                 tahanan:
                     $ref: '#/components/schemas/tahanan'
+                    description: Lihat bakuan elemen data Pelaku (tersangka/terdakwa)
                 sisa_hari_penahanan:
                   type: integer
                   format: int32
@@ -6013,6 +6015,7 @@ components:
               description: Hukuman yang dijatuhkan
 
     tahanan:
+      description: Tulis/isi dengan identitas tahanan (tersangka/terdakwa). 
       allOf:
         - $ref: '#/components/schemas/persona'
         - type: object
