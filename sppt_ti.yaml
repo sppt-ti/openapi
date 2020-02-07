@@ -3849,7 +3849,7 @@ components:
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
-                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
+                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
                   type: integer
                   default: 1
                   example: 1
@@ -3907,7 +3907,7 @@ components:
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
-                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
+                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
                   type: integer
                   default: 1
                   example: 1
@@ -3963,7 +3963,7 @@ components:
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
-                  description: Tulis tingkat pengadilan yang memeriksa perkara. Contoh:pertama, banding, kasasi atau peninjauan kembali.
+                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
                   type: integer
                   default: 1
                   example: 1
@@ -4019,17 +4019,20 @@ components:
               type: object
               required:
                 - tingkat_pengadilan
+                - jenis_upaya_hukum
                 - tanggal_putusan
                 - nomor_putusan
                 - nomor_surat_dakwaan
               properties:
                 tingkat_pengadilan:
+                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
                   type: integer
                   default: 1      #TODO: tambahkan regex untuk tingkat pengadilan: 1, 2, 3
                   example: 1
-                tingkat_peradilan:
-                  type: integer   #TODO: tambahkan regex untuk tingkat peradilan: 1, 2, 3
-                  default: 1      #TODO: tambahkan master TingkatPeradilan: 1 = Tingkat Pertama, 2 = Tingkat Kedua, 3 = Tingkat Kasasi
+                jenis_upaya_hukum:
+                  description: 1 = Tingkat Pertama, 2 = Tingkat Banding, 3 = Tingkat Kasasi, 4 = PK (Referensi data master Jenis Upaya Hukum)
+                  type: integer   #TODO: tambahkan regex: 1, 2, 3
+                  default: 1      #TODO: tambahkan master TingkatPeradilan: 1 = Tingkat Pertama, 2 = Tingkat Kedua, 3 = Tingkat Kasasi, 4 = PK
                   example: 1
                 nomor_putusan:
                   allOf:
@@ -4080,6 +4083,7 @@ components:
               type: object
               required:
                 - tingkat_pengadilan
+                - jenis_upaya_hukum
                 - tanggal_putusan
                 - tanggal_pengiriman_salinan_putusan
                 - nomor_putusan
@@ -4089,7 +4093,12 @@ components:
                   type: integer
                   default: 1
                   example: 1
-                  description: "Tulis tingkat pengadilan yang memeriksa perkara. Contoh: pertama, banding, kasasi atau peninjauan kembali"
+                  description: "Tulis tingkat pengadilan yang memeriksa perkara. Contoh: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)"
+                jenis_upaya_hukum:
+                  description: 1 = Tingkat Pertama, 2 = Tingkat Banding, 3 = Tingkat Kasasi, 4 = PK (Referensi data master Jenis Upaya Hukum)
+                  type: integer   #TODO: tambahkan regex: 1, 2, 3
+                  default: 1      #TODO: tambahkan master TingkatPeradilan: 1 = Tingkat Pertama, 2 = Tingkat Kedua, 3 = Tingkat Kasasi, 4 = PK
+                  example: 1
                 tanggal_putusan:
                   type: string
                   format: date
