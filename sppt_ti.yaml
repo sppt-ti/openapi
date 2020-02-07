@@ -592,7 +592,7 @@ paths:
       tags:
         - format pesan
       summary: Akta Permohonan Kasasi
-      description: Mengirim dokumen amk via SPPT TI
+      description: Proses bisnis pengiriman Akta Permohonan Kasasi (AMK) dari Pengadilan ke Kejaksaan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4581,21 +4581,25 @@ components:
               - nomor_putusan
               properties:
                 nomor:
-                  type: string
-                  description: Nomor dokumen AMK
-                  example: AMK/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Akta Permohonan Kasasi
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen AMK.
+                  description: Tulis/isi dengan tanggal Akta Permohonan Kasasi
                   example: "2019-01-15"
                 nomor_putusan:
-                  type: string
-                  description: Nomor putusan
-                  example: 12/Pdt.G/2018/PN. Arm
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor putusan yang diajukan permohonan Kasasi
+                  example: 93/Pid.B/2017/PN.Arm
             konten_dokumen:
               properties:  
                 identitas_terdakwa:
+                  type: array
+                  minItems: 1
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
                 pihak_pemohon: 
