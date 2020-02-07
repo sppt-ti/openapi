@@ -522,7 +522,7 @@ paths:
       tags:
         - format pesan
       summary: Akta pernyataan pencabutan banding
-      description: Mengirim dokumen ACB via SPPT TI dari Pengadilan ke Kejaksaan
+      description: Proses bisnis pengiriman Akta Pencabutan Banding (ACB) dari Pengadilan ke Kejaksaan.Keterangan tambahan kondisional/tidak selalu ada. Pencabutan Banding hanya ada jika sebelumnya telah ada Akta Permohonan Banding. 
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4935,32 +4935,37 @@ components:
               - tanggal_akta_permohonan
               properties:
                 nomor:
-                  type: string
-                  description: Nomor dokumen ACB/ACK
-                  example: AMB/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Akta Pencabutan Banding
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen ACB/ACK
+                  description: Tulis/isi dengan tanggal Akta Pencabutan Banding
                   example: "2019-01-15"
                 nomor_putusan:
-                  type: string
-                  description: Nomor putusan
-                  example: Put/3/12/2012.PNJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor putusan yang diajukan permohonan banding
+                  example: 93/Pid.B/2017/PN.Arm
                 nomor_akta_permohonan:
-                  type: string
-                  description: Nomor akta permohonan
-                  example: AP/3/12/2012.PNJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Akta Permohonan Banding
+                  example: ""
                 tanggal_akta_permohonan:
                   type: string
                   format: date
-                  description: Tanggal akta permohonan
+                  description: Tulis/isi dengan tanggal Akta Permohonan Banding
                   example: "2019-01-15"
             konten_dokumen:
               required:
                   - identitas_terdakwa
               properties:
                 identitas_terdakwa:
+                  type: array
+                  minItems: 1
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
 
