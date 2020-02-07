@@ -6087,12 +6087,12 @@ components:
           properties:
             daftar_tuntutan:
               type: array
-              minItems: 1
+              minItems: 0
               items:
                 $ref: '#/components/schemas/hukuman'
             amar:
               type: array
-              minLength: 0
+              minItems: 0
               description: Amar putusan 
               items:
                 type: object
