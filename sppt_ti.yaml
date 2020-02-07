@@ -499,7 +499,7 @@ paths:
       tags:
         - format pesan
       summary: Akta Permohonan Banding
-      description: Mengirim dokumen amb via SPPT TI
+      description: Proses bisnis pengiriman Akta Permohonan Banding (AMB) dari Pengadilan ke Kejaksaan dan ditembuskan ke Ditjen PAS.Keterangan tambahan Kondisional/tidak selalu ada.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -4537,18 +4537,20 @@ components:
               - nomor_putusan
               properties:
                 nomor:
-                  type: string
-                  description: Nomor dokumen AMB
-                  example: AMB/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Akta Permohonan Banding
+                  example: ""
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen AMB.
+                  description: Tulis/isi dengan tanggal Akta Permohonan Banding
                   example: "2019-01-15"
                 nomor_putusan:
-                  type: string
-                  description: Nomor putusan
-                  example: 12/Pdt.G/2018/PN. Arm
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor putusan yang diajukan permohonan banding
+                  example: 93/Pid.B/2017/PN.Arm
             konten_dokumen:
               properties:  
                 identitas_terdakwa:
