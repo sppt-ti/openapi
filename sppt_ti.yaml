@@ -7,7 +7,7 @@ servers:
     url: https://virtserver.swaggerhub.com/dev.spptti/sppt-ti_api/1.0.0
 info:
   description: Sistem Peradilan Pidana Terpadu berbasis Teknologi Informasi (SPPT TI)
-  version: "1.0.3"
+  version: "2019.1"
   title: SPPT TI API
   contact:
     email: dev.spptti@gmail.com
@@ -20,6 +20,9 @@ tags:
   
   - name: Endpoint Puskarda
     description: API endpoint pada Puskarda
+
+  - name: Endpoint Layanan Data Puskarda
+    description: API endpoint layanan data pada Puskarda
     
   - name: format pesan
     description: Dokumentasi format pesan
@@ -94,6 +97,7 @@ paths:
     post:
       tags:
         - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Mengirimkan dokumen perkara
       operationId: tambahddDokumen
       description: Mengirim dokumen via SPPT TI
@@ -1153,12 +1157,320 @@ paths:
               $ref: '#/components/schemas/han-30.90'
         description: Format dokumen yang akan dikirim
 
+  /dat-1:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Perintah Penahanan
+      description: Mengirim dokumen BA-7 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-1'
+        description: Format dokumen yang akan dikirim
+  /dat-2:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Penetapan Pengadilan
+      description: Mengirim dokumen BA-15 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-2'
+        description: Format dokumen yang akan dikirim
+  /dat-3:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Penangguhan Penahanan Kepolisian
+      description: Mengirim dokumen S-18 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-3'
+        description: Format dokumen yang akan dikirim
+  /dat-4:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Pencabutan Penangguhan Penahanan Kepolisian
+      description: Mengirim dokumen S-19 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-4'
+        description: Format dokumen yang akan dikirim
+  /dat-5:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Pembantaran Tahanan Kepolisian
+      description: Mengirim dokumen S-23 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-5'
+        description: Format dokumen yang akan dikirim
+  /dat-6:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Pencabutan Pembantaran Tahanan Kepolisian
+      description: Mengirim dokumen S-24 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-6'
+        description: Format dokumen yang akan dikirim
+  /dat-7:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Penangguhan Penahanan/Pengeluaran dari Tahanan/Pencabutan Penangguhan Penahanan
+      description: Mengirim dokumen T-8 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-7'
+        description: Format dokumen yang akan dikirim
+  /dat-8:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pencabutan Penangguhan Penahanan (BA-11)
+      description: Mengirim dokumen BA-11 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-8'
+        description: Format dokumen yang akan dikirim
+  /dat-9:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan (BA-8)
+      description: Mengirim dokumen BA-8 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-9'
+        description: Format dokumen yang akan dikirim
+  /dat-10:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Perintah Penangguhan Penahanan (BA-9)
+      description: Mengirim dokumen BA-9 via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-10'
+        description: Format dokumen yang akan dikirim
+  /dat-11:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Penahanan/Pengalihan Jenis Penahanan (T-7)
+      description: Mengirim dokumen Surat Perintah Penahanan/Pengalihan Jenis Penahanan (T-7) via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-11'
+        description: Format dokumen yang akan dikirim
+  /dat-12:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Rasio Hunian Rumah Tahanan dan Lapas
+      description: Mengirim data Rasio Hunian Rumah Tahanan dan Lapas via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-12'
+        description: Format dokumen yang akan dikirim
+  /dat-13:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Penangkapan (S-16)
+      description: Mengirim dokumen Surat Perintah Penangkapan (S-16) via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-13'
+        description: Format dokumen yang akan dikirim
+  /dat-14:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Surat Perintah Penahanan (S-17)
+      description: Mengirim dokumen Surat Perintah Penahanan (S-17) via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-14'
+        description: Format dokumen yang akan dikirim
   /dokumen/s24:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Permintaan dokumen
-      description: Meminta dokumen S24 via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Surat Perintah Pencabutan Pembantaran Tahanan Kepolisian
+      description: Meminta dokumen Surat Perintah Pencabutan Pembantaran Tahanan Kepolisian (S-24) via SPPT TI
       parameters:
         - in: query
           name: nomor_identitas_tersangka
@@ -1184,9 +1496,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s24'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-6'
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1195,9 +1507,9 @@ paths:
   /dokumen/t7:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Permintaan Surat Perintah Penahanan/Pengalihan Jenis Penahanan
-      description: Meminta Surat Perintah Penahanan/Pengalihan Jenis Penahanan via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Permintaan Surat Perintah Penahanan/Pengalihan Jenis Penahanan (T-7)
+      description: Meminta Surat Perintah Penahanan/Pengalihan Jenis Penahanan (T-7) via SPPT TI
       parameters:
         - in: query
           name: nomor_register_perkara
@@ -1217,9 +1529,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/t7'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-11'
                       
         '400':
           $ref: '#/components/responses/error'
@@ -1229,9 +1541,9 @@ paths:
   /dokumen/t8:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Surat Perintah Penangguhan Penahanan / Pengeluaran Dari Tahanan DAN Pencabutan Penangguhan Penahanan
-      description: Meminta Surat Perintah Penangguhan Penahanan / Pengeluaran Dari Tahanan DAN Pencabutan Penangguhan Penahanan via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Surat Perintah Penangguhan Penahanan/Pengeluaran dari Tahanan/Pencabutan Penangguhan Penahanan
+      description: Meminta Surat Perintah Penangguhan Penahanan/Pengeluaran dari Tahanan/Pencabutan Penangguhan Penahanan via SPPT TI
       parameters:
         - in: query
           name: nomor_t7
@@ -1257,9 +1569,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/t8'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-7'
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1268,9 +1580,9 @@ paths:
   /dokumen/s18:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Surat Perintah Penangguhan Penahanan
-      description: Surat Perintah Penangguhan Penahanan
+        - Endpoint Layanan Data Puskarda
+      summary: Surat Perintah Penangguhan Penahanan Kepolisian
+      description: Surat Perintah Penangguhan Penahanan Kepolisian
       parameters:
         - in: query
           name: nomor_identitas_tersangka
@@ -1296,9 +1608,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s18'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-3'
                       
         '400':
           $ref: '#/components/responses/error'
@@ -1308,9 +1620,9 @@ paths:
   /dokumen/s19:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Surat Pencabutan Penangguhan Penahanan
-      description: Surat Pencabutan Penangguhan Penahanan
+        - Endpoint Layanan Data Puskarda
+      summary: Surat Pencabutan Penangguhan Penahanan Kepolisian
+      description: Surat Pencabutan Penangguhan Penahanan Kepolisian
       parameters:
         - in: query
           name: nomor_s18
@@ -1330,9 +1642,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s19'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-4'
                       
         '400':
           $ref: '#/components/responses/error'
@@ -1342,9 +1654,9 @@ paths:
   /dokumen/s23:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Surat Perintah Pembantaran Penahanan
-      description: Meminta Surat Perintah Pembantaran Penahanan via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Surat Perintah Pembantaran Penahanan Kepolisian
+      description: Meminta Surat Perintah Pembantaran Penahanan Kepolisian via SPPT TI
       parameters:
         - in: query
           name: nomor_identitas_tersangka
@@ -1370,9 +1682,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s23'
-                  - type: object                      
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-5'                    
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1381,7 +1693,7 @@ paths:
   /dokumen/s16:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Permintaan Surat Perintah Penangkapan
       description: Permintaan Surat Perintah Penangkapan
       parameters:
@@ -1411,7 +1723,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/s16'                      
+                  $ref: '#/components/schemas/dat-13'                      
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1420,9 +1732,9 @@ paths:
   /dokumen/ba11:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Berita Acara Pencabutan Penangguhan Penahanan
-      description: Meminta Berita Acara Pencabutan Penangguhan Penahanan via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Berita Acara Pencabutan Penangguhan Penahanan (BA-11)
+      description: Meminta Berita Acara Pencabutan Penangguhan Penahanan (BA-11) via SPPT TI
       parameters:
         - in: query
           name: nomor_t8
@@ -1444,7 +1756,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ba11'
+                  $ref: '#/components/schemas/dat-8'
                       
         '400':
           $ref: '#/components/responses/error'
@@ -1454,7 +1766,7 @@ paths:
   /dokumen/ba7:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Berita Acara Pelaksanaan Perintah Penahanan 
       description: Membuat Berita Acara Pelaksanaan Perintah Penahanan 
       parameters:
@@ -1478,7 +1790,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ba7'                      
+                  $ref: '#/components/schemas/dat-1'                      
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1487,7 +1799,7 @@ paths:
   /dokumen/ba15:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Berita Acara Pelaksanaan Penetapan Penahanan
       description: Membuat Berita Acara Pelaksanaan Penetapan Penahanan 
       parameters:
@@ -1511,7 +1823,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ba15'                      
+                  $ref: '#/components/schemas/dat-2'                      
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1520,7 +1832,7 @@ paths:
   /dokumen/ba8:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan
       description: Meminta Berita Acara Pelaksanaan Perintah Pengalihan Jenis Tahanan via SPPT TI
       parameters:
@@ -1542,9 +1854,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/ba8'
-                  - type: object                      
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-9'                      
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1553,9 +1865,9 @@ paths:
   /dokumen/ba9:
     get:
       tags:
-        - Endpoint Puskarda
-      summary: Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran tahanan
-      description: Meminta Berita Acara Pelaksanaan Perintah Penangguhan Penahanan / Pengeluaran Tahanan via SPPT TI
+        - Endpoint Layanan Data Puskarda
+      summary: Berita Acara Pelaksanaan Perintah Penangguhan Penahanan (BA-9)
+      description: Meminta Berita Acara Pelaksanaan Perintah Penangguhan Penahanan (BA-9) via SPPT TI
       parameters:
         - in: query
           name: nomor_t8
@@ -1575,9 +1887,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/ba9'
-                  - type: object                      
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-10'                     
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1586,7 +1898,7 @@ paths:
   /dokumen/s17:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Permintaan Surat Perintah Penahanan
       description: Meminta Surat Perintah Penahanan
       parameters:
@@ -1614,9 +1926,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/s17'
-                  - type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/dat-14'
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -1625,7 +1937,7 @@ paths:
   /dokumen/rh:
     get:
       tags:
-        - Endpoint Puskarda
+        - Endpoint Layanan Data Puskarda
       summary: Permintaan Rasio Hunian Rumah Tahanan dan Lapas
       description: Meminta Rasio Hunian Rumah Tahanan dan Lapas
       parameters:
@@ -1643,7 +1955,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/rh'
+                  $ref: '#/components/schemas/dat-12'
         '400':
           $ref: '#/components/responses/error'
         '500':
@@ -5259,111 +5571,258 @@ components:
                   example: "2019-01-15"
 
     s23:
-      description: Surat Perintah Pembantaran Penahanan
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
-            - nomor
-            - tanggal
-            - no_spdp
-            - tanggal_spdp
-            - kode_satker_spdp
-            - nomor_s17
-            - nama_tersangka
-            - nomor_identitas
-            - tanggal_mulai_rawat
           properties:
-            no_spdp:
-              type: string
-              description: Nomor dokumen spdp
-              example: SPDP/3/12/2012.PolresJAKPUS
-            tanggal_spdp:
-              type: string
-              format: date
-              description: Tanggal dokumen SPDP
-              example: "2019-01-15"
-            kode_satker_spdp:
-              type: string
-              description: Kode satker pengirim SPDP
-              example: 006.09.05
-            nomor_s17:
-              type: string
-              description: Nomor untuk mendapatkan identitas yang ditahan
-              example: S17/3/12/2012.PolresJAKPUS
-            nama_tersangka:
-              type: string
-              description: Nama Tersangka
-              example : Samuel Sambiroto
-            nomor_identitas:
-              type: string
-              nullable: true
-              description: Jika tidak diketahui, maka isi dengan null
-              example: 12345678
-            nama_dokter:
-              type: string
-              description: Nama Dokter
-              example : Samuel Sambiroto
-            tempat_rawat_inap:
-              type: string
-              description: Tempat rawat inap
-              example: RS Budiarjo
-            tanggal_mulai_rawat:
-              type: string
-              format: date
-              example: "2012-10-22"               
+            kode_jenis_dokumen:
+              default: s23
+              pattern: '^s23$'
+              example: s23
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penahanan
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor Surat Perintah Pembantaran Tahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal Surat Perintah Pembantaran Tahanan
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP.
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_penerbit_spdp:
+                  type: string
+                  description: Kode satker pengirim/penerbit SPDP 
+                  example: 006.09.05
+                nomor_surat_perintah_penahanan:
+                  type: string
+                  description: Nomor Surat Perintah Penahanan (S17)
+                  example: S17/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - tanggal_mulai_rawat_inap
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                nama_dokter:
+                  type: string
+                  description: Nama Dokter
+                  example : dr. Cihua Hua
+                tempat_rawat_inap:
+                  type: string
+                  description: Jika ada, tulis/isi tempat tersangka dirawat
+                  example : Rumah Sakit Pondok Indah
+                tanggal_mulai_rawat_inap:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal mulai rawat inap
+                  example: "2019-01-15"             
 
     s24:
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
-            - nomor
-            - tanggal
-            - no_spdp
-            - tanggal_spdp
-            - kode_satker_spdp
-            - nomor_s17
-            - nomor_s23
-            - nama_tersangka
-            - nomor_identitas_tersangka
-            - tanggal_pencabutan_pembantaran
           properties:
-            no_spdp:
-              type: string
-              description: Nomor dokumen spdp
-              example: SPDP/3/12/2012.PolresJAKPUS
-            tanggal_spdp:
-              type: string
-              format: date
-              description: Tanggal dokumen SPDP
-              example: "2019-01-15"
-            kode_satker_spdp:
-              type: string
-              description: Kode satker pengirim SPDP
-              example: 006.09.05
-            nomor_s17:
-              type: string
-              description: Nomor untuk mendapatkan identitas yang ditahan
-              example: S17/3/12/2012.PolresJAKPUS
-            nomor_s23:
-              type: string
-              description: Surat Perintah Pembantalan Penahanan
-              example: S23/3/12/2012.PolresJAKPUS
-            nama_tersangka:
-              type: string
-              description: Nama Tersangka
-              example : Samuel Sambiroto
-            nomor_identitas_tersangka:
-              type: string
-              description: Nomor Identitas Tersangka
-              example: 12345678
-            tanggal_pencabutan_pembantaran:
-              type: string
-              format: date
-              example: "2012-10-22"
+            kode_jenis_dokumen:
+              default: s24
+              pattern: '^s24$'
+              example: s24
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penahanan
+              - nomor_surat_perintah_pembantaran_penahanan
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor Surat Perintah Pencabutan Pembantaran Tahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal Surat Perintah Pencabutan Pembantaran Tahanan
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP.
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_penerbit_spdp:
+                  type: string
+                  description: Kode satker pengirim/penerbit SPDP 
+                  example: 006.09.05
+                nomor_surat_perintah_penahanan:
+                  type: string
+                  description: Nomor Surat Perintah Penahanan
+                  example: S17/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                nomor_surat_perintah_pembantaran_penahanan:
+                  type: string
+                  description: Nomor Surat Perintah Pembantaran Penahanan
+                  example: S23/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - tanggal_pencabutan_pembantaran
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                tanggal_pencabutan_pembantaran:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal pencabutan pembantaran
+                  example: "2019-01-15"
     
     t7:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: t7
+              pattern: '^t7$'
+              example: t7
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - jenis
+              - nomor_register_perkara
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis nomor surat T-7, lihat dokumen cetaknya
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis tanggal T-7, cara penulisan merujuk bakuan penulisan tanggal
+                  example: "2019-01-15"
+                jenis:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                  example: 2
+                  description: 1 = Penahanan ; 2 = Pengalihan Penahanan
+                nomor_register_perkara:
+                  type: string
+                  description: Nomor register perkara
+                  example: Reg/3/12/2012.JakJAKPUS
+            konten_dokumen:
+              required:
+                  - daftar_jaksa
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - kode_jenis_penahanan
+                  - kode_satker_tempat_penahanan
+                  - lama_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_akhir_penahanan
+              properties:
+                daftar_jaksa:
+                  type: array
+                  description: Ditulis/di isi dengan daftar jaksa
+                  minItems: 1
+                  items:
+                    $ref: '#/components/schemas/aparat_negara'
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                kode_jenis_penahanan:
+                  type: integer
+                  example: 1
+                  description: Lihat master data jenis penahanan
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Tulis/isi kode satker penahanan
+                  example : "013.01.01"
+                lama_penahanan:
+                  type: integer
+                  description: Tulis lama penahanan dalam satuan hari
+                  example: 20
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_akhir_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal berakhirnya penahanan
+                  example: "2019-01-15"
+    t7_old:
       allOf:
         - $ref: '#/components/schemas/dokumen_respon'
         - type: object
@@ -5441,6 +5900,94 @@ components:
               example: "2019-01-15"
 
     t8:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: t8
+              pattern: '^t8$'
+              example: t8
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - jenis
+              - nomor_surat_perintah_penahanan
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor T-8
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal T-8
+                  example: "2019-01-15"
+                jenis:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                    - 3
+                  example: 2
+                  description: 1 = penangguhan dari tahanan; 2 = pengeluaran dari tahanan; 3 = pencabutan penangguhan penahanan
+                nomor_surat_perintah_penahanan:
+                  type: string
+                  description: Tulis/isi nomor surat perintah penahanan (T-7)
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - kode_jenis_penahanan
+                  - kode_satker_tempat_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_mulai_penangguhan
+                  - jaminan
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                kode_jenis_penahanan:
+                  type: integer
+                  example: 1
+                  description: Lihat master data jenis penahanan
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Tulis/isi kode satker penahanan
+                  example : "013.01.01"
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tanggal_mulai_penangguhan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penangguhan
+                  example: "2019-01-15"
+                syarat_syarat:
+                  type: string
+                  description: Di isi jika T-8 ini adalah penangguhan penahanan/pengeluaran dari tahanan
+                  example : ""
+                jaminan:
+                  type: string
+                  description: Wajib di isi, lihat dokumen cetaknya
+    t8_old:
       allOf:
         - $ref: '#/components/schemas/dokumen_respon'
         - type: object
@@ -5530,68 +6077,84 @@ components:
     
     s16:
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
-          - nomor
-          - tanggal
-          - nomor_spdp
-          - tanggal_spdp
-          - kode_satker_spdp
-          - nama_tersangka
-          - nomor_identitas
-          - daftar_uu_pasal
-          - tanggal_berlaku
-          - tanggal_berakhir
           properties:
-            nomor:
+            kode_jenis_dokumen:
+              default: s16
+              pattern: '^s16$'
+              example: s16
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_spdp
+              - tanggal_spdp
+              - kode_satker_penerbit_spdp
+              properties:
+                nomor:
                   type: string
-                  description: Nomor dokumen S16
-                  example: S16/3/12/2012.PolresJAKPUS
-            tanggal:
-              type: string
-              format: date
-              description: Tanggal dokumen S16
-              example: "2019-01-15"
-            nomor_spdp:
-              type: string
-              description: Nomor dokumen SPDP
-              example: SPDP/3/12/2012.PolresJAKPUS
-            tanggal_spdp:
-              type: string
-              format: date
-              description: Tanggal dokumen SPDP
-              example: "2019-01-15"
-            kode_satker_spdp:
-              type: string
-              description: Kode satker pengirim SPDP
-              example: 006.09.05
-            nama_tersangka:
+                  description: Tulis/isi dengan nomor Surat Perintah Penangkapan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
                   type: string
-                  description: Nama lengkap tersangka
-                  example: Samuel Sambiroto
-            nomor_identitas:
-              type: string
-              description: Nomor identitas tersangka
-              example: 123456789A
-            daftar_uu_pasal:
-              type: array
-              minLength: 1
-              items:
-                type: string
-              example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
-              description: Tulis semua pasal yang disangkakan, sesuai dengan informasi pada dokumen SPDP. Cara penulisan lihat bakuan penulisan di Pedoman Pertukaran Data SPPT TI.
-            tanggal_berlaku:
-              type: string
-              format: date
-              description: Tanggal berlaku
-              example: "2019-01-15"
-            tanggal_berakhir:
-              type: string
-              format: date
-              description: Tanggal berakhir
-              example: "2019-01-15"
-
+                  format: date
+                  description: Tulis/isi dengan tanggal Surat Perintah Penangkapan
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP.
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_penerbit_spdp:
+                  type: string
+                  description: Kode satker pengirim/penerbit SPDP 
+                  example: 006.09.05
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - daftar_uu_pasal
+                  - tanggal_berlaku
+                  - tanggal_berakhir
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                daftar_uu_pasal:
+                  type: array
+                  minLength: 1
+                  items:
+                    type: string
+                  example: [Pasal 109 ayat (1) KUHAP, Pasal 111 ayat (1) Sub Pasal 127 ayat (1) huruf (a) UU RI No. 35 Tahun 2009 tentang Narkotika, Pasal 263 KUHP jo Pasal 55 ayat (1) ke-1]
+                  description: Tulis semua pasal yang disangkakan, sesuai dengan informasi pada dokumen SPDP. Cara penulisan lihat bakuan penulisan di Pedoman Pertukaran Data SPPT TI.
+                tanggal_berlaku:
+                  type: string
+                  format: date
+                  description: Tulis/isi dengan tanggal mulai berlakunya Surat Perintah Penangkapan
+                  example: "2019-01-15"
+                tanggal_berakhir:
+                  type: string
+                  format: date
+                  description: Tulis/isi dengan tanggal berakhirnya Surat Perintah Penangkapan
+                  example: "2019-01-15"
     s17:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -5611,66 +6174,70 @@ components:
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen S17
+                  description: Nomor nomor Surat Perintah Penahanan
                   example: S17/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen S16
+                  description: Tanggal Surat Perintah Penahanan
                   example: "2019-01-15"
                 nomor_spdp:
                   type: string
                   description: Nomor dokumen SPDP
                   example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal_spdp:
                   type: string
                   format: date
                   description: Tanggal dokumen SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
+                kode_satker_penerbit_spdp:
                   type: string
                   description: Kode satker pengirim SPDP
                   example: 006.09.05
-                nomor_s16:
+                nomor_surat_perintah_penangkapan:
                   type: string
-                  description: Nomor dokumen S16
+                  description: Nomor Surat Perintah Penangkapan
                   example: S16/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
             konten_dokumen:
               required:
                   - nama_tersangka
-                  - nomor_identitas
+                  - nomor_identitas_tersangka
                   - kode_jenis_penahanan
                   - kode_satker_tempat_penahanan
-                  - tanggal_mulai_penahanan
-                  - tanggal_akhir_penahanan
+                  - tanggal_mulai
+                  - tanggal_akhir
               properties:
                 nama_tersangka:
                   type: string
                   description: Nama lengkap tersangka
                   example: Samuel Sambiroto
-                nomor_identitas:
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
                   type: string
                   description: Nomor identitas tersangka
                   example: 123456789
                 kode_jenis_penahanan:
                   type: integer
-                  enum:
-                    - 0
-                    - 1
-                    - 2
-                    - 3
-                  example: 1
-                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                  description: Lihat Data Master Jenis Penahanan
                 kode_satker_tempat_penahanan:
                   type: string
                   example: 006.09.05
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
-                tanggal_mulai_penahanan:
+                  description: Tulis/isi kode satker tempat penahanan
+                tanggal_mulai:
                   type: string
                   format: date
                   description: Tanggal mulai penahanan
                   example: "2019-01-15"
-                tanggal_akhir_penahanan:
+                tanggal_akhir:
                   type: string
                   format: date
                   description: Tanggal akhir penahanan
@@ -5678,63 +6245,85 @@ components:
 
     s18:
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
+          properties:
+            kode_jenis_dokumen:
+              default: s18
+              pattern: '^s18$'
+              example: s18
+            identitas_dokumen:
+              required:
               - nomor
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s17
-              - tanggal_permohonan
-              - nama_tersangka
-              - nomor_identitas
-              - identitas_penjamin
-          properties:
-            nomor_spdp:
-              type: string
-              description: Nomor dokumen SPDP.
-              example: SPDP/3/12/2012.PolresJAKPUS
-            tanggal_spdp:
-              type: string
-              format: date
-              description: Tanggal dokumen SPDP.
-              example: "2019-01-15"
-            kode_satker_spdp:
-              type: string
-              description: Kode satker pengirim SPDP. 
-              example: 006.09.05
-            nomor_s17:
-              type: string
-              description: Nomor Surat Perintah Penahanan (S17)
-              example: S17/3/12/2012.PolresJAKPUS
-            tanggal_permohonan:
-              type: string
-              format: date
-              description: Tanggal Permohonan
-              example: "2019-01-15"
-            nama_tersangka:
-              type: string
-              description: Nama Tersangka
-              example : Samuel Sambiroto
-            nomor_identitas:
-              type: string
-              nullable: true
-              description: Jika tidak diketahui, maka isi dengan null
-              example: 12345678
-            jenis_jaminan:
-              type: string
-              description: Jenis jaminan
-            nama_jaminan:
-              type: string
-              description: Nama jaminan
-            uang_jaminan:
-              type: number
-              description: Besaran uang jaminan
-            identitas_penjamin:
-              type: object
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penahanan
+              - tanggal_surat_permohonan
               properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor Surat Perintah Penangguhan Penahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal Surat Perintah Penangguhan Penahanan
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP.
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_penerbit_spdp:
+                  type: string
+                  description: Kode satker pengirim/penerbit SPDP 
+                  example: 006.09.05
+                nomor_surat_perintah_penahanan:
+                  type: string
+                  description: Nomor Surat Perintah Penahanan (S17)
+                  example: S17/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_surat_permohonan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal surat permohonan penangguhan penahanan dari pemohon
+                  example: "2019-01-15"
+            konten_dokumen:
+              required:
+                  - nama_tersangka
+                  - nomor_identitas_tersangka
+                  - nama_penjamin
+                  - alamat_penjamin
+              properties:
+                nama_tersangka:
+                  type: string
+                  description: Nama Tersangka
+                  example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
+                nomor_identitas_tersangka:
+                  type: string
+                  description: Tulis/isi dengan NIK (para) tersangka
+                  example: 12345678
+                jenis_jaminan:
+                  type: string
+                  description: Jika di isi lihat data master Jenis Jaminan Penahanan
+                besaran_uang_jaminan:
+                  type: number
+                  description: Besaran uang jaminan
                 nomor_identitas_penjamin:
                   type: string
                   description: Nomor identitas penjamin
@@ -5745,42 +6334,105 @@ components:
                   type: string
                   description: Alamat penjamin
                   example: Jl. Jalan-jalan No 1
-            lokasi_penyimpanan_jaminan:
-              type: string
-              description: Lokasi penyimpanan jaminan
-              example: Jl. Jalan-jalan No 1
-
+                lokasi_penyimpanan_jaminan:
+                  type: string
+                  description: Jika Jenis Jaminan adalah Jaminan Uang, tulis/isi lokasi penyimpanan jaminan
+                  example: Jl. Jalan-jalan No 1
     s19:
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
+          properties:
+            kode_jenis_dokumen:
+              default: s19
+              pattern: '^s19$'
+              example: s19
+            identitas_dokumen:
+              required:
               - nomor
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s18
-          properties:
-            nomor_spdp:
-              type: string
-              description: Nomor dokumen SPDP.
-              example: SPDP/3/12/2012.PolresJAKPUS
-            tanggal_spdp:
-              type: string
-              format: date
-              description: Tanggal dokumen SPDP.
-              example: "2019-01-15"
-            kode_satker_spdp:
-              type: string
-              description: Kode satker pengirim SPDP.
-              example: 006.09.05
-            nomor_s18:
-              type: string
-              description: Nomor Surat Perintah Penangguhan Penahanan (S18)
-              example: S18/3/12/2012.PolresJAKPUS
-
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penangguhan_penahanan
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor Surat Pencabutan Penangguhan Penahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/Isi tanggal Surat Pencabutan Penangguhan Penahanan
+                  example: "2019-01-15"
+                nomor_spdp:
+                  type: string
+                  description: Nomor dokumen SPDP.
+                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal_spdp:
+                  type: string
+                  format: date
+                  description: Tanggal dokumen SPDP
+                  example: "2019-01-15"
+                kode_satker_penerbit_spdp:
+                  type: string
+                  description: Kode satker pengirim/penerbit SPDP 
+                  example: 006.09.05
+                nomor_surat_perintah_penangguhan_penahanan:
+                  type: string
+                  description: Tulis/isi nomor Surat Perintah Penangguhan Penahanan
+                  example: S18/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
     ba7:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: ba7
+              pattern: '^ba7$'
+              example: ba7
+            identitas_dokumen:
+              required:
+              - tanggal
+              - nomor_surat_penahanan
+              properties:
+                nomor_surat_penahanan:
+                  type: string
+                  description: Diisi dengan nomor dokumen perintah yang mendasari berita acara ini. Misal, nomor T-7 atau nomor PEN.7-1
+                  example: ba7/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal BA-7
+            konten_dokumen:
+              required:
+                  - tanggal_mulai_penahanan
+                  - tempat_penahanan
+                  - lama_penahanan
+              properties:
+                tanggal_mulai_penahanan:
+                  type: string
+                  format: date
+                  description: Tanggal mulai penahanan
+                  example: "2019-01-15"
+                tempat_penahanan:
+                  type: string
+                  description: Diisi dengan tempat penahanan
+                  example: ba7/3/12/2012.PolresJAKPUS
+                lama_penahanan:
+                  type: integer
+                  description: Angka jumlah hari lama penahanan
+                  example: 14
+    
+    ba7_old:
       allOf:
         - $ref: '#/components/schemas/dokumen_respon'
         - type: object
@@ -5819,6 +6471,37 @@ components:
     
     ba15:
       allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: ba15
+              pattern: '^ba15$'
+              example: ba15
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              - nomor_penetapan_pengadilan
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis nomor surat P-48, lihat dokumen cetaknya
+                  example: T-1679/A/11/2018
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal BA-15
+                  example: "2019-01-15"
+                nomor_penetapan_pengadilan:
+                  type: string
+                  description: Diisi dengan nomor Penetapan Pengadilan
+                  example: ba15/3/12/2012.PolresJAKPUS
+
+    ba15_old:
+      allOf:
         - $ref: '#/components/schemas/dokumen_respon'
         - type: object
           required:
@@ -5854,6 +6537,118 @@ components:
               description: Diisi dengan tempat penahanan
               example: ba15/3/12/2012.PolresJAKPUS
     
+    dat-1:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-1
+                example: dat-1
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis BA-7.
+              items:
+                $ref: '#/components/schemas/ba7'
+    dat-2:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-2
+                example: dat-2
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis BA-15.
+              items:
+                $ref: '#/components/schemas/ba15'
+    dat-3:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-3
+                example: dat-3
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-18.
+              items:
+                $ref: '#/components/schemas/s18'
+    dat-4:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-4
+                example: dat-4
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-19
+              items:
+                $ref: '#/components/schemas/s19'
+    dat-5:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-5
+                example: dat-5
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-23
+              items:
+                $ref: '#/components/schemas/s23'
+    dat-6:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-6
+                example: dat-6
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-24
+              items:
+                $ref: '#/components/schemas/s24'
+    dat-7:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-7
+                example: dat-7
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis T-8
+              items:
+                $ref: '#/components/schemas/t8'
     dat-8:
       required:
         - dokumen
@@ -5904,6 +6699,70 @@ components:
               description: Diisi dengan dokumen berjenis BA-9.
               items:
                 $ref: '#/components/schemas/ba9'
+    dat-11:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-11
+                example: dat-11
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis T-7.
+              items:
+                $ref: '#/components/schemas/t7'
+    dat-12:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-12
+                example: dat-12
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis RH.
+              items:
+                $ref: '#/components/schemas/rh'
+    dat-13:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-13
+                example: dat-13
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-16.
+              items:
+                $ref: '#/components/schemas/s16'
+    dat-14:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-14
+                example: dat-14
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis S-17
+              items:
+                $ref: '#/components/schemas/s17'
 
     header:
       type: object
@@ -6338,23 +7197,32 @@ components:
       description: Nomor Surat
       minLength: 3
       pattern: '^([a-zA-Z\d]+[ ]{0,1}[^a-zA-Z\d\n]{0,1}[ ]{0,1})*[a-zA-Z\d]+$'
+    
     ba11:
       allOf:
-        - $ref: '#/components/schemas/dokumen_respon'
+        - $ref: '#/components/schemas/dokumen'
         - type: object
-          required:
+          properties:
+            kode_jenis_dokumen:
+              default: ba11
+              pattern: '^ba11$'
+              example: ba11
+            identitas_dokumen:
+              required:
               - nomor
               - tanggal
-          properties:
-            nomor_t8:
-              type: string
-              description: Diisi dengan nomor T-8 yang mempunyai Jenis 2 (pencabutan penangguhan penahanan)
-              example: Reg/3/12/2012.JakJAKPUS
-            kode_satker_penerbit:
-              type: string
-              description: Kode Satker penerbit BA-11
-              example: 006.01.20
-
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor surat perintah surat perintah pencabutan penangguhan penahanan (T-8)
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: TTulis/isi tanggal BA-11
+                  example: "2019-01-15"
     ba8:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -6366,32 +7234,33 @@ components:
               example: ba8
             identitas_dokumen:
               required:
-              - nomor_t7
+              - nomor
               - tanggal
-              - kode_jenis_penahanan_asal
-              - kode_jenis_penahanan_pengalihan
-              - tanggal_pengalihan_penahanan
               properties:
-                nomor_t7:
+                nomor:
                   type: string
-                  description: Diisi dengan nomor T-7 (jenis = 2)
+                  description: Tulis/isi nomor surat perintah pengalihan jenis tahanan (T-7)
                   example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen ba8.
+                  description: Tulis/isi tanggal BA-8
                   example: "2019-01-15"
+            konten_dokumen:
+              required:
+                  - kode_jenis_penahanan_asal
+                  - kode_jenis_penahanan_pengalihan
+              properties:
                 kode_jenis_penahanan_asal:
-                  type: string
-                  example: 2
-                kode_jenis_penahanan_pengalihan:
-                  type: string
+                  type: integer
+                  description: Tulis/isi kode jenis penahanan asal. Lihat Data Master jenis penahanan
                   example: 1
-                tanggal_pengalihan_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal pengalihan tahanan
-                  example: "2019-01-15"
+                kode_jenis_penahanan_pengalihan:
+                  type: integer
+                  description: Tulis/isi kode jenis penahanan pengalihan. Lihat Data Master jenis penahanan
+                  example: 2
 
     ba9:
       allOf:
@@ -6404,18 +7273,20 @@ components:
               example: ba9
             identitas_dokumen:
               required:
-              - nomor_t8
+              - nomor
               - tanggal
               properties:
-                nomor_t8:
+                nomor:
                   type: string
-                  description: Diisi dengan nomor T-8 (jenis = 1)
+                  description: Tulis/isi nomor surat perintah penangguhan penahanan (T-8)
                   example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen BA-9.
-                  example: "2019-01-15"          
+                  description: Tulis/isi tanggal BA-9
+                  example: "2019-01-15"        
     
     p42:
       allOf:
@@ -6510,33 +7381,54 @@ components:
                         type: string
                         format: date
                         description: Tanggal akhir penahanan
+    
     rh:
-      description: Rasio Hunian Rumah Tahanan dan Lapas
-      type: object
-      properties:
-        kode_satker:
-          type: string
-          example: 013.01.01
-        nama_satker:
-          type: string
-          example: Lapas Kelas I Cipinang
-        jumlah_penghuni:
-          type: integer
-          description: total jumlah penghuni rutan/lapas
-          example: 400
-        kapasitas:
-          type: integer
-          description: kapasitas rutan/lapas
-          example: 200
-        prosentase_hunian:
-          type: number
-          description: prosentase jumlah hunian berbanding kapasitas hunian Rutan/Lapas
-          example: 200
-        tanggal_waktu:
-          type: string
-          format: date-time
-          description: Tanggal dan waktu pemutakhiran
-          example: "2008-09-15T15:53:00+07:00"
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: rh
+              pattern: '^rh$'
+              example: rh
+            identitas_dokumen:
+              required:
+              - tanggal
+              - kode_satker
+              - nama_satker
+              properties:
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tanggal pemutakhiran
+                  example: "2019-01-15"
+                  # example: "2008-09-15T15:53:00+07:00"
+                kode_satker:
+                  type: string
+                  description: Tulis/isi dengan kode satker
+                  example: 013.01.01
+                nama_satker:
+                  type: string
+                  description: Tulis/isi nama satker
+                  example: Lapas Kelas I Cipinang
+            konten_dokumen:
+              required:
+                  - jumlah_penghuni
+                  - kapasitas
+                  - prosentase_hunian
+              properties:
+                jumlah_penghuni:
+                  type: integer
+                  description: total jumlah penghuni rutan/lapas
+                  example: 400
+                kapasitas:
+                  type: integer
+                  description: kapasitas rutan/lapas
+                  example: 200
+                prosentase_hunian:
+                  type: number
+                  description: prosentase jumlah hunian berbanding kapasitas hunian Rutan/Lapas
+                  example: 200
 
     master_agama:
       type: object
