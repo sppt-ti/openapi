@@ -205,7 +205,7 @@ paths:
       tags:
         - format pesan
       summary: Surat Perpanjangan Penahanan
-      description: Kejaksaan mengirimkan perpanjangan penahanan
+      description: Proses bisnis pengiriman Surat Perpanjangan Penahanan (T-4) oleh Kejaksaan ke Kepolisian sebagai tindak lanjut dari proses sebelumnya (HAN-10.10). T-4 ini ditembuskan juga ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -807,7 +807,7 @@ paths:
       tags:
         - format pesan
       summary: Kepolisian mengirimkan surat permintaan perpanjangan penahanan
-      description: Mengirim dokumen S-21 via SPPT TI
+      description: Proses bisnis pengiriman Surat Permintaan Perpanjangan Penahanan (S-21) dari Kepolisian ke Kejaksaan.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -830,7 +830,7 @@ paths:
       tags:
         - format pesan
       summary: Surat Permintaan Perpanjangan Penahanan Lanjutan
-      description: Kepolisian mengirimkan permintaan perpanjangan penahanan lanjutan
+      description: Proses bisnis pengiriman Surat Permintaan Perpanjangan Penahanan Lanjutan (Pasal 29 KUHAP) (S-22) dari Kepolisian ke Pengadilan. Keterangan tambahan:Proses ini dapat berlangsung 2 (dua) kali.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -851,7 +851,7 @@ paths:
       - $ref: '#/components/parameters/header_accept_param'
       - $ref: '#/components/parameters/header_content_type_param'
       tags:
-        - format pesan
+        - experiment
       summary: Penetapan Perpanjangan Penahanan Lanjutan (Pasal 29)
       description: Pengadilan mengirimkan penetapan perpanjangan penahanan lanjutan
       responses:
@@ -873,7 +873,7 @@ paths:
       tags:
         - format pesan
       summary: Surat Permintaan Perpanjangan Penahanan
-      description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
+      description: Proses bisnis pengiriman Surat Permintaan Perpanjangan Penahanan (T-6) dari Kejaksaan ke Pengadilan. Proses bisnis ini hanya bisa dilakukan jika sebelumnya Kejaksaan telah menginput Surat Perintah Penahanan (T-7) ke Layanan Data.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -891,7 +891,7 @@ paths:
   /han-20.20:
     post:
       tags:
-        - format pesan
+        - experiment
       summary: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
       operationId: kirimHan2020
       description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
@@ -912,7 +912,7 @@ paths:
   /han-20.40:
     post:
       tags:
-        - format pesan
+        - experiment
       summary: Penetapan Perpanjangan Penahanan (Pasal 29)
       operationId: kirimHan2040
       description: Penetapan Perpanjangan Penahanan (Pasal 29)
@@ -933,7 +933,7 @@ paths:
   /han-20.30:
     post:
       tags:
-        - format pesan
+        - experiment
       summary: Surat Permintaan Perpanjangan Penahanan
       description: Penetapan Perpanjangan Penahanan (dari Kejaksaan)
       responses:
@@ -958,7 +958,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan penahanan
-      description: PN mengirimkan surat penetapan penahanan
+      description: Proses bisnis pengiriman Penetapan Penahanan Majelis Hakim Tingkat Pertama (PEN-1) oleh Pengadilan ke Kejaksaan. PEN-1 ini ditembuskan juga ke Ditjen PAS
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -981,7 +981,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan (KPN)
-      description: PN mengirimkan Penetapan Perpanjangan Penahanan
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Pengadilan Negeri (PEN-7.11) dari Pengadilan ke Kejaksaan dengan tembusan ke ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1004,7 +1004,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan (Pasal 29)
-      description: Mengirim dokumen pen-7.20 via SPPT TI
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Pengadilan Negeri (Pasal 29) (PEN-7.20) dari Pengadilan ke Kejaksaan dengan tembusan ke ke Ditjen PAS.Keterangan tambahan:Proses ini dapat berlangsung 2 (dua) kali.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1027,7 +1027,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Penahanan Hakim Banding
-      description: PT mengirimkan surat penetapan penahanan hakim ke kejaksaan
+      description: Proses bisnis pengiriman Penetapan Penahanan Majelis Hakim Tingkat Banding (PEN-7.21) oleh Pengadilan ke Kejaksaan dengan tembusan ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1050,7 +1050,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan (Pasal 27)
-      description: PT mengirimkan perpanjangan penahanan ke kejaksaan
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Pengadilan Tinggi (PEN-7.22) oleh Pengadilan ke Kejaksaan dengan tembusan ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1073,7 +1073,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan Lanjutan
-      description: KPT mengirimkan penetapan MA atas penahanan lanjutan
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Pengadilan Tinggi (Pasal 29) (PEN-7.23) dari Pengadilan ke Kejaksaan dengan tembusan ke ke Ditjen PAS. Keterangan tambahan:Proses ini dapat berlangsung 2 (dua) kali.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1096,7 +1096,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan penahanan
-      description: MA mengirimkan surat penetapan penahanan
+      description: Proses bisnis pengiriman Penetapan Penahanan Majelis Hakim Tingkat Kasasi (PEN-7.24) oleh Pengadilan ke Kejaksaan dengan tembusan ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1119,7 +1119,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan (Pasal 28)
-      description: MA mengirimkan penetapan perpanjangan penahanan Ketua MA
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Mahkamah Agung (PEN-7.25) oleh Pengadilan ke Kejaksaan dengan tembusan ke Ditjen PAS.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1142,7 +1142,7 @@ paths:
       tags:
         - format pesan
       summary: Penetapan Perpanjangan Penahanan (Pasal 28)
-      description: MA Mengirim Surat Penetapan Perpanjangan Penahanan Lanjutan
+      description: Proses bisnis pengiriman Penetapan Perpanjangan Penahanan Ketua Mahkamah Agung (Pasal 29) (PEN-7.26) dari Pengadilan ke Kejaksaan dengan tembusan ke ke Ditjen PAS. Keterangan tambahan:Proses ini dapat berlangsung 2 (dua) kali.
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -3075,62 +3075,65 @@ components:
               required:
               - nomor
               - tanggal
-              - kode_satker
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s21
-              - nomor_s17
+              - kode_satker_penerbit_spdp
               properties:
                 nomor:
                   type: string
-                  description: Nomor Surat Permintaan Perpanjangan Penahanan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor surat T-4, lihat dokumen cetaknya.
                   example: T4/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen T4
+                  description: Tulis tanggal T-4, cara penulisan merujuk bakuan penulisan tanggal
                   example: "2019-01-15"
-                kode_satker:
-                  type: string
-                  description: Kode satker yang meminta
-                  example: 006.09.05
                 nomor_spdp:
                   type: string
-                  description: Nomor dokumen spdp
-                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPDP
+                  description: Tulis/isi kode satker penerbit SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
+                kode_satker_penerbit_spdp:
                   type: string
-                  description: Kode satker pengirim SPDP
+                  description: Tulis/isi kode satker penerbit SPDP
                   example: 006.09.05
-                nomor_s21:
-                  type: string
-                  description: nomor dokumen S21
-                  example: S21/3/12/2012.PolresJAKPUS
-                nomor_s17:
-                  type: string
-                  description: Nomor untuk mendapatkan identitas yang ditahan
-                  example: S17/3/12/2012.PolresJAKPUS
             konten_dokumen:
               type: object
               required:
-                - tanggal_mulai_penahanan
-                - tanggal_akhir_penahanan
+                - nomor_s21
+                - nomor_s17
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
               properties:
-                tanggal_mulai_penahanan:
+                nomor_s21:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor S-21, lihat dokumen cetaknya.
+                  example: S21/3/12/2012.PolresJAKPUS
+                nomor_s17:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor S-17, lihat dokumen cetaknya.
+                  example: S17/3/12/2012.PolresJAKPUS
+                tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis tanggal mulai perpanjangan penahanan
                   example: "2019-01-15"
-                tanggal_akhir_penahanan:
+                tanggal_akhir_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tanggal akhir perpanjangan penahanan
                   example: "2020-01-15"
     
     han-10.20:
@@ -3162,45 +3165,54 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_pen_7.1
-              - tanggal_pen_7.1
+              - nomor_penetapan_penahanan
+              - tanggal_penetapan_penahanan
               properties:
                 nomor:
                   type: string
-                  description: Nomor Surat Penetapan Perpanjangan Penahanan (KPN)
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
                   example: PEN-7.11/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.11
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan
                   example: "2019-01-15"
-                nomor_pen_7.1:
+                nomor_penetapan_penahanan:
                   type: string
-                  description: Nomor Surat Penetapan Penahanan
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor penetapan penahanan
                   example: PEN-7.1/3/12/2012.PolresJAKPUS
-                tanggal_pen_7.1:
+                tanggal_penetapan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.1
+                  description: Tulis tanggal penetapan penahanan
                   example: "2019-01-15"
             konten_dokumen:
               type: object
               required:
-                - tanggal_berakhir_penahanan
+                - tanggal_akhir_penahanan
                 - tanggal_mulai_perpanjangan_penahanan
                 - tanggal_akhir_perpanjangan_penahanan
                 - kode_jenis_penahanan
                 - kode_satker_tempat_penahanan
               properties:
-                tanggal_mulai_penahanan:
+                tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis tanggal berakhirnya penetapan penahanan
                   example: "2019-01-15"
-                tanggal_berakhir_penahanan:
+                tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal berakhir penahanan
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal akhir perpanjangan penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 kode_jenis_penahanan:
                   type: string
@@ -3210,6 +3222,7 @@ components:
                   type: string
                   description: Diisi kode satker lapas untuk jenis penahanan di lapas
                   example: 006.09.05
+
     han-30.20:
       allOf:     # Combines Parent Object and the inline model
         - $ref: '#/components/schemas/header'
@@ -3225,6 +3238,7 @@ components:
               description: Diisi dengan dokumen berjenis PEN-7.11.
               items:
                 $ref: '#/components/schemas/pen-7.11'
+
     pen-7.22:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -3238,61 +3252,63 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_perkara
-              - tingkat_pengadilan
+              - nomor_penetapan_penahanan
+              - tanggal_penetapan_penahanan
               properties:
                 nomor:
                   type: string
-                  description: Nomor Surat Penetapan Perpanjangan Penahanan (Pasal 27)
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
                   example: PEN-7.22/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.22
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan
                   example: "2019-01-15"
-                nomor_perkara:
+                nomor_penetapan_penahanan:
                   type: string
-                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
-                  example: SPDP/3/12/2012.PolresJAKPUS
-                tingkat_pengadilan:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor penetapan penahanan
+                  example: PEN/3/12/2012.PolresJAKPUS
+                tanggal_penetapan_penahanan:
                   type: string
-                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
-                  example: 1
+                  format: date
+                  description: Tulis tanggal penetapan penahanan
+                  example: "219-09-10"
             konten_dokumen:
               type: object
               required:
-                - identitas_terdakwa
-                - kode_jenis_penahanan
-                - kode_satker_tempat_penahanan
-                - lama_penahanan
-                - tanggal_mulai_penahanan
                 - tanggal_akhir_penahanan
-              properties:  
-                identitas_terdakwa:
-                  allOf:
-                    - $ref: '#/components/schemas/terdakwa'
-                kode_jenis_penahanan:
-                  type: string
-                  description: kode jenis penahanan (0, 1, 2, 3)
-                  example: 0 
-                kode_satker_tempat_penahanan:
-                  type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
-                  example: 060.01.02
-                lama_penahanan:
-                  type: integer
-                  description: angka jumlah hari
-                  example: 5 
-                tanggal_mulai_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal mulai penahanan
-                  example: "2019-01-15"
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
+                - kode_jenis_penahanan
+              properties:
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tulis tanggal berakhirnya penetapan penahanan
                   example: "2019-01-15"
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                kode_jenis_penahanan:
+                  type: string
+                  description: Lihat kode jenis penahanan dalam data master
+                  example: 0 
+                kode_satker_tempat_penahanan:
+                  type: string
+                  description: Tulis/isi Kode Satker penahanan
+                  example: 060.01.02
+
     pen-7.26:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -3306,60 +3322,79 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_perkara
-              - tingkat_pengadilan
+              - nomor_surat_permohonan_perpanjangan_penahanan
+              - kode_satker_pemohon
               properties:
                 nomor:
                   type: string
-                  description: Nomor Surat Penetapan Perpanjangan Penahanan (Pasal 28)
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan (Pasal 29)
                   example: PEN-7.26/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.26
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan (Pasal 29)
                   example: "2019-01-15"
-                nomor_perkara:
+                nomor_surat_permohonan_perpanjangan_penahanan:
                   type: string
-                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
                   example: SPDP/3/12/2012.PolresJAKPUS
-                tingkat_pengadilan:
+                kode_satker_pemohon:
                   type: string
-                  description: 1 PN, 2 PT, 3 MA (Referensi data master Tingkat Pengadilan)
-                  example: 1
+                  description: Tulis/kode satker pemohon perpanjangan penahanan
+                  example: 006.005.01
             konten_dokumen:
               type: object
               required:
-                - identitas_terdakwa
-                - kode_jenis_penahanan
-                - kode_satker_tempat_penahanan
-                - lama_penahanan
-                - tanggal_mulai_penahanan
                 - tanggal_akhir_penahanan
-              properties:  
-                identitas_terdakwa:
-                  allOf:
-                    - $ref: '#/components/schemas/terdakwa'
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
+                - kode_jenis_penahanan
+              properties: 
+                surat_keterangan_dokter:
+                  properties:
+                    rumah_sakit:
+                      type: string
+                      description: Tulis nama rumah sakit
+                      example: Rumah Sakit Bogor
+                    nama_dokter:
+                      type: string
+                      description: Tulis nama dokter
+                      example: dr. X
+                    tanggal_surat:
+                      type: string
+                      format: date
+                      description: Tulis tanggal surat keterangan dokter
+                      example: "2019-01-15"
+                    nomor_surat:
+                      type: string
+                      description: Tulis nomor surat keterangan dokter
+                      example: 170/569/SK-3/IV/18  
                 kode_jenis_penahanan:
                   type: string
-                  description: kode jenis penahanan (0, 1, 2, 3)
+                  description: Lihat kode jenis penahanan dalam data master
                   example: 0 
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
-                  example: 060.01.02
-                lama_penahanan:
-                  type: integer
-                  description: angka jumlah hari
-                  example: 5 
-                tanggal_mulai_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal mulai penahanan
-                  example: "2019-01-15"
+                  description: Tulis/isi Kode Satker penahanan
+                  example: 060.01.02 
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tulis/isi tanggal berakhirnya penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
     han-30.50:
       allOf:     # Combines Parent Object and the inline model
@@ -4620,58 +4655,71 @@ components:
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_t7
+              - kode_satker_penerbit_spdp
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen t6
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor surat T-6, lihat dokumen cetaknya.
                   example: SRT/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen t6.
+                  description: Tulis tanggal T-6, cara penulisan merujuk bakuan penulisan tanggal
                   example: "2019-01-15"
                 nomor_spdp:
                   type: string
-                  description: nomor SPDP
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPDP
+                  description: Tulis/isi tanggal SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
+                kode_satker_penerbit_spdp:
                   type: string
-                  description: Kode satker pengirim SPDP
+                  description: Tulis/isi Kode Satker Penerbit SPDP
                   example: 006.09.05
-                nomor_t7:
-                  type: string
-                  description: Nomor dokumen t7
             konten_dokumen:
               required:
-                  - tanggal_berakhir_penahanan
+                  - nomor_surat_perintah_penahanan
+                  - tanggal_akhir_penahanan
                   - tanggal_mulai_perpanjangan_penahanan
                   - tanggal_akhir_perpanjangan_penahanan
                   - dasar_hukum_penahanan
               properties:
-                tanggal_berakhir_penahanan:
+                nomor_surat_perintah_penahanan:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan Nomor Surat Perintah Penahanan
+                  example: T6/A/11/2018
+                tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal berakhiir di T-7
+                  description: Tulis Tanggal Berakhirnya Penahanan
                   example: "2019-01-15"
                 tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai perpanjangan penahanan
+                  description: Tulis Tanggal Mulai Perpanjangan Penahanan
                   example: "2019-01-15"
                 tanggal_akhir_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir perpanjangan penahanan
+                  description: Tulis Tanggal Akhir Perpanjangan Penahanan
                   example: "2019-01-15"
-                dasar_hukum_penahanan: 
-                  type: string
-                  description: Free text dengan kemungkinan isi a) "Pasal 24 ayat (2) KUHAP" atau; b) "Pasal 25 ayat (2) KUHAP" atau; c) "Pasal 29 ayat (1) KUHAP"
+                dasar_hukum_penahanan:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: string
+                  example: [Pasal 24 Ayat (2) KUHAP, Pasal 25 Ayat (2) KUHAP, Pasal 29 Ayat (1) KUHAP]
+                  description: Tulis semua dasar hukum penahanan, berupa pilihan isian (atau) salah satu dari.
+
     pen-7.20:
       allOf:
         - $ref: '#/components/schemas/dokumen'
@@ -4685,24 +4733,30 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_surat_permohonan
-              - asal_permohonan
+              - nomor_surat_permohonan_perpanjangan_penahanan
+              - kode_satker_pemohon
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen PEN-7.20
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
                   example: SRT/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.20
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan
                   example: "2019-01-15"
-                nomor_surat_permohonan:
+                nomor_surat_permohonan_perpanjangan_penahanan:
                   type: string
-                  description: Bisa berasal dari S-22 atau T-6 atau Permohonan Ketua PN
-                asal_permohonan:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor penetapan penahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                kode_satker_pemohon:
                   type: string
-                  description: POL, Kejaksaan Negeri, PN
+                  description: Tulis/isi kode satker asal permohonan
+                  example: 006.005.01
             konten_dokumen:
               required:
                   - tanggal_berakhir_penahanan
@@ -4710,47 +4764,47 @@ components:
                   - tanggal_mulai_perpanjangan_penahanan
                   - tanggal_akhir_perpanjangan_penahanan
               properties:
-                isi_surat:
-                  type: string
-                  description: Isi surat
-                  example: ...
-                nama_rumah_sakit:
-                  type: string
-                  description: Nama Rumah Sakit
-                  example: Rumah Sakit Hermina Depok
-                nama_dokter:
-                  type: string
-                  description: Nama Dokter
-                tanggal_surat_dokter:
+                surat_keterangan_dokter:
+                  properties:
+                    rumah_sakit:
+                      type: string
+                      description: Tulis nama rumah sakit
+                      example: Rumah Sakit Bogor
+                    nama_dokter:
+                      type: string
+                      description: Tulis nama dokter
+                      example: dr. X
+                    tanggal_surat:
+                      type: string
+                      format: date
+                      description: Tulis tanggal surat keterangan dokter
+                      example: "2019-01-15"
+                    nomor_surat:
+                      type: string
+                      description: Tulis nomor surat keterangan dokter
+                      example: 170/569/SK-3/IV/18 
+                tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal surat dokter
-                  example: "2019-01-15"
-                nomor_surat_dokter:
-                  type: string
-                  description: Nomor surat dokter
-                tanggal_berakhir_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal berakhirnya penahanan
+                  description: Tulis/isi tanggal berakhirnya penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 kode_jenis_penahanan:
                   type: string
-                  description: Kode jenis penahanan
+                  description: Lihat kode jenis penahanan dalam data master
                   example: 1
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  description: Tulis/isi Kode Satker penahanan
                   example: 013.05.193
                 tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai perpanjangan penahanan
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 tanggal_akhir_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhirnya perpanjangan penahanan
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
     pen-7.23:
@@ -4766,70 +4820,78 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_surat_permohonan
-              - asal_permohonan
+              - nomor_surat_permohonan_perpanjangan_penahanan
+              - kode_satker_pemohon
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen pen-7.23
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan (Pasal 29)
                   example: SRT/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen pen-7.23.
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan (Pasal 29)
                   example: "2019-01-15"
-                nomor_surat_permohonan:
+                nomor_surat_permohonan_perpanjangan_penahanan:
                   type: string
-                  description: Bisa berasal dari S-22 atau T-6 atau Permohonan Ketua PN
-                asal_permohonan:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
+                  example: SRT/3/12/2012.PolresJAKPUS
+                kode_satker_pemohon:
                   type: string
-                  description: POL, Kejaksaan Negeri, PN
+                  description: Tulis/isi kode satker asal permohonan
+                  example: 006.001.01
             konten_dokumen:
               required:
-                  - isi_surat
-                  - tanggal_berakhir_penahanan
+                  - tanggal_akhir_penahanan
                   - kode_jenis_penahanan
                   - tanggal_mulai_perpanjangan_penahanan
                   - tanggal_akhir_perpanjangan_penahanan
               properties:
-                nama_rumah_sakit:
-                  type: string
-                  description: Diisi nama Rumah Sakit dari Surat Keterangan Dokter
-                  example: Rumah Sakit Umum Daerah Pasar Minggu
-                nama_dokter:
-                  type: string
-                  description: Diisi nama Dokter dari Surat Keterangan Dokter
-                  example: Drg. Agustina
-                tanggal_surat_dokter:
-                  type: string
-                  format: date
-                  description: Tanggal surat dokter.
-                  example: "2019-01-15"
-                nomor_surat_dokter:
-                  type: string
-                  description: Diisi dengan Nomor surat keterangan dokter
+                surat_keterangan_dokter:
+                  properties:
+                    rumah_sakit:
+                      type: string
+                      description: Tulis nama rumah sakit
+                      example: Rumah Sakit Bogor
+                    nama_dokter:
+                      type: string
+                      description: Tulis nama dokter
+                      example: dr. X
+                    tanggal_surat:
+                      type: string
+                      format: date
+                      description: Tulis tanggal surat keterangan dokter
+                      example: "2019-01-15"
+                    nomor_surat:
+                      type: string
+                      description: Tulis nomor surat keterangan dokter
+                      example: 170/569/SK-3/IV/18 
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  description: Tulis/isi Kode Satker penahanan
                   example: 013.05.193
-                tanggal_berakhir_penahanan:
+                tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal berakhir penahanan
+                  description: Tulis/isi tanggal berakhirnya penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 kode_jenis_penahanan:
                   type: string
-                  description: Diisi dengan kode jenis penahanan
+                  description: Lihat kode jenis penahanan dalam data master
                   example: 1
                 tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai perpanjangan penahanan
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 tanggal_akhir_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir perpanjangan penahanan
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan (Pasal 29). Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
 
@@ -4937,64 +4999,66 @@ components:
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s17
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penahanan
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen s21
-                  example: S21/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Surat Permintaan Perpanjangan Penahanan.
+                  example: SRT/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen s21.
+                  description: Tulis/isi dengan tanggal Surat Permintaan Perpanjangan Penahanan.
                   example: "2019-01-15"
                 nomor_spdp:
                   type: string
-                  description: Nomor dokumen spdp
-                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor SPDP
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPDP
+                  description: Tulis/isi kode satker penerbit SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
+                kode_satker_penerbit_spdp:
                   type: string
                   description: Kode satker pengirim SPDP
                   example: 006.09.05
-                nomor_s17:
+                nomor_surat_perintah_penahanan:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
                   type: string
-                  description: Nomor dokumen s17
+                  description: Tulis/isi tanggal Surat Perintah Penahanan
                   example: S17/3/12/2012.PolresJAKPUS
             konten_dokumen:
               properties:  
-                identitas_tersangka:
-                  required:
-                    - nama_tersangka
-                    - nomor_identitas
-                    - kode_satker_tempat_penahanan
-                    - tanggal_mulai_penahanan
-                    - tanggal_akhir_penahanan
-                  properties:
-                    nama_tersangka:
-                      type: string
-                      description: Nama Tersangka
-                      example : Samuel Sambiroto
-                    nomor_identitas:
-                      type: string
-                      nullable: true
-                      description: Jika tidak diketahui, maka isi dengan null
-                      example: AA12345678
-                    kode_satker_tempat_penahanan:
-                      type: string
-                      example: 006.09.05
-                      description: lihat data master Satker
-                    tanggal_mulai_penahanan:
-                      type: string
-                      format: date
-                    tanggal_akhir_penahanan:
-                      type: string
-                      format: date
+                nama_tersangka:
+                  type: string
+                  description: Tulis/isi nama lengkap tersangka
+                  example : Samuel Sambiroto
+                nomor_identitas_tersangka:
+                  type: string
+                  nullable: true
+                  description: Tulis/isi nomor identitas kependudukan (NIK) tersangka
+                  example: AA12345678
+                kode_satker_tempat_penahanan:
+                  type: string
+                  example: 006.09.05
+                  description: Tulis/isi kode satker tempat penahanan
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis tanggal mulai perpanjangan penahanan
+                  example: "2019-03-05"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis tanggal berakhir perpanjangan penahanan
+                  example: "2019-03-05"
                     
 
 
@@ -5099,33 +5163,35 @@ components:
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen pen-7.21
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan penahanan
                   example: PEN-7.21/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen pen-7.21.
+                  description: Tulis/isi tanggal penetapan penahanan
                   example: "2019-01-15"
-                nomor_perkara:
-                  type: string
-                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
-                  example: P/3/12/2012.PNJAKPUS
-                tingkat_pengadilan:
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                    - 3
-                  example: 2
-                  description: 1 = Pengadilan Negeri ; 2 = Pengadilan Tinggi ; 3 = Mahkamah Agung
             konten_dokumen:
               required:
+                - nomor_perkara
+                - tingkat_pengadilan
                 - identitas_terdakwa
                 - kode_jenis_penahanan
                 - lama_penahanan
                 - tanggal_mulai_penahanan
                 - tanggal_akhir_penahanan
               properties:
+                nomor_perkara:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor register perkara banding
+                  example: Reg/3/12/2012.JakJAKPUS
+                tingkat_pengadilan:
+                  type: integer
+                  example: 2
+                  description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
                 identitas_terdakwa:
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
@@ -5137,24 +5203,24 @@ components:
                     - 2
                     - 3
                   example: 1
-                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                  description: Lihat kode jenis penahanan dalam data master
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  description: Tulis/isi Kode Satker penahanan
                   example: 006.09.05
                 lama_penahanan:
                   type: integer
-                  description: Angka jumlah hari
+                  description: Tulis lama penahanan dalam satuan hari
                   example: 14
                 tanggal_mulai_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis/isi tanggal mulai penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tulis/isi tanggal berakhirnya penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
     pen-7.25:
@@ -5170,41 +5236,38 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_perkara
-              - tingkat_pengadilan
+              - nomor_penetapan_penahanan
+              - tanggal_penetapan_penahanan
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen pen-7.25
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan perpanjangan penahanan
                   example: PEN-7.25/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen pen-7.25.
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan
                   example: "2019-01-15"
-                nomor_perkara:
+                nomor_penetapan_penahanan:
                   type: string
-                  description: Nomor register perkara di pengadilan (yang akan digunakan juga sebagai nomor putusan)
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor penetapan penahanan
                   example: P/3/12/2012.PNJAKPUS
-                tingkat_pengadilan:
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                    - 3
-                  example: 2
-                  description: 1 = Pengadilan Negeri ; 2 = Pengadilan Tinggi ; 3 = Mahkamah Agung
+                tanggal_penetapan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal penetapan perpanjangan penahanan
+                  example: "2019-01-15"
             konten_dokumen:
               required:
-                - identitas_terdakwa
-                - kode_jenis_penahanan
-                - lama_penahanan
-                - tanggal_mulai_penahanan
                 - tanggal_akhir_penahanan
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
+                - kode_jenis_penahanan
               properties:
-                identitas_terdakwa:
-                  allOf:
-                    - $ref: '#/components/schemas/terdakwa'
                 kode_jenis_penahanan:
                   type: integer 
                   enum:
@@ -5213,24 +5276,25 @@ components:
                     - 2
                     - 3
                   example: 1
-                  description: 0 = Tidak diketahui; 1	= Penahanan Rumah Tahanan Negara; 2	= Penahanan Rumah; 3 = Penahanan Kota
+                  description: Lihat kode jenis penahanan dalam data master
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Diisi kode satker lapas untuk jenis penahanan di lapas
+                  description: Tulis/isi Kode Satker penahanan
                   example: 006.09.05
-                lama_penahanan:
-                  type: integer
-                  description: Angka jumlah hari
-                  example: 14
-                tanggal_mulai_penahanan:
-                  type: string
-                  format: date
-                  description: Tanggal mulai penahanan
-                  example: "2019-01-15"
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_mulai_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal mulai perpanjangan penahanan. Lihat pedoman penulisan tanggal
+                  example: "2019-01-15"
+                tanggal_akhir_perpanjangan_penahanan:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal berakhirnya perpanjangan penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
     acb:
@@ -5366,62 +5430,66 @@ components:
               - tanggal
               - nomor_spdp
               - tanggal_spdp
-              - kode_satker_spdp
-              - nomor_s17
+              - kode_satker_penerbit_spdp
+              - nomor_surat_perintah_penahanan
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen S22
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi dengan nomor Surat Permintaan Perpanjangan Penahanan Lanjutan.
                   example: S22/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen S22
+                  description: Tulis/isi dengan tanggal Surat Permintaan Perpanjangan Penahanan Lanjutan.
                   example: "2019-01-15"
                 nomor_spdp:
                   type: string
-                  description: Nomor dokumen SPDP
-                  example: SPDP/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor SPDP
+                  example: SPDP/326/IX/2017
                 tanggal_spdp:
                   type: string
                   format: date
-                  description: Tanggal dokumen SPDP
+                  description: Tulis/isi tanggal SPDP
                   example: "2019-01-15"
-                kode_satker_spdp:
+                kode_satker_penerbit_spdp:
                   type: string
-                  description: Kode satker pengirim SPDP
+                  description: Tulis/isi kode satker penerbit SPDP
                   example: 006.09.05
-                nomor_s17:
+                nomor_surat_perintah_penahanan:
                   type: string
-                  description: Nomor surat perintah
+                  description: Tulis/isi tanggal Surat Perintah Penahanan
                   example: S17/3/12/2012.PolresJAKPUS
             konten_dokumen:
               required:
                   - nama_tersangka
-                  - nomor_identitas
+                  - nomor_identitas_tersangka
                   - kode_satker_tempat_penahanan
               properties:
                 nama_tersangka:
                   type: string
-                  description: Nama lengkap tersangka
+                  description: Tulis/isi nama lengkap tersangka
                   example: Samuel Sambiroto
-                nomor_identitas:
+                nomor_identitas_tersangka:
                   type: string
-                  description: Nomor identitas tersangka
-                  example: 123456789
+                  description: Tulis/isi nomor identitas kependudukan (NIK) tersangka
+                  example: AA123456789
                 kode_satker_tempat_penahanan:
                   type: string
                   description: Kode satker tempat penahanan
                   example: 006.09.05
-                tanggal_mulai_penahanan:
+                tanggal_mulai_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis tanggal mulai perpanjangan penahanan
                   example: "2019-01-15"
-                tanggal_akhir_penahanan:
+                tanggal_akhir_perpanjangan_penahanan:
                   type: string
                   format: date
-                  description: Tanggal akhir penahanan
+                  description: Tulis tanggal akhir perpanjangan penahanan
                   example: "2019-01-15"
 
     pen-7.1:
@@ -5437,35 +5505,34 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_perkara
-              - tingkat_pengadilan
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen PEN-7.1
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan penahanan
                   example: PEN/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.1
+                  description: Tulis/isi tanggal penetapan penahanan
                   example: "2019-01-15"
-                nomor_perkara:
-                  type: string
-                  description: Nomor dokumen PEN-7.1
-                  example: P/3/12/2012.PNJAKPUS
-                pihak_pemohon: 
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                    - 3
-                  example: 2
-                  description: 1 = Pengadilan Negeri ; 2 = Pengadilan Tinggi ; 3 = Mahkamah Agung
             konten_dokumen:
               required:
+                  - nomor_perkara
+                  - tingkat_pengadilan
                   - jenis_penahanan
                   - lama_penahanan
               properties:
+                nomor_perkara:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor register perkara pengadilan
+                  example: Reg/3/12/2012.JakJAKPUS
+                tingkat_pengadilan: 
+                  type: integer
+                  description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
                 identitas_terdakwa:
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
@@ -5477,24 +5544,24 @@ components:
                     - 2
                     - 3
                   example: 0
-                  description: 0 = Tidak Diketahui ; 1 = Penahanan Rumah Tahanan Negara ; 2 = Penahanan Rumah ; 3 = Penahanan Kota
+                  description: Lihat kode jenis penahanan dalam data master
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Kode satker tempat penahanan
+                  description: Tulis/isi Kode Satker penahanan
                   example: 006.09.05
                 lama_penahanan:
                   type: integer
-                  description: Angka jumlah hari lama penahanan
+                  description: Tulis lama penahanan dalam satuan hari
                   example: 14
                 tanggal_mulai_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis/isi tanggal mulai penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal berakhir penahanan
+                  description: Tulis/isi tanggal berakhir penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
     pen-7.24:
@@ -5510,39 +5577,41 @@ components:
               required:
               - nomor
               - tanggal
-              - nomor_perkara
-              - tingkat_pengadilan
               properties:
                 nomor:
                   type: string
-                  description: Nomor dokumen PEN-7.1
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor penetapan penahanan
                   example: PEN/3/12/2012.PolresJAKPUS
                 tanggal:
                   type: string
                   format: date
-                  description: Tanggal dokumen PEN-7.1
+                  description: Tulis/isi tanggal penetapan penahanan
                   example: "2019-01-15"
-                nomor_perkara:
-                  type: string
-                  description: Nomor dokumen PEN-7.1
-                  example: P/3/12/2012.PNJAKPUS
-                pihak_pemohon: 
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                    - 3
-                  example: 2
-                  description: 1 = Pengadilan Negeri ; 2 = Pengadilan Tinggi ; 3 = Mahkamah Agung
             konten_dokumen:
               required:
-                  - jenis_penahanan
+                  - nomor_perkara
+                  - tingkat_pengadilan 
+                  - kode_jenis_penahanan
                   - lama_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_akhir_penahanan
               properties:
+                nomor_perkara:
+                  type: string
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis/isi nomor register perkara kasasi
+                  example: Reg/3/12/2012.JakJAKPUS
+                tingkat_pengadilan: 
+                  type: integer
+                  example: 2
+                  description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
                 identitas_terdakwa:
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
-                jenis_penahanan: 
+                kode_jenis_penahanan: 
                   type: integer
                   enum:
                     - 0
@@ -5550,24 +5619,24 @@ components:
                     - 2
                     - 3
                   example: 0
-                  description: 0 = Tidak Diketahui ; 1 = Penahanan Rumah Tahanan Negara ; 2 = Penahanan Rumah ; 3 = Penahanan Kota
+                  description: Lihat kode jenis penahanan dalam data master
                 kode_satker_tempat_penahanan:
                   type: string
-                  description: Kode satker tempat penahanan
+                  description: Tulis/isi Kode Satker penahanan
                   example: 006.09.05
                 lama_penahanan:
                   type: integer
-                  description: Angka jumlah hari lama penahanan
+                  description: Tulis lama penahanan dalam satuan hari
                   example: 14
                 tanggal_mulai_penahanan:
                   type: string
                   format: date
-                  description: Tanggal mulai penahanan
+                  description: Tulis/isi tanggal mulai penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
                 tanggal_akhir_penahanan:
                   type: string
                   format: date
-                  description: Tanggal berakhir penahanan
+                  description: Tulis/isi tanggal berakhirnya penahanan. Lihat pedoman penulisan tanggal
                   example: "2019-01-15"
 
     s23:
