@@ -289,7 +289,7 @@ paths:
         - format pesan
       summary: Berkas lengkap
       operationId: kirimPrt40
-      description: Proses bisnis pengiriman Surat Permintaan Diserahkannya Tersangka dan atau Barang-Barang Bukti (P-21A) dari Kejaksaan ke Kepolisian. 
+      description: Proses bisnis pengiriman Surat Permintaan Diserahkannya Tersangka dan atau Barang-Barang Bukti (P-21) dari Kejaksaan ke Kepolisian. 
       responses:
         '200':
             $ref: '#/components/responses/success'
@@ -1465,6 +1465,50 @@ paths:
             schema:
               $ref: '#/components/schemas/dat-14'
         description: Format dokumen yang akan dikirim
+  /dat-15:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Putusan Pengadilan (BA-17)
+      description: Mengirim dokumen Berita Acara Pelaksanaan Putusan Pengadilan (BA-17) via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-15'
+        description: Format dokumen yang akan dikirim
+  /dat-16:
+    post:
+      parameters:
+      - $ref: '#/components/parameters/header_accept_param'
+      - $ref: '#/components/parameters/header_content_type_param'
+      tags:
+        - format pesan
+      summary: Berita Acara Pelaksanaan Perintah Mengeluarkan dari Tahanan (BA-10)
+      description: Mengirim dokumen Berita Acara Pelaksanaan Perintah Mengeluarkan dari Tahanan (BA-10) via SPPT TI
+      responses:
+        '200':
+            $ref: '#/components/responses/success'
+        '400':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dat-16'
+        description: Format dokumen yang akan dikirim
   /dokumen/s24:
     get:
       tags:
@@ -2318,12 +2362,13 @@ components:
                 type: array
                 minItems: 3
                 maxItems: 3
-                description: harus diisi dengan 3 dokumen berjenis P16A, P29, dan P31.
+                description: harus diisi dengan 3 dokumen berjenis P16A, P29, dan P31 atau P32.
                 items:
                   oneOf:
                     - $ref: '#/components/schemas/p16a'
                     - $ref: '#/components/schemas/p29'
                     - $ref: '#/components/schemas/p31'
+                    - $ref: '#/components/schemas/p32'
     
     tut-20:
       required:
@@ -3056,7 +3101,7 @@ components:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
                   example: SPDP/326/IX/2017
-                tanggal_spdp:
+                tanggal_terima_spdp:
                   type: string
                   format: date
                   description: Tanggal dokumen SPDP
@@ -3848,10 +3893,6 @@ components:
                   format: date
                   description: Tulis tanggal SPDP dari Kepolisian, lihat dokumen cetaknya
                   example: "2019-01-15"
-                kode_satker_spdp:
-                  type: string
-                  description: Kode Satker SPDP
-                  example: 006.09.05
                 nomor_p21:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
@@ -4075,6 +4116,78 @@ components:
                   type: string
                   format: date
                   description: Tulis tanggal P-31, cara penulisan merujuk bakuan penulisan tanggal.
+                nomor_spdp:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor SPDP, lihat dokumen cetaknya.
+                  example: SPDP/326/IX/2017
+                nomor_berkas_perkara:
+                  description: Tulis nomor berkas perkara Kepolisian, lihat dokumen cetaknya.
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  example: BP/112/IV/2019/Satreskrim
+                nomor_register_perkara:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor register perkara Kejaksaan, lihat dokumen cetaknya.
+                  example: PRINT.PDM.998/0.5.10/Euh.2/05/2018
+            konten_dokumen:
+              type: object
+              required:
+                - daftar_terdakwa
+                - daftar_barang_bukti
+                - daftar_saksi
+              properties:
+                daftar_terdakwa:
+                  description: Tulis/isi dengan identitas (para) terdakwa. Lihat bakuan elemen data Pelaku (terdakwa)
+                  type: array
+                  minItems: 1
+                  items:
+                    $ref: '#/components/schemas/terdakwa'
+                daftar_barang_bukti:
+                  description: Tulis/isi dengan informasi terkait barang bukti. Lihat bakuan elemen data daftar barang bukti.
+                  type: array
+                  minItems: 1
+                  items:
+                    $ref: '#/components/schemas/barang_bukti'
+                daftar_saksi:
+                  description: Tulis/isi dengan identitas (para) saksi. Lihat bakuan elemen data saksi.
+                  type: array
+                  minItems: 1
+                  items:
+                    $ref: '#/components/schemas/saksi'
+                daftar_ahli:
+                  description: Tulis/isi dengan identitas (para) ahli. Lihat bakuan elemen data ahli.
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ahli'
+    p32:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              type: string
+              default: p32
+              example: p32
+            identitas_dokumen:
+              type: object
+              required:
+                - nomor
+                - tanggal
+                - nomor_spdp
+                - nomor_berkas_perkara
+                - nomor_register_perkara
+              properties:
+                nomor:
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                  description: Tulis nomor surat P-32, lihat dokumen cetaknya.
+                  example: B-30/0.2.10.3/Epp.2/1/2019
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis tanggal P-32, cara penulisan merujuk bakuan penulisan tanggal.
                 nomor_spdp:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
@@ -6469,9 +6582,9 @@ components:
             identitas_dokumen:
               required:
               - tanggal
-              - nomor_surat_penahanan
+              - nomor
               properties:
-                nomor_surat_penahanan:
+                nomor:
                   type: string
                   description: Diisi dengan nomor dokumen perintah yang mendasari berita acara ini. Misal, nomor T-7 atau nomor PEN.7-1
                   example: ba7/3/12/2012.PolresJAKPUS
@@ -6484,7 +6597,7 @@ components:
             konten_dokumen:
               required:
                   - tanggal_mulai_penahanan
-                  - tempat_penahanan
+                  - kode_satker_tempat_penahanan
                   - lama_penahanan
               properties:
                 tanggal_mulai_penahanan:
@@ -6492,7 +6605,7 @@ components:
                   format: date
                   description: Tanggal mulai penahanan
                   example: "2019-01-15"
-                tempat_penahanan:
+                kode_satker_tempat_penahanan:
                   type: string
                   description: Diisi dengan tempat penahanan
                   example: ba7/3/12/2012.PolresJAKPUS
@@ -6832,6 +6945,38 @@ components:
               description: Diisi dengan dokumen berjenis S-17
               items:
                 $ref: '#/components/schemas/s17'
+    dat-15:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-15
+                example: dat-15
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis BA-17.
+              items:
+                $ref: '#/components/schemas/ba17'
+    dat-16:
+      required:
+        - dokumen
+      allOf:     # Combines Parent Object and the inline model
+        - $ref: '#/components/schemas/header'
+        - type: object
+          properties:
+            kode_proses:
+                default: dat-16
+                example: dat-16
+            dokumen:
+              type: array
+              minItems: 1
+              description: Diisi dengan dokumen berjenis BA-10.
+              items:
+                $ref: '#/components/schemas/ba10'
 
     header:
       type: object
@@ -7247,6 +7392,7 @@ components:
       properties:
         kode:
           type: string
+          description: Tulis/isi dengan kode jenis hukuman. Lihat bakuan master jenis hukuman.
         value:
           type: object
           properties:
@@ -7355,6 +7501,31 @@ components:
                   type: string
                   format: date
                   description: Tulis/isi tanggal BA-9
+                  example: "2019-01-15"
+    ba10:
+      allOf:
+        - $ref: '#/components/schemas/dokumen'
+        - type: object
+          properties:
+            kode_jenis_dokumen:
+              default: ba10
+              pattern: '^ba10$'
+              example: ba10
+            identitas_dokumen:
+              required:
+              - nomor
+              - tanggal
+              properties:
+                nomor:
+                  type: string
+                  description: Tulis/isi nomor surat perintah pengeluaraan tahanan (T-8)
+                  example: SRT/3/12/2012.PolresJAKPUS
+                  allOf:
+                    - $ref : '#/components/schemas/nomor_surat'
+                tanggal:
+                  type: string
+                  format: date
+                  description: Tulis/isi tanggal BA-10
                   example: "2019-01-15"        
     
     p42:
@@ -7382,15 +7553,11 @@ components:
                   type: string
                   format: date
                   description: Tulis/isi dengan tanggal Surat Tuntutan
-                nomor_phs:
-                  description: Tulis/isi dengan nomor Surat Penetapan Hari Sidang
+                nomor_register_perkara:
+                  description: Tulis nomor register perkara pengadilan, lihat dokumen cetaknya
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
-                  example: 2138/Pid.Sus/2019/PNS by
-                tanggal_phs:
-                  type: string
-                  format: date
-                  description: Tulis/isi dengan tanggal hari sidang
+                  example: 93/Pid.B/2017/PN.Arm
             konten_dokumen:
               required:
                 - daftar_terdakwa
