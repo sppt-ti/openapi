@@ -1273,7 +1273,7 @@ paths:
       - $ref: '#/components/parameters/header_accept_param'
       - $ref: '#/components/parameters/header_content_type_param'
       tags:
-        - format pesan
+        - experiment
       summary: Surat Perintah Pencabutan Pembantaran Tahanan Kepolisian
       description: Mengirim dokumen S-24 via SPPT TI
       responses:
@@ -3242,7 +3242,6 @@ components:
                 - tanggal_mulai_perpanjangan_penahanan
                 - tanggal_akhir_perpanjangan_penahanan
                 - kode_jenis_penahanan
-                - kode_satker_tempat_penahanan
               properties:
                 tanggal_akhir_penahanan:
                   type: string
@@ -3540,13 +3539,16 @@ components:
                   description: Tulis tanggal Surat Pemberitahuan Pemindahan Tahanan yang Dititipkan, cara penulisan merujuk bakuan penulisan tanggal.
                   example: "2019-01-15"
             konten_dokumen:
+              required:
+                - identitas_tahanan
+                - kode_satker_tempat_penahanan_tujuan
               properties:  
                 identitas_tahanan:
                   allOf:
                     - $ref: '#/components/schemas/tahanan'
-                kode_satker_tempat_penahanan:
+                kode_satker_tempat_penahanan_tujuan:
                   type: string
-                  description: Kode satker tempat penahanan
+                  description: Kode satker tempat penahanan tujuan
                   example: 006.09.05
                   
     pen-7.14:
@@ -5039,6 +5041,8 @@ components:
                   description: Tulis/isi dengan nomor putusan yang diajukan permohonan banding
                   example: 93/Pid.B/2017/PN.Arm
             konten_dokumen:
+              required:
+                - pihak_pemohon
               properties:  
                 identitas_terdakwa:
                   allOf:
@@ -5083,7 +5087,9 @@ components:
                   description: Tulis/isi dengan nomor putusan yang diajukan permohonan Kasasi
                   example: 93/Pid.B/2017/PN.Arm
             konten_dokumen:
-              properties:  
+              required:
+                - pihak_pemohon
+              properties: 
                 identitas_terdakwa:
                   type: array
                   minItems: 1
@@ -5148,11 +5154,21 @@ components:
                   description: Tulis/isi tanggal Surat Perintah Penahanan
                   example: S17/3/12/2012.PolresJAKPUS
             konten_dokumen:
+              required:
+                - nama_tersangka
+                - nomor_identitas_tersangka
+                - kode_satker_tempat_penahanan
+                - tanggal_mulai_perpanjangan_penahanan
+                - tanggal_akhir_perpanjangan_penahanan
               properties:  
                 nama_tersangka:
                   type: string
                   description: Tulis/isi nama lengkap tersangka
                   example : Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
                 nomor_identitas_tersangka:
                   type: string
                   nullable: true
@@ -5285,16 +5301,6 @@ components:
                   format: date
                   description: Tulis/isi tanggal penetapan penahanan
                   example: "2019-01-15"
-            konten_dokumen:
-              required:
-                - nomor_perkara
-                - tingkat_pengadilan
-                - identitas_terdakwa
-                - kode_jenis_penahanan
-                - lama_penahanan
-                - tanggal_mulai_penahanan
-                - tanggal_akhir_penahanan
-              properties:
                 nomor_perkara:
                   type: string
                   allOf:
@@ -5305,7 +5311,25 @@ components:
                   type: integer
                   example: 2
                   description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
+            konten_dokumen:
+              required:
+                - identitas_terdakwa
+                - kode_jenis_penahanan
+                - lama_penahanan
+                - tanggal_mulai_penahanan
+                - tanggal_akhir_penahanan
+              properties:
                 identitas_terdakwa:
+                  required:
+                    - tanggal_lahir
+                    - kode_jenis_kelamin
+                    - kode_pendidikan
+                    - kode_pekerjaan
+                    - kode_agama
+                    - kode_warga_negara
+                    - kode_jenis_identitas
+                    - nomor_identitas
+                    - kode_wilayah
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
                 kode_jenis_penahanan:
@@ -5424,8 +5448,8 @@ components:
               - nomor
               - tanggal
               - nomor_putusan
-              - nomor_akta_permohonan
-              - tanggal_akta_permohonan
+              - nomor_akta_permohonan_banding
+              - tanggal_akta_permohonan_banding
               properties:
                 nomor:
                   allOf:
@@ -5442,12 +5466,12 @@ components:
                     - $ref : '#/components/schemas/nomor_surat'
                   description: Tulis/isi dengan nomor putusan yang diajukan permohonan banding
                   example: 93/Pid.B/2017/PN.Arm
-                nomor_akta_permohonan:
+                nomor_akta_permohonan_banding:
                   allOf:
                     - $ref : '#/components/schemas/nomor_surat'
                   description: Tulis/isi dengan nomor Akta Permohonan Banding
                   example: ""
-                tanggal_akta_permohonan:
+                tanggal_akta_permohonan_banding:
                   type: string
                   format: date
                   description: Tulis/isi dengan tanggal Akta Permohonan Banding
@@ -5455,19 +5479,20 @@ components:
             konten_dokumen:
               required:
                   - identitas_terdakwa
+                  - pihak_pencabut
               properties:
                 identitas_terdakwa:
                   type: array
                   minItems: 1
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
-                pihak_pemohon: 
+                pihak_pencabut: 
                   type: integer
                   enum:
                     - 1
                     - 2
                   example: 2
-                  description: Isi kode pihak pemohon, lihat kode jenis pemohon. 1 = Penuntut ; 2 = Terdakwa
+                  description: Isi dengan pihak yang membuat akta pernyataan pencabutan banding. kode pihak pemohon, lihat kode jenis pemohon. 1 = Penuntut ; 2 = Terdakwa
 
     ack:
       allOf:
@@ -5514,19 +5539,20 @@ components:
             konten_dokumen:
               required:
                   - identitas_terdakwa
+                  - pihak_pencabut
               properties:
                 identitas_terdakwa:
                   type: array
                   minItems: 1
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
-                pihak_pemohon: 
+                pihak_pencabut: 
                   type: integer
                   enum:
                     - 1
                     - 2
                   example: 2
-                  description: Isi kode pihak pemohon, lihat kode jenis pemohon. 1 = Penuntut ; 2 = Terdakwa
+                  description: Isi dengan pihak yang membuat akta pernyataan pencabutan kasasi. 1 = Penuntut ; 2 = Terdakwa
 
     s22:
       allOf:
@@ -5581,11 +5607,17 @@ components:
                   - nama_tersangka
                   - nomor_identitas_tersangka
                   - kode_satker_tempat_penahanan
+                  - tanggal_mulai_perpanjangan_penahanan
+                  - tanggal_akhir_perpanjangan_penahanan
               properties:
                 nama_tersangka:
                   type: string
                   description: Tulis/isi nama lengkap tersangka
                   example: Samuel Sambiroto
+                kode_jenis_identitas_tersangka:
+                  type: integer
+                  description: Lihat master jenis identitas
+                  example: 1
                 nomor_identitas_tersangka:
                   type: string
                   description: Tulis/isi nomor identitas kependudukan (NIK) tersangka
@@ -5636,6 +5668,7 @@ components:
                   - tingkat_pengadilan
                   - jenis_penahanan
                   - lama_penahanan
+                  - identitas_terdakwa
               properties:
                 nomor_perkara:
                   type: string
@@ -5647,6 +5680,16 @@ components:
                   type: integer
                   description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
                 identitas_terdakwa:
+                  required:
+                    - tanggal_lahir
+                    - kode_jenis_kelamin
+                    - kode_pendidikan
+                    - kode_pekerjaan
+                    - kode_agama
+                    - kode_warga_negara
+                    - kode_jenis_identitas
+                    - nomor_identitas
+                    - kode_wilayah
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
                 jenis_penahanan: 
@@ -5690,6 +5733,8 @@ components:
               required:
               - nomor
               - tanggal
+              - nomor_perkara
+              - tingkat_pengadilan
               properties:
                 nomor:
                   type: string
@@ -5702,15 +5747,6 @@ components:
                   format: date
                   description: Tulis/isi tanggal penetapan penahanan
                   example: "2019-01-15"
-            konten_dokumen:
-              required:
-                  - nomor_perkara
-                  - tingkat_pengadilan 
-                  - kode_jenis_penahanan
-                  - lama_penahanan
-                  - tanggal_mulai_penahanan
-                  - tanggal_akhir_penahanan
-              properties:
                 nomor_perkara:
                   type: string
                   allOf:
@@ -5721,7 +5757,25 @@ components:
                   type: integer
                   example: 2
                   description: Isi tingkat pengadilan. Lihat kode tingkat pengadilan
+            konten_dokumen:
+              required: 
+                  - identitas_terdakwa
+                  - kode_jenis_penahanan
+                  - lama_penahanan
+                  - tanggal_mulai_penahanan
+                  - tanggal_akhir_penahanan
+              properties:
                 identitas_terdakwa:
+                  required:
+                    - tanggal_lahir
+                    - kode_jenis_kelamin
+                    - kode_pendidikan
+                    - kode_pekerjaan
+                    - kode_agama
+                    - kode_warga_negara
+                    - kode_jenis_identitas
+                    - nomor_identitas
+                    - kode_wilayah
                   allOf:
                     - $ref: '#/components/schemas/terdakwa'
                 kode_jenis_penahanan: 
